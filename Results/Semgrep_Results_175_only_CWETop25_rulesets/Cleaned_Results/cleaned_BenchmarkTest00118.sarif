@@ -1,0 +1,137 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "1717e691b095b26a7353c18b9c33239b3f9a7bd4585ccd520fd3429d6fe1040a0522ae5872d15da2f3715529abeaa016f908946aac2c036c9c68319a3261636e_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00118.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "36b48cf162e6ae4ef1f67bae6c273a37b1112d665afbcab82e66d4f2f6e3efd8f8923fe103e55e59982c9b8026ee90856385d3c8cb477a5ac01a0d677a57a28c_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00118.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 88,
+                  "endLine": 71,
+                  "snippet": {
+                    "text": "            response.getWriter().println(\"Your query results are: \" + result + \"<br/>\");"
+                  },
+                  "startColumn": 13,
+                  "startLine": 71
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+              },
+              "help": {
+                "markdown": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer)\n - [https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaServerFaces.html](https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaServerFaces.html)\n",
+                "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "id": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "name": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A03:2021 - Injection",
+                  "OWASP-A07:2017 - Cross-Site Scripting (XSS)",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "help": {
+                "markdown": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite)\n - [https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application](https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application)\n",
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "id": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "name": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-352: Cross-Site Request Forgery (CSRF)",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+              }
+            }
+          ],
+          "semanticVersion": "1.141.1"
+        }
+      }
+    }
+  ]
+}
