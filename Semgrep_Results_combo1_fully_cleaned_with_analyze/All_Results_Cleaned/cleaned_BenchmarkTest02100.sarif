@@ -1,0 +1,306 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "132a39e1e4870088baa7793c5c5fc0169fcc6afc5f104d3465f4b0fbf035e7dd98004d667d1ba4e58f4137a83366455d5442e59740bd39198df9d081cf1162f1_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02100.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 99,
+                  "endLine": 55,
+                  "snippet": {
+                    "text": "                            xp.compile(expression)\n                                    .evaluate(xmlDocument, javax.xml.xpath.XPathConstants.NODESET);"
+                  },
+                  "startColumn": 29,
+                  "startLine": 54
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected input from a HTTPServletRequest going into a XPath evaluate or compile command. This could lead to xpath injection if variables passed into the evaluate or compile commands are not properly sanitized. Xpath injection could lead to unauthorized access to sensitive information in XML documents. Instead, thoroughly sanitize user input or use parameterized xpath queries if you can."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.tainted-xpath-from-http-request.tainted-xpath-from-http-request"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "02cbf0e0cfd113a775e1c48c3bcb4128e4fe672b8e075b51bb8388546ed0f4ac0a4539f93ece91e6e7b12710ad85ec98694d04ddac2800b6fc3bbeab04c27560_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02100.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 99,
+                  "endLine": 55,
+                  "snippet": {
+                    "text": "                            xp.compile(expression)\n                                    .evaluate(xmlDocument, javax.xml.xpath.XPathConstants.NODESET);"
+                  },
+                  "startColumn": 29,
+                  "startLine": 54
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected input from a HTTPServletRequest going into a XPath evaluate or compile command. This could lead to xpath injection if variables passed into the evaluate or compile commands are not properly sanitized. Xpath injection could lead to unauthorized access to sensitive information in XML documents. Instead, thoroughly sanitize user input or use parameterized xpath queries if you can."
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.tainted-xpath-from-http-request.tainted-xpath-from-http-request"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "2e76d6a6029e1f08ac637c171b7affae346aa4d171551bcf1296a24a7c9dc14815ccdf897aa36fd1b820e4a4172399e052e8e1760b830c639c2c8fab3460ec74_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02100.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 50,
+                  "endLine": 54,
+                  "snippet": {
+                    "text": "                            xp.compile(expression)"
+                  },
+                  "startColumn": 40,
+                  "startLine": 54
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "XPath queries are constructed dynamically on user-controlled input. This could lead to XPath injection if variables passed into the evaluate or compile commands are not properly sanitized. Xpath injection could lead to unauthorized access to sensitive information in XML documents. Thoroughly sanitize user input or use parameterized XPath queries if you can."
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.tainted-xpath-from-http-request-deepsemgrep.tainted-xpath-from-http-request-deepsemgrep"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "598bf311be00f90acb457707e620ef42ab5dc5234dd232c29b2ee3a9d798237ec2faf9944a38034c48e336422169decaa2b98fdc21d41d16baad2a18dbf626dc_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02100.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 79,
+                  "endLine": 61,
+                  "snippet": {
+                    "text": "                response.getWriter().println(value.getTextContent() + \"<br/>\");"
+                  },
+                  "startColumn": 17,
+                  "startLine": 61
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "cd8dc08112c83aa1feaab8ffe9902a456de352f0c9ad035d8bac7929bd20e5734c254f96224e1954b805b680b032990f09fa7e90f3f7a8e616238d21ca03d48e_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02100.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 79,
+                  "endLine": 61,
+                  "snippet": {
+                    "text": "                response.getWriter().println(value.getTextContent() + \"<br/>\");"
+                  },
+                  "startColumn": 17,
+                  "startLine": 61
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n"
+              },
+              "help": {
+                "markdown": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1)\n",
+                "text": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1",
+              "id": "gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1",
+              "name": "gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-79",
+                  "OWASP-A03:2021-Injection",
+                  "OWASP-A1:2017-Injection",
+                  "security"
+                ],
+                "security-severity": "Medium"
+              },
+              "shortDescription": {
+                "text": "Improper neutralization of input during web page generation ('Cross-site Scripting')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected input from a HTTPServletRequest going into a XPath evaluate or compile command. This could lead to xpath injection if variables passed into the evaluate or compile commands are not properly sanitized. Xpath injection could lead to unauthorized access to sensitive information in XML documents. Instead, thoroughly sanitize user input or use parameterized xpath queries if you can."
+              },
+              "help": {
+                "markdown": "Detected input from a HTTPServletRequest going into a XPath evaluate or compile command. This could lead to xpath injection if variables passed into the evaluate or compile commands are not properly sanitized. Xpath injection could lead to unauthorized access to sensitive information in XML documents. Instead, thoroughly sanitize user input or use parameterized xpath queries if you can.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.tainted-xpath-from-http-request.tainted-xpath-from-http-request)\n - [https://owasp.org/Top10/A03_2021-Injection](https://owasp.org/Top10/A03_2021-Injection)\n",
+                "text": "Detected input from a HTTPServletRequest going into a XPath evaluate or compile command. This could lead to xpath injection if variables passed into the evaluate or compile commands are not properly sanitized. Xpath injection could lead to unauthorized access to sensitive information in XML documents. Instead, thoroughly sanitize user input or use parameterized xpath queries if you can."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.tainted-xpath-from-http-request.tainted-xpath-from-http-request",
+              "id": "java.lang.security.audit.tainted-xpath-from-http-request.tainted-xpath-from-http-request",
+              "name": "java.lang.security.audit.tainted-xpath-from-http-request.tainted-xpath-from-http-request",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-643: Improper Neutralization of Data within XPath Expressions ('XPath Injection')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.tainted-xpath-from-http-request.tainted-xpath-from-http-request"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+              },
+              "help": {
+                "markdown": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer)\n - [https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaServerFaces.html](https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaServerFaces.html)\n",
+                "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "id": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "name": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A03:2021 - Injection",
+                  "OWASP-A07:2017 - Cross-Site Scripting (XSS)",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "XPath queries are constructed dynamically on user-controlled input. This could lead to XPath injection if variables passed into the evaluate or compile commands are not properly sanitized. Xpath injection could lead to unauthorized access to sensitive information in XML documents. Thoroughly sanitize user input or use parameterized XPath queries if you can."
+              },
+              "help": {
+                "markdown": "XPath queries are constructed dynamically on user-controlled input. This could lead to XPath injection if variables passed into the evaluate or compile commands are not properly sanitized. Xpath injection could lead to unauthorized access to sensitive information in XML documents. Thoroughly sanitize user input or use parameterized XPath queries if you can.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.tainted-xpath-from-http-request-deepsemgrep.tainted-xpath-from-http-request-deepsemgrep)\n - [https://owasp.org/Top10/A03_2021-Injection](https://owasp.org/Top10/A03_2021-Injection)\n",
+                "text": "XPath queries are constructed dynamically on user-controlled input. This could lead to XPath injection if variables passed into the evaluate or compile commands are not properly sanitized. Xpath injection could lead to unauthorized access to sensitive information in XML documents. Thoroughly sanitize user input or use parameterized XPath queries if you can."
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.tainted-xpath-from-http-request-deepsemgrep.tainted-xpath-from-http-request-deepsemgrep",
+              "id": "java.servlets.security.tainted-xpath-from-http-request-deepsemgrep.tainted-xpath-from-http-request-deepsemgrep",
+              "name": "java.servlets.security.tainted-xpath-from-http-request-deepsemgrep.tainted-xpath-from-http-request-deepsemgrep",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-643: Improper Neutralization of Data within XPath Expressions ('XPath Injection')",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.tainted-xpath-from-http-request-deepsemgrep.tainted-xpath-from-http-request-deepsemgrep"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected input from a HTTPServletRequest going into a XPath evaluate or compile command. This could lead to xpath injection if variables passed into the evaluate or compile commands are not properly sanitized. Xpath injection could lead to unauthorized access to sensitive information in XML documents. Instead, thoroughly sanitize user input or use parameterized xpath queries if you can."
+              },
+              "help": {
+                "markdown": "Detected input from a HTTPServletRequest going into a XPath evaluate or compile command. This could lead to xpath injection if variables passed into the evaluate or compile commands are not properly sanitized. Xpath injection could lead to unauthorized access to sensitive information in XML documents. Instead, thoroughly sanitize user input or use parameterized xpath queries if you can.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.tainted-xpath-from-http-request.tainted-xpath-from-http-request)\n - [https://owasp.org/www-community/attacks/XPATH_Injection](https://owasp.org/www-community/attacks/XPATH_Injection)\n - [https://portal.securecodewarrior.com/#/learning-resources/application_security_weaknesses~2Fweb~2Fdata_handling~2Finjection~2Fxpath](https://portal.securecodewarrior.com/#/learning-resources/application_security_weaknesses~2Fweb~2Fdata_handling~2Finjection~2Fxpath)\n",
+                "text": "Detected input from a HTTPServletRequest going into a XPath evaluate or compile command. This could lead to xpath injection if variables passed into the evaluate or compile commands are not properly sanitized. Xpath injection could lead to unauthorized access to sensitive information in XML documents. Instead, thoroughly sanitize user input or use parameterized xpath queries if you can."
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.tainted-xpath-from-http-request.tainted-xpath-from-http-request",
+              "id": "java.servlets.security.tainted-xpath-from-http-request.tainted-xpath-from-http-request",
+              "name": "java.servlets.security.tainted-xpath-from-http-request.tainted-xpath-from-http-request",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-643: Improper Neutralization of Data within XPath Expressions ('XPath Injection')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.tainted-xpath-from-http-request.tainted-xpath-from-http-request"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

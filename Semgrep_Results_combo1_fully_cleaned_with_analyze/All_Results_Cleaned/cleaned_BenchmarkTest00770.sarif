@@ -1,0 +1,272 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "6b569991a71575610c8678a7a07da99988b1e69bf52c74782926132ff01054170afb37a744469969fc33d6c90fa8c674095b56c2c040ac06e0b82989c129aa2b_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00770.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 85,
+                  "endLine": 42,
+                  "snippet": {
+                    "text": "        String sql = \"SELECT * from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                  },
+                  "startColumn": 22,
+                  "startLine": 42
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "6b569991a71575610c8678a7a07da99988b1e69bf52c74782926132ff01054170afb37a744469969fc33d6c90fa8c674095b56c2c040ac06e0b82989c129aa2b_1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00770.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 91,
+                  "endLine": 42,
+                  "snippet": {
+                    "text": "        String sql = \"SELECT * from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                  },
+                  "startColumn": 22,
+                  "startLine": 42
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "6df3a3d7acbb8b885e69898b1d8f98f6851e35916c7aa9f6ba37bf73a5bffa9bf107b1d6c285514bc662240879469e187cdc5b08b5649ca567a8b246e975ac47_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00770.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 36,
+                  "endLine": 47,
+                  "snippet": {
+                    "text": "            statement.addBatch(sql);"
+                  },
+                  "startColumn": 13,
+                  "startLine": 47
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The input values included in SQL queries need to be passed in safely. Bind\nvariables in prepared statements can be used to easily mitigate the risk of\nSQL injection.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SQL_INJECTION_SPRING_JDBC-1.SQL_INJECTION_JPA-1.SQL_INJECTION_JDO-1.SQL_INJECTION_JDBC-1.SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "1ebc0ac0ce11f89397bcbfbec2d169375c11f9f8e2921e5034988449b7e248f87cf2cc5275cdf31163299b3b4543f1e15bcbc626950b477a9c95ebc98b9639db_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00770.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 36,
+                  "endLine": 47,
+                  "snippet": {
+                    "text": "            statement.addBatch(sql);"
+                  },
+                  "startColumn": 13,
+                  "startLine": 47
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "SQL Injection is a critical vulnerability that can lead to data or system compromise. By\ndynamically generating SQL query strings, user input may be able to influence the logic of\nthe SQL statement. This could lead to an adversary accessing information they should\nnot have access to, or in some circumstances, being able to execute OS functionality or code.\n\nReplace all dynamically generated SQL queries with parameterized queries. In situations where\ndynamic queries must be created, never use direct user input, but instead use a map or\ndictionary of valid values and resolve them using a user supplied key.\n\nFor example, some database drivers do not allow parameterized queries for `>` or `<` comparison\noperators. In these cases, do not use a user supplied `>` or `<` value, but rather have the\nuser\nsupply a `gt` or `lt` value. The alphabetical values are then used to look up the `>` and `<`\nvalues to be used in the construction of the dynamic query. The same goes for other queries\nwhere\ncolumn or table names are required but cannot be parameterized.\n\nExample using `PreparedStatement` queries:\n```\n// Some userInput\nString userInput = \"someUserInput\";\n// Your connection string\nString url = \"...\";\n// Get a connection from the DB via the DriverManager\nConnection conn = DriverManager.getConnection(url);\n// Create a prepared statement\nPreparedStatement st = conn.prepareStatement(\"SELECT name FROM table where name=?\");\n// Set each parameters value by the index (starting from 1)\nst.setString(1, userInput);\n// Execute query and get the result set\nResultSet rs = st.executeQuery();\n// Iterate over results\nwhile (rs.next()) {\n    // Get result for this row at the provided column number (starting from 1)\n    String result = rs.getString(1);\n    // ...\n}\n// Close the ResultSet\nrs.close();\n// Close the PreparedStatement\nst.close();\n```\n\nFor more information on SQL Injection see OWASP:\nhttps://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SQL_INJECTION_SPRING_JDBC-1.SQL_INJECTION_JPA-1.SQL_INJECTION_JDO-1.SQL_INJECTION_JDBC-1.SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE-1.SQL_INJECTION-1.SQL_INJECTION_HIBERNATE-1.SQL_INJECTION_VERTX-1.SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "51b8bc6a96053c382e200ec33c37dd84bae9d2ba5d476357a5cbf27ce91a18d8691a9b4af8b03fab5700d43831e49e219656c631099e23f500858345254c90bf_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00770.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 36,
+                  "endLine": 47,
+                  "snippet": {
+                    "text": "            statement.addBatch(sql);"
+                  },
+                  "startColumn": 13,
+                  "startLine": 47
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.sqli.jdbc-sqli.jdbc-sqli"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+              },
+              "help": {
+                "markdown": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.CUSTOM_INJECTION-2)\n",
+                "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "id": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "name": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-89",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "The input values included in SQL queries need to be passed in safely. Bind\nvariables in prepared statements can be used to easily mitigate the risk of\nSQL injection.\n"
+              },
+              "help": {
+                "markdown": "The input values included in SQL queries need to be passed in safely. Bind\nvariables in prepared statements can be used to easily mitigate the risk of\nSQL injection.\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.SQL_INJECTION_SPRING_JDBC-1.SQL_INJECTION_JPA-1.SQL_INJECTION_JDO-1.SQL_INJECTION_JDBC-1.SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE-1)\n",
+                "text": "The input values included in SQL queries need to be passed in safely. Bind\nvariables in prepared statements can be used to easily mitigate the risk of\nSQL injection.\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.SQL_INJECTION_SPRING_JDBC-1.SQL_INJECTION_JPA-1.SQL_INJECTION_JDO-1.SQL_INJECTION_JDBC-1.SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE-1",
+              "id": "gitlab.find_sec_bugs.SQL_INJECTION_SPRING_JDBC-1.SQL_INJECTION_JPA-1.SQL_INJECTION_JDO-1.SQL_INJECTION_JDBC-1.SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE-1",
+              "name": "gitlab.find_sec_bugs.SQL_INJECTION_SPRING_JDBC-1.SQL_INJECTION_JPA-1.SQL_INJECTION_JDO-1.SQL_INJECTION_JDBC-1.SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: gitlab.find_sec_bugs.SQL_INJECTION_SPRING_JDBC-1.SQL_INJECTION_JPA-1.SQL_INJECTION_JDO-1.SQL_INJECTION_JDBC-1.SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE-1"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "SQL Injection is a critical vulnerability that can lead to data or system compromise. By\ndynamically generating SQL query strings, user input may be able to influence the logic of\nthe SQL statement. This could lead to an adversary accessing information they should\nnot have access to, or in some circumstances, being able to execute OS functionality or code.\n\nReplace all dynamically generated SQL queries with parameterized queries. In situations where\ndynamic queries must be created, never use direct user input, but instead use a map or\ndictionary of valid values and resolve them using a user supplied key.\n\nFor example, some database drivers do not allow parameterized queries for `>` or `<` comparison\noperators. In these cases, do not use a user supplied `>` or `<` value, but rather have the\nuser\nsupply a `gt` or `lt` value. The alphabetical values are then used to look up the `>` and `<`\nvalues to be used in the construction of the dynamic query. The same goes for other queries\nwhere\ncolumn or table names are required but cannot be parameterized.\n\nExample using `PreparedStatement` queries:\n```\n// Some userInput\nString userInput = \"someUserInput\";\n// Your connection string\nString url = \"...\";\n// Get a connection from the DB via the DriverManager\nConnection conn = DriverManager.getConnection(url);\n// Create a prepared statement\nPreparedStatement st = conn.prepareStatement(\"SELECT name FROM table where name=?\");\n// Set each parameters value by the index (starting from 1)\nst.setString(1, userInput);\n// Execute query and get the result set\nResultSet rs = st.executeQuery();\n// Iterate over results\nwhile (rs.next()) {\n    // Get result for this row at the provided column number (starting from 1)\n    String result = rs.getString(1);\n    // ...\n}\n// Close the ResultSet\nrs.close();\n// Close the PreparedStatement\nst.close();\n```\n\nFor more information on SQL Injection see OWASP:\nhttps://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html\n"
+              },
+              "help": {
+                "markdown": "SQL Injection is a critical vulnerability that can lead to data or system compromise. By\ndynamically generating SQL query strings, user input may be able to influence the logic of\nthe SQL statement. This could lead to an adversary accessing information they should\nnot have access to, or in some circumstances, being able to execute OS functionality or code.\n\nReplace all dynamically generated SQL queries with parameterized queries. In situations where\ndynamic queries must be created, never use direct user input, but instead use a map or\ndictionary of valid values and resolve them using a user supplied key.\n\nFor example, some database drivers do not allow parameterized queries for `>` or `<` comparison\noperators. In these cases, do not use a user supplied `>` or `<` value, but rather have the\nuser\nsupply a `gt` or `lt` value. The alphabetical values are then used to look up the `>` and `<`\nvalues to be used in the construction of the dynamic query. The same goes for other queries\nwhere\ncolumn or table names are required but cannot be parameterized.\n\nExample using `PreparedStatement` queries:\n```\n// Some userInput\nString userInput = \"someUserInput\";\n// Your connection string\nString url = \"...\";\n// Get a connection from the DB via the DriverManager\nConnection conn = DriverManager.getConnection(url);\n// Create a prepared statement\nPreparedStatement st = conn.prepareStatement(\"SELECT name FROM table where name=?\");\n// Set each parameters value by the index (starting from 1)\nst.setString(1, userInput);\n// Execute query and get the result set\nResultSet rs = st.executeQuery();\n// Iterate over results\nwhile (rs.next()) {\n    // Get result for this row at the provided column number (starting from 1)\n    String result = rs.getString(1);\n    // ...\n}\n// Close the ResultSet\nrs.close();\n// Close the PreparedStatement\nst.close();\n```\n\nFor more information on SQL Injection see OWASP:\nhttps://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.SQL_INJECTION_SPRING_JDBC-1.SQL_INJECTION_JPA-1.SQL_INJECTION_JDO-1.SQL_INJECTION_JDBC-1.SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE-1.SQL_INJECTION-1.SQL_INJECTION_HIBERNATE-1.SQL_INJECTION_VERTX-1.SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING-1)\n",
+                "text": "SQL Injection is a critical vulnerability that can lead to data or system compromise. By\ndynamically generating SQL query strings, user input may be able to influence the logic of\nthe SQL statement. This could lead to an adversary accessing information they should\nnot have access to, or in some circumstances, being able to execute OS functionality or code.\n\nReplace all dynamically generated SQL queries with parameterized queries. In situations where\ndynamic queries must be created, never use direct user input, but instead use a map or\ndictionary of valid values and resolve them using a user supplied key.\n\nFor example, some database drivers do not allow parameterized queries for `>` or `<` comparison\noperators. In these cases, do not use a user supplied `>` or `<` value, but rather have the\nuser\nsupply a `gt` or `lt` value. The alphabetical values are then used to look up the `>` and `<`\nvalues to be used in the construction of the dynamic query. The same goes for other queries\nwhere\ncolumn or table names are required but cannot be parameterized.\n\nExample using `PreparedStatement` queries:\n```\n// Some userInput\nString userInput = \"someUserInput\";\n// Your connection string\nString url = \"...\";\n// Get a connection from the DB via the DriverManager\nConnection conn = DriverManager.getConnection(url);\n// Create a prepared statement\nPreparedStatement st = conn.prepareStatement(\"SELECT name FROM table where name=?\");\n// Set each parameters value by the index (starting from 1)\nst.setString(1, userInput);\n// Execute query and get the result set\nResultSet rs = st.executeQuery();\n// Iterate over results\nwhile (rs.next()) {\n    // Get result for this row at the provided column number (starting from 1)\n    String result = rs.getString(1);\n    // ...\n}\n// Close the ResultSet\nrs.close();\n// Close the PreparedStatement\nst.close();\n```\n\nFor more information on SQL Injection see OWASP:\nhttps://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.SQL_INJECTION_SPRING_JDBC-1.SQL_INJECTION_JPA-1.SQL_INJECTION_JDO-1.SQL_INJECTION_JDBC-1.SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE-1.SQL_INJECTION-1.SQL_INJECTION_HIBERNATE-1.SQL_INJECTION_VERTX-1.SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING-1",
+              "id": "gitlab.find_sec_bugs.SQL_INJECTION_SPRING_JDBC-1.SQL_INJECTION_JPA-1.SQL_INJECTION_JDO-1.SQL_INJECTION_JDBC-1.SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE-1.SQL_INJECTION-1.SQL_INJECTION_HIBERNATE-1.SQL_INJECTION_VERTX-1.SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING-1",
+              "name": "gitlab.find_sec_bugs.SQL_INJECTION_SPRING_JDBC-1.SQL_INJECTION_JPA-1.SQL_INJECTION_JDO-1.SQL_INJECTION_JDBC-1.SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE-1.SQL_INJECTION-1.SQL_INJECTION_HIBERNATE-1.SQL_INJECTION_VERTX-1.SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-89",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'."
+              },
+              "help": {
+                "markdown": "Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.sqli.jdbc-sqli.jdbc-sqli)\n - [https://owasp.org/Top10/A03_2021-Injection](https://owasp.org/Top10/A03_2021-Injection)\n",
+                "text": "Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.sqli.jdbc-sqli.jdbc-sqli",
+              "id": "java.lang.security.audit.sqli.jdbc-sqli.jdbc-sqli",
+              "name": "java.lang.security.audit.sqli.jdbc-sqli.jdbc-sqli",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                  "LOW CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.sqli.jdbc-sqli.jdbc-sqli"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "c3d6a2a42f93b1ccecc7e512188a1770e104b59b93ef7d879c19609457661b78cde5af829a2290837910a0f41815964b0ea2029a3317fe69907af5fbfadd5ad7_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00768.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 91,
+                  "endLine": 35,
+                  "snippet": {
+                    "text": "                \"SELECT TOP 1 userid from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                  },
+                  "startColumn": 17,
+                  "startLine": 35
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "c3d6a2a42f93b1ccecc7e512188a1770e104b59b93ef7d879c19609457661b78cde5af829a2290837910a0f41815964b0ea2029a3317fe69907af5fbfadd5ad7_1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00768.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 97,
+                  "endLine": 35,
+                  "snippet": {
+                    "text": "                \"SELECT TOP 1 userid from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                  },
+                  "startColumn": 17,
+                  "startLine": 35
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "efbc80ff00e95769e98b65c490b88707db17369bb00140b7f531b7bf7bedbf7069d957e9cd05c9306eecb95ce95be4da71b02c3b73c5ba6ed1b7eacda051b4b9_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00768.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 97,
+                  "endLine": 35,
+                  "snippet": {
+                    "text": "                \"SELECT TOP 1 userid from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                  },
+                  "startColumn": 17,
+                  "startLine": 35
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "d5280809a0623213b068e6dcda6793bc0b2b0b04fcad444d1857da782582d921c0fef3cb47bf96a6470126932ca873873ea5f9a1af1b1140959463d2db03e41d_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00768.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 94,
+                  "endLine": 38,
+                  "snippet": {
+                    "text": "            java.util.Map<String, Object> results =\n                    org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForMap(sql);"
+                  },
+                  "startColumn": 13,
+                  "startLine": 37
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "fea6f1b4cac860c545663641afd1ff82ca379d43b3255e5262c7e832a78c9d52619e75d557f86ad97486cb0e0722eb8162db419d40758a84d1102f03138ef6df_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00768.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 89,
+                  "endLine": 49,
+                  "snippet": {
+                    "text": "                            \"No results returned for query: \"\n                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));"
+                  },
+                  "startColumn": 29,
+                  "startLine": 48
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+              },
+              "help": {
+                "markdown": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.CUSTOM_INJECTION-2)\n",
+                "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "id": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "name": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-89",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "id": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "name": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead."
+              },
+              "help": {
+                "markdown": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request)\n - [https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n - [https://owasp.org/www-community/attacks/SQL_Injection](https://owasp.org/www-community/attacks/SQL_Injection)\n",
+                "text": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request",
+              "id": "java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request",
+              "name": "java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "992eeb7a9a8b4436d625ffbf7d857cd8857eaef611e61b0802d909177275bd48c557f3e74c4cf02409920c7134ffffdec5f2d6612aa272ab525b464e56395d26_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00599.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 75,
+                  "endLine": 27,
+                  "snippet": {
+                    "text": "        java.util.Enumeration<String> names = request.getParameterNames();"
+                  },
+                  "startColumn": 9,
+                  "startLine": 27
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "6d244d7f81a5492a85aae7da4195f1ea1ce501a83bc017eb5d2f3ee3e3fb18df5fd8df5a4f91a5138f160f53d610773505f4f689d92933d08fe2dbfd90215fdf_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00599.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 89,
+                  "endLine": 66,
+                  "snippet": {
+                    "text": "            String sql = \"SELECT * from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                  },
+                  "startColumn": 26,
+                  "startLine": 66
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "6d244d7f81a5492a85aae7da4195f1ea1ce501a83bc017eb5d2f3ee3e3fb18df5fd8df5a4f91a5138f160f53d610773505f4f689d92933d08fe2dbfd90215fdf_1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00599.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 95,
+                  "endLine": 66,
+                  "snippet": {
+                    "text": "            String sql = \"SELECT * from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                  },
+                  "startColumn": 26,
+                  "startLine": 66
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+              },
+              "help": {
+                "markdown": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.CUSTOM_INJECTION-2)\n",
+                "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "id": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "name": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-89",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "id": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "name": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

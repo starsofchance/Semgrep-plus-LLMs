@@ -1,0 +1,301 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "9a3bbbfdf5ac26ff2f359169a8d4b849894d19d00008a6b7a1b5d26c3c543ac5990013905d3cbf77a8e982c3dabdc31250a64bed1a851bd6d41c7272597899eb_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02281.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 73,
+                  "endLine": 25,
+                  "snippet": {
+                    "text": "        java.util.Map<String, String[]> map = request.getParameterMap();"
+                  },
+                  "startColumn": 9,
+                  "startLine": 25
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "e9a5543c51a03050f612a544e67e14bc22b7c983ca279e2ae3be6a072dbc4200fe401b73760b46f4d0fc8489147a5cffe6a5971e0d87061a6307dc75a68fcf00_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02281.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 91,
+                  "endLine": 35,
+                  "snippet": {
+                    "text": "                \"SELECT TOP 1 userid from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                  },
+                  "startColumn": 17,
+                  "startLine": 35
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "e9a5543c51a03050f612a544e67e14bc22b7c983ca279e2ae3be6a072dbc4200fe401b73760b46f4d0fc8489147a5cffe6a5971e0d87061a6307dc75a68fcf00_1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02281.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 97,
+                  "endLine": 35,
+                  "snippet": {
+                    "text": "                \"SELECT TOP 1 userid from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                  },
+                  "startColumn": 17,
+                  "startLine": 35
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "f5c9077292730afee1e78a26d67e209d55975444bd9d4234c9007149a1d05ebefc84b988185ef5a434b4da046674f8d1f2f60a4915ce147d34f2784990b4dd4f_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02281.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 97,
+                  "endLine": 35,
+                  "snippet": {
+                    "text": "                \"SELECT TOP 1 userid from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                  },
+                  "startColumn": 17,
+                  "startLine": 35
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "a6f7c77503f9022af8250af33d477cfd370bbce0eb7a7933ff1623539481893b6d19f10ab53faa5c824b40da92eca56e0d886dd5ab6f89c6258a8ead427693c5_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02281.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 94,
+                  "endLine": 38,
+                  "snippet": {
+                    "text": "            java.util.Map<String, Object> results =\n                    org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForMap(sql);"
+                  },
+                  "startColumn": 13,
+                  "startLine": 37
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "e206e533a16f0b82476d3820068d4085895479ff7a694e0d36f598a78b80ed52b62d658f20f1dc4945b53ab7fb79b7a6280fb8ff2958b38651a69650237296fc_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02281.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 89,
+                  "endLine": 49,
+                  "snippet": {
+                    "text": "                            \"No results returned for query: \"\n                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));"
+                  },
+                  "startColumn": 29,
+                  "startLine": 48
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+              },
+              "help": {
+                "markdown": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.CUSTOM_INJECTION-2)\n",
+                "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "id": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "name": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-89",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "id": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "name": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "id": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "name": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead."
+              },
+              "help": {
+                "markdown": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request)\n - [https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n - [https://owasp.org/www-community/attacks/SQL_Injection](https://owasp.org/www-community/attacks/SQL_Injection)\n",
+                "text": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request",
+              "id": "java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request",
+              "name": "java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

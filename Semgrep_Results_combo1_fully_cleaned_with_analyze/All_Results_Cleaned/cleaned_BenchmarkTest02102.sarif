@@ -1,0 +1,248 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "f44d2872026769f0d9fb9b1da728fcf739a5bf54c9b51ca51542afdd16599f87be50eab67c04221affe127ceb181fcf01490a5b62b93a5890d6818067f1cd76a_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02102.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 67,
+                  "endLine": 25,
+                  "snippet": {
+                    "text": "        String param = request.getParameter(\"BenchmarkTest02102\");"
+                  },
+                  "startColumn": 9,
+                  "startLine": 25
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "0a7d19fe787dc27c5b9b631bbc4b52cf71b4e98711cfef098d3ed4c99bb9d1975b9ead1ba147dc27734a0a823d0b8af4409025e87cbcde2ad36520e750634945_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02102.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 35,
+                  "endLine": 61,
+                  "snippet": {
+                    "text": "                    \"secret_value=\"\n                            + org.owasp.esapi.ESAPI.encoder().encodeForBase64(result, true)\n                            + \"\\n\");"
+                  },
+                  "startColumn": 21,
+                  "startLine": 59
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "e141f56b6d7da51a9ded0a78fc618899be075dd22efee7e49b5a46b7dfe8326942297dac44d29ecd37877f126d085964f333c3e8ecd3869271e6a5b891e7d1f1_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02102.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 68,
+                  "endLine": 71,
+                  "snippet": {
+                    "text": "                            \"Sensitive value: '\"\n                                    + org.owasp\n                                            .esapi\n                                            .ESAPI\n                                            .encoder()\n                                            .encodeForHTML(new String(input))\n                                    + \"' encrypted and stored<br/>\");"
+                  },
+                  "startColumn": 29,
+                  "startLine": 65
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "db4f9bb66f26d9d3ee0d2879b46efe9b39467aa5365ff3793a55132a914a30bb5716f800b7791f1770e6be3781cd486d9112ab0bfa4142cf2e703796c0fe3f70_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02102.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 77,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 77
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "db4f9bb66f26d9d3ee0d2879b46efe9b39467aa5365ff3793a55132a914a30bb5716f800b7791f1770e6be3781cd486d9112ab0bfa4142cf2e703796c0fe3f70_1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02102.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 83,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 83
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "id": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "name": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "id": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "name": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+              },
+              "help": {
+                "markdown": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace)\n - [https://cwe.mitre.org/data/definitions/489.html](https://cwe.mitre.org/data/definitions/489.html)\n - [https://www.acunetix.com/vulnerabilities/web/stack-trace-disclosure-java/](https://www.acunetix.com/vulnerabilities/web/stack-trace-disclosure-java/)\n - [https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/02-Testing_for_Stack_Traces](https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/02-Testing_for_Stack_Traces)\n - [https://www.securecodewarrior.com/blog/coders-conquer-security-share-learn-series-information-exposure](https://www.securecodewarrior.com/blog/coders-conquer-security-share-learn-series-information-exposure)\n",
+                "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace",
+              "id": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace",
+              "name": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-489: Active Debug Code",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "OWASP-A06:2017 - Security Misconfiguration",
+                  "OWASP-A10:2004 - Insecure Configuration Management",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

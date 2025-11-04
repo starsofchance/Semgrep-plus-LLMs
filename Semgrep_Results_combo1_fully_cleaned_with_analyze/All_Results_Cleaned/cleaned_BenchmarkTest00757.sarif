@@ -1,0 +1,301 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "7f71202469011905603aef503c3e68e4b31340e8f456583417b7321d6c5b8151149fd27de6baae5bbd7ef63cc1c3b9589fb2450a737891b6c8139890cd342518_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00757.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 56,
+                  "endLine": 52,
+                  "snippet": {
+                    "text": "        request.getSession().setAttribute(bar, \"10340\");"
+                  },
+                  "startColumn": 9,
+                  "startLine": 52
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Mixing trusted and untrusted data within the same structure can lead to trust boundary violations, where unvalidated data is mistakenly trusted, potentially bypassing security mechanisms. Thoroughly sanitize user input before passing it into such function calls."
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.tainted-session-from-http-request-deepsemgrep.tainted-session-from-http-request-deepsemgrep"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "e4cd45a5d50c2297d68756b52aabfa6f6e35642f6574c7d4c0bbfec5b47dc4bddee9be8e0d6e500c6e0234564decb6c34952611a7eeae15774a6c0a7bac414d6_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00757.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 57,
+                  "endLine": 52,
+                  "snippet": {
+                    "text": "        request.getSession().setAttribute(bar, \"10340\");"
+                  },
+                  "startColumn": 9,
+                  "startLine": 52
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A trust boundary can be thought of as line drawn through a program. On one side\nof the line, data is untrusted. On the other side of the line, data is assumed\nto be trustworthy. The purpose of validation logic is to allow data to safely\ncross the trust boundary - to move from untrusted to trusted. A trust boundary\nviolation occurs when a program blurs the line between what is trusted and what\nis untrusted. By combining trusted and untrusted data in the same data\nstructure, it becomes easier for programmers to mistakenly trust unvalidated\ndata.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.TRUST_BOUNDARY_VIOLATION-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "b30a2b62e37d78bcd878dfe72cfbc068cc7edc6bb7e22119a5e3fa0bfaa9515da7335b626f047010c6d485f6f15436ba8176d7a42adbb2d6b5bcf7e4613f93ac_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00757.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 57,
+                  "endLine": 52,
+                  "snippet": {
+                    "text": "        request.getSession().setAttribute(bar, \"10340\");"
+                  },
+                  "startColumn": 9,
+                  "startLine": 52
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected input from a HTTPServletRequest going into a session command, like `setAttribute`. User input into such a command could lead to an attacker inputting malicious code into your session parameters, blurring the line between what's trusted and untrusted, and therefore leading to a trust boundary violation. This could lead to programmers trusting unvalidated data. Instead, thoroughly sanitize user input before passing it into such function calls."
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.tainted-session-from-http-request.tainted-session-from-http-request"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "9122b91ec45ab0df497863043a38e48f669f8cb0f3d7df6380e5e1adecb82044e71296f2c5046f279096c0e68fdb8d1e1e01af2f74fcfbcd6e106290a224ff20_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00757.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 77,
+                  "endLine": 58,
+                  "snippet": {
+                    "text": "        response.getWriter()\n                .println(\n                        \"Item: '\"\n                                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)\n                                + \"' with value: '10340' saved in session.\");"
+                  },
+                  "startColumn": 9,
+                  "startLine": 54
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "dad2d6c3eb9e87c6aee9bad2acc4ba44364e35415d59216b332d84ac73cf29873600ea1e1283f8fd704a9a5eb0483ce4739c41da96f4909a7971553ef3921dd6_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00757.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 76,
+                  "endLine": 58,
+                  "snippet": {
+                    "text": "                        \"Item: '\"\n                                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)\n                                + \"' with value: '10340' saved in session.\");"
+                  },
+                  "startColumn": 25,
+                  "startLine": 56
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "id": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "name": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A trust boundary can be thought of as line drawn through a program. On one side\nof the line, data is untrusted. On the other side of the line, data is assumed\nto be trustworthy. The purpose of validation logic is to allow data to safely\ncross the trust boundary - to move from untrusted to trusted. A trust boundary\nviolation occurs when a program blurs the line between what is trusted and what\nis untrusted. By combining trusted and untrusted data in the same data\nstructure, it becomes easier for programmers to mistakenly trust unvalidated\ndata.\n"
+              },
+              "help": {
+                "markdown": "A trust boundary can be thought of as line drawn through a program. On one side\nof the line, data is untrusted. On the other side of the line, data is assumed\nto be trustworthy. The purpose of validation logic is to allow data to safely\ncross the trust boundary - to move from untrusted to trusted. A trust boundary\nviolation occurs when a program blurs the line between what is trusted and what\nis untrusted. By combining trusted and untrusted data in the same data\nstructure, it becomes easier for programmers to mistakenly trust unvalidated\ndata.\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.TRUST_BOUNDARY_VIOLATION-1)\n",
+                "text": "A trust boundary can be thought of as line drawn through a program. On one side\nof the line, data is untrusted. On the other side of the line, data is assumed\nto be trustworthy. The purpose of validation logic is to allow data to safely\ncross the trust boundary - to move from untrusted to trusted. A trust boundary\nviolation occurs when a program blurs the line between what is trusted and what\nis untrusted. By combining trusted and untrusted data in the same data\nstructure, it becomes easier for programmers to mistakenly trust unvalidated\ndata.\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.TRUST_BOUNDARY_VIOLATION-1",
+              "id": "gitlab.find_sec_bugs.TRUST_BOUNDARY_VIOLATION-1",
+              "name": "gitlab.find_sec_bugs.TRUST_BOUNDARY_VIOLATION-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-501",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Trust Boundary Violation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+              },
+              "help": {
+                "markdown": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer)\n - [https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaServerFaces.html](https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaServerFaces.html)\n",
+                "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "id": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "name": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A03:2021 - Injection",
+                  "OWASP-A07:2017 - Cross-Site Scripting (XSS)",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "fullDescription": {
+                "text": "Mixing trusted and untrusted data within the same structure can lead to trust boundary violations, where unvalidated data is mistakenly trusted, potentially bypassing security mechanisms. Thoroughly sanitize user input before passing it into such function calls."
+              },
+              "help": {
+                "markdown": "Mixing trusted and untrusted data within the same structure can lead to trust boundary violations, where unvalidated data is mistakenly trusted, potentially bypassing security mechanisms. Thoroughly sanitize user input before passing it into such function calls.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.tainted-session-from-http-request-deepsemgrep.tainted-session-from-http-request-deepsemgrep)\n - [https://owasp.org/Top10/A04_2021-Insecure_Design](https://owasp.org/Top10/A04_2021-Insecure_Design)\n",
+                "text": "Mixing trusted and untrusted data within the same structure can lead to trust boundary violations, where unvalidated data is mistakenly trusted, potentially bypassing security mechanisms. Thoroughly sanitize user input before passing it into such function calls."
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.tainted-session-from-http-request-deepsemgrep.tainted-session-from-http-request-deepsemgrep",
+              "id": "java.servlets.security.tainted-session-from-http-request-deepsemgrep.tainted-session-from-http-request-deepsemgrep",
+              "name": "java.servlets.security.tainted-session-from-http-request-deepsemgrep.tainted-session-from-http-request-deepsemgrep",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-501: Trust Boundary Violation",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A04:2021 - Insecure Design",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.tainted-session-from-http-request-deepsemgrep.tainted-session-from-http-request-deepsemgrep"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected input from a HTTPServletRequest going into a session command, like `setAttribute`. User input into such a command could lead to an attacker inputting malicious code into your session parameters, blurring the line between what's trusted and untrusted, and therefore leading to a trust boundary violation. This could lead to programmers trusting unvalidated data. Instead, thoroughly sanitize user input before passing it into such function calls."
+              },
+              "help": {
+                "markdown": "Detected input from a HTTPServletRequest going into a session command, like `setAttribute`. User input into such a command could lead to an attacker inputting malicious code into your session parameters, blurring the line between what's trusted and untrusted, and therefore leading to a trust boundary violation. This could lead to programmers trusting unvalidated data. Instead, thoroughly sanitize user input before passing it into such function calls.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.tainted-session-from-http-request.tainted-session-from-http-request)\n - [https://cwe.mitre.org/data/definitions/501.html](https://cwe.mitre.org/data/definitions/501.html)\n",
+                "text": "Detected input from a HTTPServletRequest going into a session command, like `setAttribute`. User input into such a command could lead to an attacker inputting malicious code into your session parameters, blurring the line between what's trusted and untrusted, and therefore leading to a trust boundary violation. This could lead to programmers trusting unvalidated data. Instead, thoroughly sanitize user input before passing it into such function calls."
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.tainted-session-from-http-request.tainted-session-from-http-request",
+              "id": "java.servlets.security.tainted-session-from-http-request.tainted-session-from-http-request",
+              "name": "java.servlets.security.tainted-session-from-http-request.tainted-session-from-http-request",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-501: Trust Boundary Violation",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A04:2021 - Insecure Design",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.tainted-session-from-http-request.tainted-session-from-http-request"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

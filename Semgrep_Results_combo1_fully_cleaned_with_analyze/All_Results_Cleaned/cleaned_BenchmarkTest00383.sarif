@@ -1,0 +1,78 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "2a64f22b7c716fcad6b1f723250a881e4bab66dd8eefed81558294c31bb233ad539e1d340cbf6243f7d929ca7442f7fa77dd2c69dcf9715e9adc622924a1f884_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00383.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 67,
+                  "endLine": 25,
+                  "snippet": {
+                    "text": "        String param = request.getParameter(\"BenchmarkTest00383\");"
+                  },
+                  "startColumn": 9,
+                  "startLine": 25
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "id": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "name": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

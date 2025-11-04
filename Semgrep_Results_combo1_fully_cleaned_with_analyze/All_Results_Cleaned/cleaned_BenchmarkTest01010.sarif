@@ -1,0 +1,332 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "5f5ca706fac815bad9f89f09c6999f17968026f17b24eeb02cdb4b4369cc7ea2f379ace391595ae70ac16871994b95959b2a1a55d142a2aba21c1474edcffbc6_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01010.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "1d1f6e76001d3e331ab77c7b132783b710c0ec3f60613061d007f4c2b32bbcf6dbf718280c1d8f8d96f7fc158a2a17fe0f13a59d0fa3b41d2fbffc932689dca7_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01010.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "6d13322a610ec0a830ba005ec01cbbff080ffbd9bba6e10c2fd30167dcc3b04d72e796ca5c7e7a86fb46d218d051049224790375fb86d66f3af80f051052aa76_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01010.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "4536ecf41b4b57bc11386a47b76df00fac18feab0d80ff8341fa59093e0c4a5d77f9613d9cdf26b7d7ef3bd961db00812be9301f8e626e14fa7f944e8c3bd504_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01010.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 89,
+                  "endLine": 50,
+                  "snippet": {
+                    "text": "            String sql = \"SELECT * from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                  },
+                  "startColumn": 26,
+                  "startLine": 50
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "4536ecf41b4b57bc11386a47b76df00fac18feab0d80ff8341fa59093e0c4a5d77f9613d9cdf26b7d7ef3bd961db00812be9301f8e626e14fa7f944e8c3bd504_1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01010.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 95,
+                  "endLine": 50,
+                  "snippet": {
+                    "text": "            String sql = \"SELECT * from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                  },
+                  "startColumn": 26,
+                  "startLine": 50
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "fdbe5ce216115f46535b02146402e54ca608855737c0adcb624f9c57f0f85b793eaabb937035238029b0ea865ef641e9eabd42db576a3146554b4a0212d237e3_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01010.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 86,
+                  "endLine": 52,
+                  "snippet": {
+                    "text": "            org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.batchUpdate(sql);"
+                  },
+                  "startColumn": 13,
+                  "startLine": 52
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+              },
+              "help": {
+                "markdown": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.CUSTOM_INJECTION-2)\n",
+                "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "id": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "name": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-89",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly)\n - [https://owasp.org/Top10/A05_2021-Security_Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration)\n",
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "id": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                  "LOW CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead."
+              },
+              "help": {
+                "markdown": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request)\n - [https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n - [https://owasp.org/www-community/attacks/SQL_Injection](https://owasp.org/www-community/attacks/SQL_Injection)\n",
+                "text": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request",
+              "id": "java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request",
+              "name": "java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly)\n - [https://owasp.org/www-community/HttpOnly](https://owasp.org/www-community/HttpOnly)\n",
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "id": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "help": {
+                "markdown": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite)\n - [https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application](https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application)\n",
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "id": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "name": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-352: Cross-Site Request Forgery (CSRF)",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

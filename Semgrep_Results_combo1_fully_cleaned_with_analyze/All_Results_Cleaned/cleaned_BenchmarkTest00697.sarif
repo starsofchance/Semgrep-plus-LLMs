@@ -1,0 +1,306 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "27b16a7c63d73cf06637b3b048defdb3cf0f9b959fb450a6df8eef80e6242012fcf669d6eb6323960b72940b47f8c2ca10971dd9667d0ec38c8ce326607eab8f_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00697.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 56,
+                  "endLine": 39,
+                  "snippet": {
+                    "text": "        java.io.File fileTarget = new java.io.File(bar);"
+                  },
+                  "startColumn": 22,
+                  "startLine": 39
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected a potential path traversal. A malicious actor could control the location of this file, to include going backwards in the directory with '../'. To address this, ensure that user-controlled variables in file paths are sanitized. You may also consider using a utility method such as org.apache.commons.io.FilenameUtils.getName(...) to only retrieve the file name from the path."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.httpservlet-path-traversal.httpservlet-path-traversal"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "174b4837b6870f57e8628fd647c47ad45ee245e17a533410ca30733b997b03c34bf704b269672951d7869693e67ee863df139ec1d8b46da423a62803d1a8fc48_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00697.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 56,
+                  "endLine": 39,
+                  "snippet": {
+                    "text": "        java.io.File fileTarget = new java.io.File(bar);"
+                  },
+                  "startColumn": 22,
+                  "startLine": 39
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the file path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as configuration or user data can be accessed, potentially creating or overwriting files. To prevent this vulnerability, validate and sanitize any input that is used to create references to file paths. Also, enforce strict file access controls. For example, choose privileges allowing public-facing applications to access only the required files. In Java, you may also consider using a utility method such as `org.apache.commons.io.FilenameUtils.getName(...)` to only retrieve the file name from the path."
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.httpservlet-path-traversal.httpservlet-path-traversal"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "d6778e4c3901600c3bf240be5cb0216d29683b7c1fee73e950d0bad2d79fa88744c3a57cfd1ecc64b624ed9b62460c7e262cd26656576c257678e10b31e98ce4_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00697.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 56,
+                  "endLine": 39,
+                  "snippet": {
+                    "text": "        java.io.File fileTarget = new java.io.File(bar);"
+                  },
+                  "startColumn": 35,
+                  "startLine": 39
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application dynamically constructs file or path information. If the path\ninformation comes from user input, it could be abused to read sensitive files,\naccess other users' data, or aid in exploitation to gain further system access.\n\nUser input should never be used in constructing paths or files for interacting\nwith the filesystem. This includes filenames supplied by user uploads or downloads.\nIf possible, consider hashing user input or replacing it with unique values and\nuse `Path.resolve` to resolve and validate the path information\nprior to processing any file functionality.\n\nExample using `Path.resolve` and not allowing direct user input:\n```\n// Class to store our user data along with a randomly generated file name\npublic static class UserData {\n    private String userFileNameUnsafe;\n    private String fileName;\n    public UserData(String userFileName) {\n        this.userFileNameUnsafe = userFileName;\n        // Generate a random ID for the filename\n        this.fileName = UUID.randomUUID().toString();\n    }\n    public String getUserFileNameUnsafe() { return userFileNameUnsafe; };\n    public String getFileName() { return fileName; };\n}\n\npublic static void main(String[] args) throws Exception {\n    // User input, saved only as a reference\n    UserData userData = new UserData(\"..\\\\test.txt\");\n    // Restrict all file processing to this directory only\n    String base = \"/var/app/restricted\";\n    Path basePath = Paths.get(base);\n    // Resolve the full path, but only use our random generated filename\n    Path fullPath = basePath.resolve(userData.getFileName());\n    // verify the path is contained within our basePath\n    if (!fullPath.startsWith(base)) {\n        throw new Exception(\"Invalid path specified!\");\n    }\n    // process / work with file\n}\n```\n\nFor more information on path traversal issues see OWASP:\nhttps://owasp.org/www-community/attacks/Path_Traversal\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "4f5c80bebe3a3d4315bd5c44c2b8488340d80dc3887ac46abdc58fe5e2e82b63012d2b4548f70f65899eba37f1458ed0b0c39cb5a8a6845a2109533db7ec48e3_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00697.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 55,
+                  "endLine": 39,
+                  "snippet": {
+                    "text": "        java.io.File fileTarget = new java.io.File(bar);"
+                  },
+                  "startColumn": 52,
+                  "startLine": 39
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as configuration or user data can be accessed, potentially creating or overwriting files. To prevent this vulnerability, validate and sanitize any input that is used to create references to file paths. Also, enforce strict file access controls. For example, choose privileges allowing public-facing applications to access only the required files. In Java, you may also consider using a utility method such as `org.apache.commons.io.FilenameUtils.getName(...)` to only retrieve the file name from the path."
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.httpservlet-path-traversal-deepsemgrep.httpservlet-path-traversal-deepsemgrep"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "79757939c1b5d2c5da5cc8b6c421452c0b34dd6a37db1831f5c442756e93499240ef6f4e8990b52ccc60de79b0aecea198908ade6df7ccff3933283225dd447d_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00697.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 47,
+                  "endLine": 48,
+                  "snippet": {
+                    "text": "                        \"Access to file: '\"\n                                + org.owasp\n                                        .esapi\n                                        .ESAPI\n                                        .encoder()\n                                        .encodeForHTML(fileTarget.toString())\n                                + \"' created.\");"
+                  },
+                  "startColumn": 25,
+                  "startLine": 42
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application dynamically constructs file or path information. If the path\ninformation comes from user input, it could be abused to read sensitive files,\naccess other users' data, or aid in exploitation to gain further system access.\n\nUser input should never be used in constructing paths or files for interacting\nwith the filesystem. This includes filenames supplied by user uploads or downloads.\nIf possible, consider hashing user input or replacing it with unique values and\nuse `Path.resolve` to resolve and validate the path information\nprior to processing any file functionality.\n\nExample using `Path.resolve` and not allowing direct user input:\n```\n// Class to store our user data along with a randomly generated file name\npublic static class UserData {\n    private String userFileNameUnsafe;\n    private String fileName;\n    public UserData(String userFileName) {\n        this.userFileNameUnsafe = userFileName;\n        // Generate a random ID for the filename\n        this.fileName = UUID.randomUUID().toString();\n    }\n    public String getUserFileNameUnsafe() { return userFileNameUnsafe; };\n    public String getFileName() { return fileName; };\n}\n\npublic static void main(String[] args) throws Exception {\n    // User input, saved only as a reference\n    UserData userData = new UserData(\"..\\\\test.txt\");\n    // Restrict all file processing to this directory only\n    String base = \"/var/app/restricted\";\n    Path basePath = Paths.get(base);\n    // Resolve the full path, but only use our random generated filename\n    Path fullPath = basePath.resolve(userData.getFileName());\n    // verify the path is contained within our basePath\n    if (!fullPath.startsWith(base)) {\n        throw new Exception(\"Invalid path specified!\");\n    }\n    // process / work with file\n}\n```\n\nFor more information on path traversal issues see OWASP:\nhttps://owasp.org/www-community/attacks/Path_Traversal\n"
+              },
+              "help": {
+                "markdown": "The application dynamically constructs file or path information. If the path\ninformation comes from user input, it could be abused to read sensitive files,\naccess other users' data, or aid in exploitation to gain further system access.\n\nUser input should never be used in constructing paths or files for interacting\nwith the filesystem. This includes filenames supplied by user uploads or downloads.\nIf possible, consider hashing user input or replacing it with unique values and\nuse `Path.resolve` to resolve and validate the path information\nprior to processing any file functionality.\n\nExample using `Path.resolve` and not allowing direct user input:\n```\n// Class to store our user data along with a randomly generated file name\npublic static class UserData {\n    private String userFileNameUnsafe;\n    private String fileName;\n    public UserData(String userFileName) {\n        this.userFileNameUnsafe = userFileName;\n        // Generate a random ID for the filename\n        this.fileName = UUID.randomUUID().toString();\n    }\n    public String getUserFileNameUnsafe() { return userFileNameUnsafe; };\n    public String getFileName() { return fileName; };\n}\n\npublic static void main(String[] args) throws Exception {\n    // User input, saved only as a reference\n    UserData userData = new UserData(\"..\\\\test.txt\");\n    // Restrict all file processing to this directory only\n    String base = \"/var/app/restricted\";\n    Path basePath = Paths.get(base);\n    // Resolve the full path, but only use our random generated filename\n    Path fullPath = basePath.resolve(userData.getFileName());\n    // verify the path is contained within our basePath\n    if (!fullPath.startsWith(base)) {\n        throw new Exception(\"Invalid path specified!\");\n    }\n    // process / work with file\n}\n```\n\nFor more information on path traversal issues see OWASP:\nhttps://owasp.org/www-community/attacks/Path_Traversal\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1)\n",
+                "text": "The application dynamically constructs file or path information. If the path\ninformation comes from user input, it could be abused to read sensitive files,\naccess other users' data, or aid in exploitation to gain further system access.\n\nUser input should never be used in constructing paths or files for interacting\nwith the filesystem. This includes filenames supplied by user uploads or downloads.\nIf possible, consider hashing user input or replacing it with unique values and\nuse `Path.resolve` to resolve and validate the path information\nprior to processing any file functionality.\n\nExample using `Path.resolve` and not allowing direct user input:\n```\n// Class to store our user data along with a randomly generated file name\npublic static class UserData {\n    private String userFileNameUnsafe;\n    private String fileName;\n    public UserData(String userFileName) {\n        this.userFileNameUnsafe = userFileName;\n        // Generate a random ID for the filename\n        this.fileName = UUID.randomUUID().toString();\n    }\n    public String getUserFileNameUnsafe() { return userFileNameUnsafe; };\n    public String getFileName() { return fileName; };\n}\n\npublic static void main(String[] args) throws Exception {\n    // User input, saved only as a reference\n    UserData userData = new UserData(\"..\\\\test.txt\");\n    // Restrict all file processing to this directory only\n    String base = \"/var/app/restricted\";\n    Path basePath = Paths.get(base);\n    // Resolve the full path, but only use our random generated filename\n    Path fullPath = basePath.resolve(userData.getFileName());\n    // verify the path is contained within our basePath\n    if (!fullPath.startsWith(base)) {\n        throw new Exception(\"Invalid path specified!\");\n    }\n    // process / work with file\n}\n```\n\nFor more information on path traversal issues see OWASP:\nhttps://owasp.org/www-community/attacks/Path_Traversal\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1",
+              "id": "gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1",
+              "name": "gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-22",
+                  "OWASP-A01:2021-Broken Access Control",
+                  "OWASP-A5:2017-Broken Access Control",
+                  "security"
+                ],
+                "security-severity": "Medium"
+              },
+              "shortDescription": {
+                "text": "Improper limitation of a pathname to a restricted directory ('Path Traversal')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "id": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "name": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "Detected a potential path traversal. A malicious actor could control the location of this file, to include going backwards in the directory with '../'. To address this, ensure that user-controlled variables in file paths are sanitized. You may also consider using a utility method such as org.apache.commons.io.FilenameUtils.getName(...) to only retrieve the file name from the path."
+              },
+              "help": {
+                "markdown": "Detected a potential path traversal. A malicious actor could control the location of this file, to include going backwards in the directory with '../'. To address this, ensure that user-controlled variables in file paths are sanitized. You may also consider using a utility method such as org.apache.commons.io.FilenameUtils.getName(...) to only retrieve the file name from the path.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.httpservlet-path-traversal.httpservlet-path-traversal)\n - [https://www.owasp.org/index.php/Path_Traversal](https://www.owasp.org/index.php/Path_Traversal)\n",
+                "text": "Detected a potential path traversal. A malicious actor could control the location of this file, to include going backwards in the directory with '../'. To address this, ensure that user-controlled variables in file paths are sanitized. You may also consider using a utility method such as org.apache.commons.io.FilenameUtils.getName(...) to only retrieve the file name from the path."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.httpservlet-path-traversal.httpservlet-path-traversal",
+              "id": "java.lang.security.httpservlet-path-traversal.httpservlet-path-traversal",
+              "name": "java.lang.security.httpservlet-path-traversal.httpservlet-path-traversal",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "OWASP-A05:2017 - Broken Access Control",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.httpservlet-path-traversal.httpservlet-path-traversal"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as configuration or user data can be accessed, potentially creating or overwriting files. To prevent this vulnerability, validate and sanitize any input that is used to create references to file paths. Also, enforce strict file access controls. For example, choose privileges allowing public-facing applications to access only the required files. In Java, you may also consider using a utility method such as `org.apache.commons.io.FilenameUtils.getName(...)` to only retrieve the file name from the path."
+              },
+              "help": {
+                "markdown": "The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as configuration or user data can be accessed, potentially creating or overwriting files. To prevent this vulnerability, validate and sanitize any input that is used to create references to file paths. Also, enforce strict file access controls. For example, choose privileges allowing public-facing applications to access only the required files. In Java, you may also consider using a utility method such as `org.apache.commons.io.FilenameUtils.getName(...)` to only retrieve the file name from the path.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.httpservlet-path-traversal-deepsemgrep.httpservlet-path-traversal-deepsemgrep)\n - [https://owasp.org/Top10/A01_2021-Broken_Access_Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control)\n - [https://owasp.org/www-community/attacks/Path_Traversal](https://owasp.org/www-community/attacks/Path_Traversal)\n - [https://portswigger.net/web-security/file-path-traversal](https://portswigger.net/web-security/file-path-traversal)\n",
+                "text": "The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as configuration or user data can be accessed, potentially creating or overwriting files. To prevent this vulnerability, validate and sanitize any input that is used to create references to file paths. Also, enforce strict file access controls. For example, choose privileges allowing public-facing applications to access only the required files. In Java, you may also consider using a utility method such as `org.apache.commons.io.FilenameUtils.getName(...)` to only retrieve the file name from the path."
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.httpservlet-path-traversal-deepsemgrep.httpservlet-path-traversal-deepsemgrep",
+              "id": "java.servlets.security.httpservlet-path-traversal-deepsemgrep.httpservlet-path-traversal-deepsemgrep",
+              "name": "java.servlets.security.httpservlet-path-traversal-deepsemgrep.httpservlet-path-traversal-deepsemgrep",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "OWASP-A05:2017 - Broken Access Control",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.httpservlet-path-traversal-deepsemgrep.httpservlet-path-traversal-deepsemgrep"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the file path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as configuration or user data can be accessed, potentially creating or overwriting files. To prevent this vulnerability, validate and sanitize any input that is used to create references to file paths. Also, enforce strict file access controls. For example, choose privileges allowing public-facing applications to access only the required files. In Java, you may also consider using a utility method such as `org.apache.commons.io.FilenameUtils.getName(...)` to only retrieve the file name from the path."
+              },
+              "help": {
+                "markdown": "The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the file path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as configuration or user data can be accessed, potentially creating or overwriting files. To prevent this vulnerability, validate and sanitize any input that is used to create references to file paths. Also, enforce strict file access controls. For example, choose privileges allowing public-facing applications to access only the required files. In Java, you may also consider using a utility method such as `org.apache.commons.io.FilenameUtils.getName(...)` to only retrieve the file name from the path.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.httpservlet-path-traversal.httpservlet-path-traversal)\n - [https://www.owasp.org/index.php/Path_Traversal](https://www.owasp.org/index.php/Path_Traversal)\n",
+                "text": "The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the file path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as configuration or user data can be accessed, potentially creating or overwriting files. To prevent this vulnerability, validate and sanitize any input that is used to create references to file paths. Also, enforce strict file access controls. For example, choose privileges allowing public-facing applications to access only the required files. In Java, you may also consider using a utility method such as `org.apache.commons.io.FilenameUtils.getName(...)` to only retrieve the file name from the path."
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.httpservlet-path-traversal.httpservlet-path-traversal",
+              "id": "java.servlets.security.httpservlet-path-traversal.httpservlet-path-traversal",
+              "name": "java.servlets.security.httpservlet-path-traversal.httpservlet-path-traversal",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "OWASP-A05:2017 - Broken Access Control",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.httpservlet-path-traversal.httpservlet-path-traversal"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

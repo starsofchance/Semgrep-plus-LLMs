@@ -1,0 +1,306 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "e177879ae182817804eb3aa1010115577bc6d1ae4cd8dbd889ca4af7488aac0d447e14dd6e8977ff0ff9222ef511afa5139a33b3b008ed24fae48a6ae441e65e_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00049.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 55,
+                  "endLine": 26,
+                  "snippet": {
+                    "text": "        String queryString = request.getQueryString();"
+                  },
+                  "startColumn": 9,
+                  "startLine": 26
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "d3a7fcdb302742111d37fabec0542f083712ae39d5c303ec51244e4e06000226b4795997112a4a40f9c3203e70092c4465e283ff27bc84293562d7bf8e25368d_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00049.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 64,
+                  "endLine": 54,
+                  "snippet": {
+                    "text": "        response.getWriter().write(\"Parameter value: \" + param);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 54
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "e80960c3acdab72496cc82e1d3d6cb3c179bba8346c9f11d7f172d280987a86478e73284ad27c6b87e5ac66c42769affbc6a4189cb6d26789c312d2588f355d5_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00049.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 64,
+                  "endLine": 54,
+                  "snippet": {
+                    "text": "        response.getWriter().write(\"Parameter value: \" + param);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 54
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "872299fe9ae732bbed948f7f6af35c26857b459878b2595d8caad63c4d587d6cae608a3d180776aa340698ca65aa2769b2dba118b62e7b7287fc0fdc3b377fbe_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00049.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 65,
+                  "endLine": 54,
+                  "snippet": {
+                    "text": "        response.getWriter().write(\"Parameter value: \" + param);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 54
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Untrusted user input enters a dangerous API, which can lead to a Cross-site scripting (XSS) vulnerability. XSS vulnerabilities occur when untrusted input executes malicious JavaScript code, leading to issues such as account compromise and sensitive information leakage. Ensure your data is properly encoded using org.owasp.encoder.Encode.forHtml: `Encode.forHtml($VAR)`."
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.servletresponse-writer-xss.servletresponse-writer-xss"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "1179f1d094d0c1f3e1fa07984bc0a2989bf1360692a2c02a98238289eae556b3d2954db70950300fdcd93316aa7512e687d5d3a7684ca68f382c938b610a0598_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00049.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 63,
+                  "endLine": 54,
+                  "snippet": {
+                    "text": "        response.getWriter().write(\"Parameter value: \" + param);"
+                  },
+                  "startColumn": 36,
+                  "startLine": 54
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Untrusted input could be used to tamper with a web page rendering, which can lead to a Cross-site scripting (XSS) vulnerability. XSS vulnerabilities occur when untrusted input executes malicious JavaScript code, leading to issues such as account compromise and sensitive information leakage. To prevent this vulnerability, validate the user input, perform contextual output encoding or sanitize the input."
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.servletresponse-writer-xss-deepsemgrep.servletresponse-writer-xss-deepsemgrep"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n"
+              },
+              "help": {
+                "markdown": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1)\n",
+                "text": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1",
+              "id": "gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1",
+              "name": "gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-79",
+                  "OWASP-A03:2021-Injection",
+                  "OWASP-A1:2017-Injection",
+                  "security"
+                ],
+                "security-severity": "Medium"
+              },
+              "shortDescription": {
+                "text": "Improper neutralization of input during web page generation ('Cross-site Scripting')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "id": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "name": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+              },
+              "help": {
+                "markdown": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer)\n - [https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaServerFaces.html](https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaServerFaces.html)\n",
+                "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "id": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "name": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A03:2021 - Injection",
+                  "OWASP-A07:2017 - Cross-Site Scripting (XSS)",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Untrusted input could be used to tamper with a web page rendering, which can lead to a Cross-site scripting (XSS) vulnerability. XSS vulnerabilities occur when untrusted input executes malicious JavaScript code, leading to issues such as account compromise and sensitive information leakage. To prevent this vulnerability, validate the user input, perform contextual output encoding or sanitize the input."
+              },
+              "help": {
+                "markdown": "Untrusted input could be used to tamper with a web page rendering, which can lead to a Cross-site scripting (XSS) vulnerability. XSS vulnerabilities occur when untrusted input executes malicious JavaScript code, leading to issues such as account compromise and sensitive information leakage. To prevent this vulnerability, validate the user input, perform contextual output encoding or sanitize the input.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.servletresponse-writer-xss-deepsemgrep.servletresponse-writer-xss-deepsemgrep)\n - [https://owasp.org/Top10/A03_2021-Injection](https://owasp.org/Top10/A03_2021-Injection)\n",
+                "text": "Untrusted input could be used to tamper with a web page rendering, which can lead to a Cross-site scripting (XSS) vulnerability. XSS vulnerabilities occur when untrusted input executes malicious JavaScript code, leading to issues such as account compromise and sensitive information leakage. To prevent this vulnerability, validate the user input, perform contextual output encoding or sanitize the input."
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.servletresponse-writer-xss-deepsemgrep.servletresponse-writer-xss-deepsemgrep",
+              "id": "java.servlets.security.servletresponse-writer-xss-deepsemgrep.servletresponse-writer-xss-deepsemgrep",
+              "name": "java.servlets.security.servletresponse-writer-xss-deepsemgrep.servletresponse-writer-xss-deepsemgrep",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A03:2021 - Injection",
+                  "OWASP-A07:2017 - Cross-Site Scripting (XSS)",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.servletresponse-writer-xss-deepsemgrep.servletresponse-writer-xss-deepsemgrep"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "Untrusted user input enters a dangerous API, which can lead to a Cross-site scripting (XSS) vulnerability. XSS vulnerabilities occur when untrusted input executes malicious JavaScript code, leading to issues such as account compromise and sensitive information leakage. Ensure your data is properly encoded using org.owasp.encoder.Encode.forHtml: `Encode.forHtml($VAR)`."
+              },
+              "help": {
+                "markdown": "Untrusted user input enters a dangerous API, which can lead to a Cross-site scripting (XSS) vulnerability. XSS vulnerabilities occur when untrusted input executes malicious JavaScript code, leading to issues such as account compromise and sensitive information leakage. Ensure your data is properly encoded using org.owasp.encoder.Encode.forHtml: `Encode.forHtml($VAR)`.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.servletresponse-writer-xss.servletresponse-writer-xss)\n - [https://owasp.org/www-project-top-ten/2017/A7_2017-Cross-Site_Scripting_(XSS)](https://owasp.org/www-project-top-ten/2017/A7_2017-Cross-Site_Scripting_(XSS))\n - [https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)\n - [https://portal.securecodewarrior.com/#/learning-resources/application_security_weaknesses~2Fweb~2Fdata_handling~2Fxss~2Fstored](https://portal.securecodewarrior.com/#/learning-resources/application_security_weaknesses~2Fweb~2Fdata_handling~2Fxss~2Fstored)\n - [https://portal.securecodewarrior.com/#/learning-resources/application_security_weaknesses~2Fweb~2Fdata_handling~2Fxss~2Freflected](https://portal.securecodewarrior.com/#/learning-resources/application_security_weaknesses~2Fweb~2Fdata_handling~2Fxss~2Freflected)\n",
+                "text": "Untrusted user input enters a dangerous API, which can lead to a Cross-site scripting (XSS) vulnerability. XSS vulnerabilities occur when untrusted input executes malicious JavaScript code, leading to issues such as account compromise and sensitive information leakage. Ensure your data is properly encoded using org.owasp.encoder.Encode.forHtml: `Encode.forHtml($VAR)`."
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.servletresponse-writer-xss.servletresponse-writer-xss",
+              "id": "java.servlets.security.servletresponse-writer-xss.servletresponse-writer-xss",
+              "name": "java.servlets.security.servletresponse-writer-xss.servletresponse-writer-xss",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A03:2021 - Injection",
+                  "OWASP-A07:2017 - Cross-Site Scripting (XSS)",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.servletresponse-writer-xss.servletresponse-writer-xss"
+              }
+            }
+          ],
+          "semanticVersion": "1.140.0"
+        }
+      }
+    }
+  ]
+}

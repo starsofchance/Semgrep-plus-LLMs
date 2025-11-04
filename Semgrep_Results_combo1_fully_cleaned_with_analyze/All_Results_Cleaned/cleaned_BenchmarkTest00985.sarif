@@ -1,0 +1,329 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "483405ed60f9c7b085e18e52a3049b2df80ce70351580cd9d7fdd12bb4b319e54ff9bb419bdd3c0f9d9e52ec5d699c65a935d5b238a210b9287d2c97968ae25b_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00985.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "2545076b9d4dd61518025376b6a6c6a8956bbf7a5a4b06a0b9818b54bbf23c8c8ae4938cecd6590e9da6baa6fca6669124cde89b4d999ad31c7af0879301798e_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00985.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "4bf14d44c4eab36bdf67cd2135b4905d7a29ace678f317ee4af16ba04ec3f9f37f20ca1b51d54cdbb902523dc6f96394a80692eac1ac3e5f931c580be5adb134_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00985.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "189c42cfa269e2f749c2218ccc4243e9230b849ee4b5bbfdb2ec9617a9f5063fd80bab59ddbedc48c0d7de1914c7f16ffed791199167ab74072eb08592ceab4c_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00985.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 78,
+                  "endLine": 88,
+                  "snippet": {
+                    "text": "                request.getSession().setAttribute(cookieName, rememberMeKey);"
+                  },
+                  "startColumn": 17,
+                  "startLine": 88
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A trust boundary can be thought of as line drawn through a program. On one side\nof the line, data is untrusted. On the other side of the line, data is assumed\nto be trustworthy. The purpose of validation logic is to allow data to safely\ncross the trust boundary - to move from untrusted to trusted. A trust boundary\nviolation occurs when a program blurs the line between what is trusted and what\nis untrusted. By combining trusted and untrusted data in the same data\nstructure, it becomes easier for programmers to mistakenly trust unvalidated\ndata.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.TRUST_BOUNDARY_VIOLATION-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "4bf14d44c4eab36bdf67cd2135b4905d7a29ace678f317ee4af16ba04ec3f9f37f20ca1b51d54cdbb902523dc6f96394a80692eac1ac3e5f931c580be5adb134_1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00985.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 48,
+                  "endLine": 89,
+                  "snippet": {
+                    "text": "                response.addCookie(rememberMe);"
+                  },
+                  "startColumn": 17,
+                  "startLine": 89
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "2e6bc0f82d8b8435a84a5b415b5824b23379fb0a2ef4ec6a36e79ebb8f55ee87c86111b1360ee5c998d8cd478ddcbac62ac9c78955a56fbff4029690cb729e26_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00985.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 38,
+                  "endLine": 109,
+                  "snippet": {
+                    "text": "        return generator.nextDouble();"
+                  },
+                  "startColumn": 16,
+                  "startLine": 109
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Depending on the context, generating weak random numbers may expose cryptographic functions\nwhich rely on these numbers, to be exploitable. When generating numbers for sensitive values\nsuch as tokens, nonces, and cryptographic keys, it is recommended that the `DRBG` instance\nof `SecureRandom` be used.\n\nExample using `DRBG` with `SecureRandom`:\n```\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n// Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.PREDICTABLE_RANDOM-1"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Depending on the context, generating weak random numbers may expose cryptographic functions\nwhich rely on these numbers, to be exploitable. When generating numbers for sensitive values\nsuch as tokens, nonces, and cryptographic keys, it is recommended that the `DRBG` instance\nof `SecureRandom` be used.\n\nExample using `DRBG` with `SecureRandom`:\n```\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n// Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+              },
+              "help": {
+                "markdown": "Depending on the context, generating weak random numbers may expose cryptographic functions\nwhich rely on these numbers, to be exploitable. When generating numbers for sensitive values\nsuch as tokens, nonces, and cryptographic keys, it is recommended that the `DRBG` instance\nof `SecureRandom` be used.\n\nExample using `DRBG` with `SecureRandom`:\n```\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n// Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.PREDICTABLE_RANDOM-1)\n",
+                "text": "Depending on the context, generating weak random numbers may expose cryptographic functions\nwhich rely on these numbers, to be exploitable. When generating numbers for sensitive values\nsuch as tokens, nonces, and cryptographic keys, it is recommended that the `DRBG` instance\nof `SecureRandom` be used.\n\nExample using `DRBG` with `SecureRandom`:\n```\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n// Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.PREDICTABLE_RANDOM-1",
+              "id": "gitlab.find_sec_bugs.PREDICTABLE_RANDOM-1",
+              "name": "gitlab.find_sec_bugs.PREDICTABLE_RANDOM-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-330",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Use of insufficiently random values"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A trust boundary can be thought of as line drawn through a program. On one side\nof the line, data is untrusted. On the other side of the line, data is assumed\nto be trustworthy. The purpose of validation logic is to allow data to safely\ncross the trust boundary - to move from untrusted to trusted. A trust boundary\nviolation occurs when a program blurs the line between what is trusted and what\nis untrusted. By combining trusted and untrusted data in the same data\nstructure, it becomes easier for programmers to mistakenly trust unvalidated\ndata.\n"
+              },
+              "help": {
+                "markdown": "A trust boundary can be thought of as line drawn through a program. On one side\nof the line, data is untrusted. On the other side of the line, data is assumed\nto be trustworthy. The purpose of validation logic is to allow data to safely\ncross the trust boundary - to move from untrusted to trusted. A trust boundary\nviolation occurs when a program blurs the line between what is trusted and what\nis untrusted. By combining trusted and untrusted data in the same data\nstructure, it becomes easier for programmers to mistakenly trust unvalidated\ndata.\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.TRUST_BOUNDARY_VIOLATION-1)\n",
+                "text": "A trust boundary can be thought of as line drawn through a program. On one side\nof the line, data is untrusted. On the other side of the line, data is assumed\nto be trustworthy. The purpose of validation logic is to allow data to safely\ncross the trust boundary - to move from untrusted to trusted. A trust boundary\nviolation occurs when a program blurs the line between what is trusted and what\nis untrusted. By combining trusted and untrusted data in the same data\nstructure, it becomes easier for programmers to mistakenly trust unvalidated\ndata.\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.TRUST_BOUNDARY_VIOLATION-1",
+              "id": "gitlab.find_sec_bugs.TRUST_BOUNDARY_VIOLATION-1",
+              "name": "gitlab.find_sec_bugs.TRUST_BOUNDARY_VIOLATION-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-501",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Trust Boundary Violation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly)\n - [https://owasp.org/Top10/A05_2021-Security_Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration)\n",
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "id": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                  "LOW CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly)\n - [https://owasp.org/www-community/HttpOnly](https://owasp.org/www-community/HttpOnly)\n",
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "id": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "help": {
+                "markdown": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite)\n - [https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application](https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application)\n",
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "id": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "name": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-352: Cross-Site Request Forgery (CSRF)",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

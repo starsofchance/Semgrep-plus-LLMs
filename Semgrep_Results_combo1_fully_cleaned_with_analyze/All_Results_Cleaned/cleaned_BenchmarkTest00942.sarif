@@ -1,0 +1,395 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "3f3735cddac996d0752f67751d2effc1a2dbc6a8aec33561babb4872172cb53d36ea9256c1cc372fb5d9c423f04211c42024ee101d0a8ba82cdb423ceb5628b8_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00942.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "b772669e5a319d10da21dde6815f5a0aa34250e99c6c57355f3fa0ee04073ccf97d2e8f260eec81d266b9d40dce720e6c691a397aebee59ee553e4c9884d971e_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00942.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "d16dbd160606abf222bd5ff315d6bf091b90d1721b0af813afc0bc7592a6d14a9056e47985e3d6b6ef1b94076c38df985b0f943896d9c909d937e1a4e6523459_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00942.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "47da7124c52b96ea8d85e9665a6cbe51a41e4b533935640ef88ed31fe1aa9dd6fe2dfd589bfcf893a9d019ce4e6293bd56a8e87c0da34b14897708eba2773d69_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00942.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 114,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 114
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "47da7124c52b96ea8d85e9665a6cbe51a41e4b533935640ef88ed31fe1aa9dd6fe2dfd589bfcf893a9d019ce4e6293bd56a8e87c0da34b14897708eba2773d69_1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00942.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 120,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 120
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "47da7124c52b96ea8d85e9665a6cbe51a41e4b533935640ef88ed31fe1aa9dd6fe2dfd589bfcf893a9d019ce4e6293bd56a8e87c0da34b14897708eba2773d69_2"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00942.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 126,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 126
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "47da7124c52b96ea8d85e9665a6cbe51a41e4b533935640ef88ed31fe1aa9dd6fe2dfd589bfcf893a9d019ce4e6293bd56a8e87c0da34b14897708eba2773d69_3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00942.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 132,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 132
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "47da7124c52b96ea8d85e9665a6cbe51a41e4b533935640ef88ed31fe1aa9dd6fe2dfd589bfcf893a9d019ce4e6293bd56a8e87c0da34b14897708eba2773d69_4"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00942.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 138,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 138
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "47da7124c52b96ea8d85e9665a6cbe51a41e4b533935640ef88ed31fe1aa9dd6fe2dfd589bfcf893a9d019ce4e6293bd56a8e87c0da34b14897708eba2773d69_5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00942.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 144,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 144
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+              },
+              "help": {
+                "markdown": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace)\n - [https://cwe.mitre.org/data/definitions/489.html](https://cwe.mitre.org/data/definitions/489.html)\n - [https://www.acunetix.com/vulnerabilities/web/stack-trace-disclosure-java/](https://www.acunetix.com/vulnerabilities/web/stack-trace-disclosure-java/)\n - [https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/02-Testing_for_Stack_Traces](https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/02-Testing_for_Stack_Traces)\n - [https://www.securecodewarrior.com/blog/coders-conquer-security-share-learn-series-information-exposure](https://www.securecodewarrior.com/blog/coders-conquer-security-share-learn-series-information-exposure)\n",
+                "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace",
+              "id": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace",
+              "name": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-489: Active Debug Code",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "OWASP-A06:2017 - Security Misconfiguration",
+                  "OWASP-A10:2004 - Insecure Configuration Management",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly)\n - [https://owasp.org/Top10/A05_2021-Security_Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration)\n",
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "id": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                  "LOW CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly)\n - [https://owasp.org/www-community/HttpOnly](https://owasp.org/www-community/HttpOnly)\n",
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "id": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "help": {
+                "markdown": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite)\n - [https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application](https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application)\n",
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "id": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "name": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-352: Cross-Site Request Forgery (CSRF)",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

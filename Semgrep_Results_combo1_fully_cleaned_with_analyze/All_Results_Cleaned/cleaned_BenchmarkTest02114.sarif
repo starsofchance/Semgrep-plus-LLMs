@@ -1,0 +1,475 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "c68b975ca3ec312393cf495e3bfc24e25850a591472568b1cb376bca96c43d292a07f0bdfe8fafe7ed16569b4eff644dd8d3509085c8e73df6a3383804c38e8f_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02114.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 67,
+                  "endLine": 25,
+                  "snippet": {
+                    "text": "        String param = request.getParameter(\"BenchmarkTest02114\");"
+                  },
+                  "startColumn": 9,
+                  "startLine": 25
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "9c9f5a1afa2a36683727d2d9a0db9c66c6311205856039e7832b2de867a94b1c9db536694b51bacaf9f8a801c9b6e25254d2ff45015ca553b5c4c83a7d793358_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02114.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 86,
+                  "endLine": 36,
+                  "snippet": {
+                    "text": "            String filter = \"(&(objectclass=person))(|(uid=\" + bar + \")(street={0}))\";"
+                  },
+                  "startColumn": 29,
+                  "startLine": 36
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "f7a5faefef0dbe3e211d5e0cd586bbef69eb863c90ecc68aafee14e197c0185312b52005f07ed497fdd725cc3bf6290b5764756552a66563cfb8eebacc185f21_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02114.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 58,
+                  "endLine": 44,
+                  "snippet": {
+                    "text": "                    idc.search(base, filter, filters, sc);"
+                  },
+                  "startColumn": 21,
+                  "startLine": 44
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected input from a HTTPServletRequest going into an LDAP query. This could lead to LDAP injection if the input is not properly sanitized, which could result in attackers modifying objects in the LDAP tree structure. Ensure data passed to an LDAP query is not controllable or properly sanitize the data."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "e4ed197f28bba4248ed5b8e1e60766ca73a3cb2b82a9bc0cb0cf4b0974bd9c2cb54d5f9b4a808ba0e594b458a16f8ee154cbb1658a8de5ad819e93f5d9a44df4_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02114.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 58,
+                  "endLine": 44,
+                  "snippet": {
+                    "text": "                    idc.search(base, filter, filters, sc);"
+                  },
+                  "startColumn": 21,
+                  "startLine": 44
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected input from a HTTPServletRequest going into an LDAP query. This could lead to LDAP injection if the input is not properly santized, which could result in attackers modifying objects in the LDAP tree structure. Ensure data passed to an LDAP query is not controllable or properly sanitize the data."
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "23d350491bbb161da3d136a5cd3abdaccd4d2aa059feaf9d58728b7cde7fbc516cc390c6e48fa24bb290e12faf250eafd31aa153facbc543584909befd6def78_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02114.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 44,
+                  "endLine": 44,
+                  "snippet": {
+                    "text": "                    idc.search(base, filter, filters, sc);"
+                  },
+                  "startColumn": 38,
+                  "startLine": 44
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Untrusted input might be used to build an LDAP query, which can allow attackers to run arbitrary LDAP queries. If an LDAP query must contain untrusted input then it must be escaped. Ensure data passed to an LDAP query is not controllable or properly sanitize the user input with functions like createEqualityFilter."
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.tainted-ldapi-from-http-request-deepsemgrep.tainted-ldapi-from-http-request-deepsemgrep"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "a202a9225046ffbae986f5f9a81cbb765971a1616cc9a8e17195d30725c07a8e3dc4cf389640fcd6bf06b68d52e303fc7c85ed588562efcc47840513d9c9d630_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02114.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 54,
+                  "endLine": 61,
+                  "snippet": {
+                    "text": "                    response.getWriter()\n                            .println(\n                                    \"LDAP query results:<br>\"\n                                            + \"Record found with name \"\n                                            + attr.get()\n                                            + \"<br>\"\n                                            + \"Address: \"\n                                            + attr2.get()\n                                            + \"<br>\");"
+                  },
+                  "startColumn": 21,
+                  "startLine": 53
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "bf3648a99b5560886348a03a690d2315daeba35f50532e0037c218136414f406849ff8a9d1c074018ac8ca3e12425efca62695fe4d29c7db1195a62fed279e18_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02114.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 54,
+                  "endLine": 61,
+                  "snippet": {
+                    "text": "                    response.getWriter()\n                            .println(\n                                    \"LDAP query results:<br>\"\n                                            + \"Record found with name \"\n                                            + attr.get()\n                                            + \"<br>\"\n                                            + \"Address: \"\n                                            + attr2.get()\n                                            + \"<br>\");"
+                  },
+                  "startColumn": 21,
+                  "startLine": 53
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "04c33f5cc38f240837023ce54d53019fff8b650308c2bbc9204bd7c0b54c6635a25ad3f6607ce1063c336dafaa3dc0b135ece9e1d7c7613f72b89f57ef6b4867_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02114.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 53,
+                  "endLine": 61,
+                  "snippet": {
+                    "text": "                                    \"LDAP query results:<br>\"\n                                            + \"Record found with name \"\n                                            + attr.get()\n                                            + \"<br>\"\n                                            + \"Address: \"\n                                            + attr2.get()\n                                            + \"<br>\");"
+                  },
+                  "startColumn": 37,
+                  "startLine": 55
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "2319b610a14a55a56cfc2f13c8466931dec8cf3d08e03bfdf5018113185e9ce82f1fd333cd237179188dab5acd3e0956f558cdb6271e16ece0d18e4cec9236f9_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02114.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 96,
+                  "endLine": 70,
+                  "snippet": {
+                    "text": "                                \"LDAP query results: nothing found for query: \"\n                                        + org.owasp.esapi.ESAPI.encoder().encodeForHTML(filter));"
+                  },
+                  "startColumn": 33,
+                  "startLine": 69
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "id": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "name": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n"
+              },
+              "help": {
+                "markdown": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1)\n",
+                "text": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1",
+              "id": "gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1",
+              "name": "gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-79",
+                  "OWASP-A03:2021-Injection",
+                  "OWASP-A1:2017-Injection",
+                  "security"
+                ],
+                "security-severity": "Medium"
+              },
+              "shortDescription": {
+                "text": "Improper neutralization of input during web page generation ('Cross-site Scripting')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "id": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "name": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected input from a HTTPServletRequest going into an LDAP query. This could lead to LDAP injection if the input is not properly sanitized, which could result in attackers modifying objects in the LDAP tree structure. Ensure data passed to an LDAP query is not controllable or properly sanitize the data."
+              },
+              "help": {
+                "markdown": "Detected input from a HTTPServletRequest going into an LDAP query. This could lead to LDAP injection if the input is not properly sanitized, which could result in attackers modifying objects in the LDAP tree structure. Ensure data passed to an LDAP query is not controllable or properly sanitize the data.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request)\n - [https://sensei.securecodewarrior.com/recipes/scw%3Ajava%3ALDAP-injection](https://sensei.securecodewarrior.com/recipes/scw%3Ajava%3ALDAP-injection)\n",
+                "text": "Detected input from a HTTPServletRequest going into an LDAP query. This could lead to LDAP injection if the input is not properly sanitized, which could result in attackers modifying objects in the LDAP tree structure. Ensure data passed to an LDAP query is not controllable or properly sanitize the data."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request",
+              "id": "java.lang.security.audit.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request",
+              "name": "java.lang.security.audit.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-90: Improper Neutralization of Special Elements used in an LDAP Query ('LDAP Injection')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+              },
+              "help": {
+                "markdown": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer)\n - [https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaServerFaces.html](https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaServerFaces.html)\n",
+                "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "id": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "name": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A03:2021 - Injection",
+                  "OWASP-A07:2017 - Cross-Site Scripting (XSS)",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "Untrusted input might be used to build an LDAP query, which can allow attackers to run arbitrary LDAP queries. If an LDAP query must contain untrusted input then it must be escaped. Ensure data passed to an LDAP query is not controllable or properly sanitize the user input with functions like createEqualityFilter."
+              },
+              "help": {
+                "markdown": "Untrusted input might be used to build an LDAP query, which can allow attackers to run arbitrary LDAP queries. If an LDAP query must contain untrusted input then it must be escaped. Ensure data passed to an LDAP query is not controllable or properly sanitize the user input with functions like createEqualityFilter.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.tainted-ldapi-from-http-request-deepsemgrep.tainted-ldapi-from-http-request-deepsemgrep)\n - [https://owasp.org/Top10/A03_2021-Injection](https://owasp.org/Top10/A03_2021-Injection)\n",
+                "text": "Untrusted input might be used to build an LDAP query, which can allow attackers to run arbitrary LDAP queries. If an LDAP query must contain untrusted input then it must be escaped. Ensure data passed to an LDAP query is not controllable or properly sanitize the user input with functions like createEqualityFilter."
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.tainted-ldapi-from-http-request-deepsemgrep.tainted-ldapi-from-http-request-deepsemgrep",
+              "id": "java.servlets.security.tainted-ldapi-from-http-request-deepsemgrep.tainted-ldapi-from-http-request-deepsemgrep",
+              "name": "java.servlets.security.tainted-ldapi-from-http-request-deepsemgrep.tainted-ldapi-from-http-request-deepsemgrep",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-90: Improper Neutralization of Special Elements used in an LDAP Query ('LDAP Injection')",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.tainted-ldapi-from-http-request-deepsemgrep.tainted-ldapi-from-http-request-deepsemgrep"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "Detected input from a HTTPServletRequest going into an LDAP query. This could lead to LDAP injection if the input is not properly santized, which could result in attackers modifying objects in the LDAP tree structure. Ensure data passed to an LDAP query is not controllable or properly sanitize the data."
+              },
+              "help": {
+                "markdown": "Detected input from a HTTPServletRequest going into an LDAP query. This could lead to LDAP injection if the input is not properly santized, which could result in attackers modifying objects in the LDAP tree structure. Ensure data passed to an LDAP query is not controllable or properly sanitize the data.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request)\n - [https://owasp.org/www-community/attacks/LDAP_Injection](https://owasp.org/www-community/attacks/LDAP_Injection)\n - [https://cheatsheetseries.owasp.org/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.html)\n - [https://cwe.mitre.org/data/definitions/90.html](https://cwe.mitre.org/data/definitions/90.html)\n",
+                "text": "Detected input from a HTTPServletRequest going into an LDAP query. This could lead to LDAP injection if the input is not properly santized, which could result in attackers modifying objects in the LDAP tree structure. Ensure data passed to an LDAP query is not controllable or properly sanitize the data."
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request",
+              "id": "java.servlets.security.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request",
+              "name": "java.servlets.security.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-90: Improper Neutralization of Special Elements used in an LDAP Query ('LDAP Injection')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

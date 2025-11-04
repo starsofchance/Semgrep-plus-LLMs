@@ -1,0 +1,192 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "a20bb08145922302915a437c85c15c68549b056eddd09bfa92613cf18a646f1f5fbfc25fe77439e90dce215a9a7441be8742e08e2cfc19680958e6d5ae62ef51_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00536.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 75,
+                  "endLine": 27,
+                  "snippet": {
+                    "text": "        java.util.Enumeration<String> names = request.getParameterNames();"
+                  },
+                  "startColumn": 9,
+                  "startLine": 27
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "753143792a3e623598e77c9fd750a7ac59d2b5ff127cff705a3078192262a8be7bbe8a74d3febf73dc01811a3c3d9eef82baa0bb7d4b345b7e8caca1c4e4a1da_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00536.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 92,
+                  "endLine": 50,
+                  "snippet": {
+                    "text": "            java.security.MessageDigest md = java.security.MessageDigest.getInstance(\"MD5\");"
+                  },
+                  "startColumn": 46,
+                  "startLine": 50
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application was found using an insecure or risky digest or signature algorithm. Both MD5\nand SHA1 hash algorithms have been found to be vulnerable to producing collisions.\nThis means\nthat two different values, when hashed, can lead to the same hash value. If the application is\ntrying\nto use these hash methods for storing passwords, then it is recommended to switch to a\npassword hashing\nalgorithm such as Argon2id or PBKDF2.\nstrongly recommended that a standard Digest algorithm be chosen instead as implementing\na digest by hand is error-prone.\n\nExample of creating a SHA-384 hash:\n```\n// Create a MessageDigest using the SHA-384 algorithm\nMessageDigest sha384Digest = MessageDigest.getInstance(\"SHA-384\");\n// Call update with your data\nsha384Digest.update(input);\n// Only call digest once all data has been fed into the update sha384digest instance\nbyte[] output = sha384Digest.digest();\n// output base64 encoded version of the hash\nSystem.out.println(\"hash: \" + Base64.getEncoder().encodeToString(output));\n```\n\nFor more information on secure password storage see OWASP:\nhttps://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.WEAK_MESSAGE_DIGEST_MD5-1.WEAK_MESSAGE_DIGEST_SHA1-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "bb36a02ef090aedeb73b932470c62b2b3552bb2f9e558881d96ceb3847a6ac992bbfc143960db23614a66e74267243da31d64f7896d5aaccbf8f086be49a2f8e_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00536.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 91,
+                  "endLine": 50,
+                  "snippet": {
+                    "text": "            java.security.MessageDigest md = java.security.MessageDigest.getInstance(\"MD5\");"
+                  },
+                  "startColumn": 86,
+                  "startLine": 50
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is therefore not suitable as a cryptographic signature. Use HMAC instead."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.crypto.use-of-md5.use-of-md5"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application was found using an insecure or risky digest or signature algorithm. Both MD5\nand SHA1 hash algorithms have been found to be vulnerable to producing collisions.\nThis means\nthat two different values, when hashed, can lead to the same hash value. If the application is\ntrying\nto use these hash methods for storing passwords, then it is recommended to switch to a\npassword hashing\nalgorithm such as Argon2id or PBKDF2.\nstrongly recommended that a standard Digest algorithm be chosen instead as implementing\na digest by hand is error-prone.\n\nExample of creating a SHA-384 hash:\n```\n// Create a MessageDigest using the SHA-384 algorithm\nMessageDigest sha384Digest = MessageDigest.getInstance(\"SHA-384\");\n// Call update with your data\nsha384Digest.update(input);\n// Only call digest once all data has been fed into the update sha384digest instance\nbyte[] output = sha384Digest.digest();\n// output base64 encoded version of the hash\nSystem.out.println(\"hash: \" + Base64.getEncoder().encodeToString(output));\n```\n\nFor more information on secure password storage see OWASP:\nhttps://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html\n"
+              },
+              "help": {
+                "markdown": "The application was found using an insecure or risky digest or signature algorithm. Both MD5\nand SHA1 hash algorithms have been found to be vulnerable to producing collisions.\nThis means\nthat two different values, when hashed, can lead to the same hash value. If the application is\ntrying\nto use these hash methods for storing passwords, then it is recommended to switch to a\npassword hashing\nalgorithm such as Argon2id or PBKDF2.\nstrongly recommended that a standard Digest algorithm be chosen instead as implementing\na digest by hand is error-prone.\n\nExample of creating a SHA-384 hash:\n```\n// Create a MessageDigest using the SHA-384 algorithm\nMessageDigest sha384Digest = MessageDigest.getInstance(\"SHA-384\");\n// Call update with your data\nsha384Digest.update(input);\n// Only call digest once all data has been fed into the update sha384digest instance\nbyte[] output = sha384Digest.digest();\n// output base64 encoded version of the hash\nSystem.out.println(\"hash: \" + Base64.getEncoder().encodeToString(output));\n```\n\nFor more information on secure password storage see OWASP:\nhttps://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.WEAK_MESSAGE_DIGEST_MD5-1.WEAK_MESSAGE_DIGEST_SHA1-1)\n",
+                "text": "The application was found using an insecure or risky digest or signature algorithm. Both MD5\nand SHA1 hash algorithms have been found to be vulnerable to producing collisions.\nThis means\nthat two different values, when hashed, can lead to the same hash value. If the application is\ntrying\nto use these hash methods for storing passwords, then it is recommended to switch to a\npassword hashing\nalgorithm such as Argon2id or PBKDF2.\nstrongly recommended that a standard Digest algorithm be chosen instead as implementing\na digest by hand is error-prone.\n\nExample of creating a SHA-384 hash:\n```\n// Create a MessageDigest using the SHA-384 algorithm\nMessageDigest sha384Digest = MessageDigest.getInstance(\"SHA-384\");\n// Call update with your data\nsha384Digest.update(input);\n// Only call digest once all data has been fed into the update sha384digest instance\nbyte[] output = sha384Digest.digest();\n// output base64 encoded version of the hash\nSystem.out.println(\"hash: \" + Base64.getEncoder().encodeToString(output));\n```\n\nFor more information on secure password storage see OWASP:\nhttps://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.WEAK_MESSAGE_DIGEST_MD5-1.WEAK_MESSAGE_DIGEST_SHA1-1",
+              "id": "gitlab.find_sec_bugs.WEAK_MESSAGE_DIGEST_MD5-1.WEAK_MESSAGE_DIGEST_SHA1-1",
+              "name": "gitlab.find_sec_bugs.WEAK_MESSAGE_DIGEST_MD5-1.WEAK_MESSAGE_DIGEST_SHA1-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-327",
+                  "OWASP-A04:2021-Insecure Design",
+                  "OWASP-A6:2017-Security Misconfiguration",
+                  "security"
+                ],
+                "security-severity": "Medium"
+              },
+              "shortDescription": {
+                "text": "Use of a broken or risky cryptographic algorithm (SHA1/MD5)"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "id": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "name": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is therefore not suitable as a cryptographic signature. Use HMAC instead."
+              },
+              "help": {
+                "markdown": "Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is therefore not suitable as a cryptographic signature. Use HMAC instead.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.crypto.use-of-md5.use-of-md5)\n - [https://owasp.org/Top10/A02_2021-Cryptographic_Failures](https://owasp.org/Top10/A02_2021-Cryptographic_Failures)\n",
+                "text": "Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is therefore not suitable as a cryptographic signature. Use HMAC instead."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.crypto.use-of-md5.use-of-md5",
+              "id": "java.lang.security.audit.crypto.use-of-md5.use-of-md5",
+              "name": "java.lang.security.audit.crypto.use-of-md5.use-of-md5",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-328: Use of Weak Hash",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A02:2021 - Cryptographic Failures",
+                  "OWASP-A03:2017 - Sensitive Data Exposure",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.crypto.use-of-md5.use-of-md5"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

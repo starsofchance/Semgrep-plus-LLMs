@@ -1,0 +1,446 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "222b8997f37b0b6b0fef568cbb130ce7e0d73a1c798c6ac349d404f48a6557a12cff0a8acda49a368cfbaf7931b0a96aa9520fe2b86a257d6909339d5e22bc94_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01006.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "2b0a68cde689cdb8531d5e5e65ad896d971f2d43562f01d32e9202892658c7a46a3e238cab44bda02cbfd304cc9a155ddbf2364f8022096a47bb7328c56b5d25_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01006.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "95c97691ca4cbac307346d6fb7681d0f9cba42d1f4d5d96848bfc2fd3c2c6df83c21976ee9b0b8ece03751525ce6859b34b5c4351cfa9c6f4b2dd99c8731916e_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01006.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "37beb90b11aeb57e198e922c4426aa31510ed92613deb7dcc955375a45a7a236cbf5597ba77b3621ce3361801fd383c1ed74594d7cffa5250f84a84c4d1ff708_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01006.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 90,
+                  "endLine": 49,
+                  "snippet": {
+                    "text": "        String sql = \"SELECT userid from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                  },
+                  "startColumn": 22,
+                  "startLine": 49
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "37beb90b11aeb57e198e922c4426aa31510ed92613deb7dcc955375a45a7a236cbf5597ba77b3621ce3361801fd383c1ed74594d7cffa5250f84a84c4d1ff708_1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01006.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 96,
+                  "endLine": 49,
+                  "snippet": {
+                    "text": "        String sql = \"SELECT userid from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                  },
+                  "startColumn": 22,
+                  "startLine": 49
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "1cf2703eaa915bda60ce9cc693f77e3c1c6ca9a06dd8fda0de53cf2e594196641c7706ac8bf362e8d8cf752cccd568f059132a6b7c520178520bbc5e77c29625_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01006.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 46,
+                  "endLine": 55,
+                  "snippet": {
+                    "text": "            Long results =\n                    org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForObject(\n                            sql, Long.class);"
+                  },
+                  "startColumn": 13,
+                  "startLine": 53
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "34a14a1a2af40969ed12b7bc4d89b088f233cadb7b8a6e4f2e00b7666c69f3bbaa28b6536eee1d4e4acdb55c372c0b4dba11e39a3892d36315d60be3583c5d55_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01006.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 89,
+                  "endLine": 56,
+                  "snippet": {
+                    "text": "            response.getWriter().println(\"Your results are: \" + String.valueOf(results));"
+                  },
+                  "startColumn": 13,
+                  "startLine": 56
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "0f052492ac563696437ec2875c9a24565634ff872c44f9ae1bb3d397cf36598d5bcd93b3548921157988b18556215841fc7a861a370436c7dab1e5853f365421_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01006.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 89,
+                  "endLine": 56,
+                  "snippet": {
+                    "text": "            response.getWriter().println(\"Your results are: \" + String.valueOf(results));"
+                  },
+                  "startColumn": 13,
+                  "startLine": 56
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+              },
+              "help": {
+                "markdown": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.CUSTOM_INJECTION-2)\n",
+                "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "id": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "name": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-89",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n"
+              },
+              "help": {
+                "markdown": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1)\n",
+                "text": "The application is returning user-supplied data from an HTTP request directly into an HTTP\nresponse output\nwriter. This could lead to Cross Site Scripting (XSS) if the input were malicious\nscript code and the application server is not properly validating the output.\n\nXSS is an attack which exploits a web application or system to treat user input\nas markup or script code. It is important to encode the data depending on the specific context\nit is used in. There are at least six context types:\n\n- Inside HTML tags `<div>context 1</div>`\n- Inside attributes: `<div class=\"context 2\"></div>`\n- Inside event attributes `<button onclick=\"context 3\">button</button>`\n- Inside script blocks: `<script>var x = \"context 4\"</script>`\n- Unsafe element HTML assignment: `element.innerHTML = \"context 5\"`\n- Inside URLs: `<iframe src=\"context 6\"></iframe><a href=\"context 6\">link</a>`\n\nScript blocks alone have multiple ways they need to be encoded. Extra care must be taken if\nuser input\nis ever output inside of script tags.\n\nUser input that is displayed within the application must be encoded, sanitized or validated\nto ensure it cannot be treated as HTML or executed as Javascript code. Care must also be\ntaken\nto not mix server-side templating with client-side templating, as the server-side templating\nwill\nnot encode things like {{ 7*7 }} which may execute client-side templating features.\n\nIt is _NOT_ advised to encode user input prior to inserting into a data store. The data will\nneed to be\nencoded depending on context of where it is output. It is much safer to force the displaying\nsystem to\nhandle the encoding and not attempt to guess how it should be encoded.\n\nIf possible do not use user input directly in the output to the response writer.\n\nIf the application must output user-supplied input, it will need to encode the data depending\non\nthe output context.\n\nConsider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)\n`StringEscapeUtils` methods for various context. Please note there is no way to safely\noutput script code in most circumstances, regardless of encoding. If calling the HTTP\nresponse writer directly, ensure that the `Content-Type` is set to `text/plain` so it will\nnot be accidentally interpreted by HTML by modern browsers.\n```\n// Get user input\nString htmlInput = request.getParameter(\"userInput\");\n// Encode the input using the Html4 encoder\nString htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);\n// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML\nresponse.setContentType(\"text/plain\");\n// Ensure UTF-8\nresponse.setCharacterEncoding(\"UTF-8\");\n// Write response\nresponse.getWriter().write(htmlEncoded);\n```\n\nFor more information on XSS see OWASP:\n- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1",
+              "id": "gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1",
+              "name": "gitlab.find_sec_bugs.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-79",
+                  "OWASP-A03:2021-Injection",
+                  "OWASP-A1:2017-Injection",
+                  "security"
+                ],
+                "security-severity": "Medium"
+              },
+              "shortDescription": {
+                "text": "Improper neutralization of input during web page generation ('Cross-site Scripting')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly)\n - [https://owasp.org/Top10/A05_2021-Security_Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration)\n",
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "id": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                  "LOW CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead."
+              },
+              "help": {
+                "markdown": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request)\n - [https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n - [https://owasp.org/www-community/attacks/SQL_Injection](https://owasp.org/www-community/attacks/SQL_Injection)\n",
+                "text": "Detected input from a HTTPServletRequest going into a SQL sink or statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use parameterized SQL queries or properly sanitize user input instead."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request",
+              "id": "java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request",
+              "name": "java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.sqli.tainted-sql-from-http-request.tainted-sql-from-http-request"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+              },
+              "help": {
+                "markdown": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer)\n - [https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaServerFaces.html](https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaServerFaces.html)\n",
+                "text": "Detected a request with potential user-input going into a OutputStream or Writer object. This bypasses any view or template environments, including HTML escaping, which may expose this application to cross-site scripting (XSS) vulnerabilities. Consider using a view technology such as JavaServer Faces (JSFs) which automatically escapes HTML views."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "id": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "name": "java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A03:2021 - Injection",
+                  "OWASP-A07:2017 - Cross-Site Scripting (XSS)",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.xss.no-direct-response-writer.no-direct-response-writer"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly)\n - [https://owasp.org/www-community/HttpOnly](https://owasp.org/www-community/HttpOnly)\n",
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "id": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "help": {
+                "markdown": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite)\n - [https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application](https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application)\n",
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "id": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "name": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-352: Cross-Site Request Forgery (CSRF)",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

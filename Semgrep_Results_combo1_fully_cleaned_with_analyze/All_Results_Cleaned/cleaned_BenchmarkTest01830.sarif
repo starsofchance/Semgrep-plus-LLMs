@@ -1,0 +1,535 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "07c571890ca5fd11053284d2e1de36292a910fd68274d0a41badfb738fda741e386b3b767332e67063574661ed8a9ff92ecceda392458e0022aa303a1d893438_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01830.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "2f252e7e33151c7c3107147f16fbb9e54d2ae69f2ef0e74cf19cadc923412d4f2d4a3a1b5439e25b39293fb0f7768ee213ce271c3205de00d6aff3217c9093b7_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01830.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "dba7bf7f7e2a6288a83d103ddfd4393a08965244d07bbdaaf5be402f577c639f1f6454a6a7d5788267dbadad3f01287ed7813238f640b5f43031f06667dc3f61_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01830.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "cb0ab59deaabce99730df6da1548926ea7ae9ea5a36f122ad21bcb262edaa14027de885b96d694e076a52601cc80d65976d275b4dd9f5bb965b8f1216f4a6906_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01830.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 80,
+                  "endLine": 54,
+                  "snippet": {
+                    "text": "            String algorithm = benchmarkprops.getProperty(\"cryptoAlg1\", \"DESede/ECB/PKCS5Padding\");\n            javax.crypto.Cipher c = javax.crypto.Cipher.getInstance(algorithm);"
+                  },
+                  "startColumn": 13,
+                  "startLine": 53
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Cryptographic algorithms provide many different modes of operation, only some of which provide\nmessage integrity. Without message integrity it could be possible for an adversary to attempt\nto tamper with the ciphertext which could lead to compromising the encryption key. Newer\nalgorithms\napply message integrity to validate ciphertext has not been tampered with.\n\nInstead of using an algorithm that requires configuring a cipher mode, an algorithm\nthat has built-in message integrity should be used. Consider using `ChaCha20Poly1305` or\n`AES-256-GCM` instead.\n\nFor older applications that don't have support for `ChaCha20Poly1305`, `AES-256-GCM` is\nrecommended, however it has many drawbacks:\n  - Slower than `ChaCha20Poly1305`.\n  - Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n// Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our ivKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV Key\n    byte[] ivKey = new byte[12];\n    random.nextBytes(ivKey);\n\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);\n\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n\n     // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);\n\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.CIPHER_INTEGRITY-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "aa9a8573b1615c0f542310aacce91779d101f709a1925e05b1a8cfcbd3d73aeff5e8fc6890191971ada10baedbb3ce90ae6b911e871d42cd5fdf4cc7add2d5ef_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01830.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 80,
+                  "endLine": 54,
+                  "snippet": {
+                    "text": "            String algorithm = benchmarkprops.getProperty(\"cryptoAlg1\", \"DESede/ECB/PKCS5Padding\");\n            javax.crypto.Cipher c = javax.crypto.Cipher.getInstance(algorithm);"
+                  },
+                  "startColumn": 13,
+                  "startLine": 53
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Cryptographic algorithms provide many different modes of operation, only some of which provide\nmessage integrity. Without message integrity it could be possible for an adversary to attempt\nto tamper with the ciphertext which could lead to compromising the encryption key. Newer\nalgorithms\napply message integrity to validate ciphertext has not been tampered with.\n\nInstead of using an algorithm that requires configuring a cipher mode, an algorithm\nthat has built-in message integrity should be used. Consider using `ChaCha20Poly1305` or\n`AES-256-GCM` instead.\n\nFor older applications that don't have support for `ChaCha20Poly1305`, `AES-256-GCM` is\nrecommended, however it has many drawbacks:\n  - Slower than `ChaCha20Poly1305`.\n  - Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n    // Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our ivKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV Key\n    byte[] ivKey = new byte[12];\n    random.nextBytes(ivKey);\n\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);\n\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n\n     // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);\n\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.ECB_MODE-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "7fc1df799326ec9374958e636c7e75526a0edd087c83ae32fe389379b915c08de03e6076791f14a414564e3557a7969036b49dba3a3d4a315f9b88418ec1e59f_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01830.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 80,
+                  "endLine": 54,
+                  "snippet": {
+                    "text": "            String algorithm = benchmarkprops.getProperty(\"cryptoAlg1\", \"DESede/ECB/PKCS5Padding\");\n            javax.crypto.Cipher c = javax.crypto.Cipher.getInstance(algorithm);"
+                  },
+                  "startColumn": 13,
+                  "startLine": 53
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "DES, TripleDES and RC2 are all considered broken or insecure cryptographic algorithms.\nNewer algorithms  apply message integrity to validate ciphertext has not been tampered\nwith. Consider using `ChaCha20Poly1305` instead as it is easier and faster than the\nalternatives such as `AES-256-GCM`.\n\nFor older applications that don't have support for `ChaCha20Poly1305`,\n`AES-256-GCM` is recommended, however it has many drawbacks:\n- Slower than `ChaCha20Poly1305`.\n- Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n    // Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] nonceKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our nonceKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(nonceKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV nonceKey\n    byte[] nonceKey = new byte[12];\n    random.nextBytes(nonceKey);\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, nonceKey, secretKey);\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n    // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, nonceKey, secretKey);\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.TDES_USAGE-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "b2718b9e6eab1dba57ea7dd41d91fde959cc951257d006c6b6df5547592969a0fbdfdd155dcf133cd06b26ac307a56362e4f62faea6bc4749c449a97a0ce4f22_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01830.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 86,
+                  "endLine": 57,
+                  "snippet": {
+                    "text": "            javax.crypto.SecretKey key = javax.crypto.KeyGenerator.getInstance(\"DES\").generateKey();"
+                  },
+                  "startColumn": 42,
+                  "startLine": 57
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Triple DES (3DES or DESede) is considered deprecated. AES is the recommended cipher. Upgrade to use AES."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.crypto.desede-is-deprecated.desede-is-deprecated"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "be1913761589339f0c386298738271fbf1f22a3687da118825927f0c8ad3e6f5a6b62e9ac6a0b52a37b149ea1c0b05df0887dc4d680e3349c3b0b008834535ef_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01830.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 85,
+                  "endLine": 57,
+                  "snippet": {
+                    "text": "            javax.crypto.SecretKey key = javax.crypto.KeyGenerator.getInstance(\"DES\").generateKey();"
+                  },
+                  "startColumn": 80,
+                  "startLine": 57
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "DES is considered deprecated. AES is the recommended cipher. Upgrade to use AES. See https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard for more information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "d91c3878b0960469820fbda8a2fc074fb921eefa32294b3fc5e63562bbebacf424838d2d1d6eab4ce473671fa928de00d61ac4c0bd65eb1a7d34fbf2dc3144a0_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01830.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 106,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 106
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "Cryptographic algorithms provide many different modes of operation, only some of which provide\nmessage integrity. Without message integrity it could be possible for an adversary to attempt\nto tamper with the ciphertext which could lead to compromising the encryption key. Newer\nalgorithms\napply message integrity to validate ciphertext has not been tampered with.\n\nInstead of using an algorithm that requires configuring a cipher mode, an algorithm\nthat has built-in message integrity should be used. Consider using `ChaCha20Poly1305` or\n`AES-256-GCM` instead.\n\nFor older applications that don't have support for `ChaCha20Poly1305`, `AES-256-GCM` is\nrecommended, however it has many drawbacks:\n  - Slower than `ChaCha20Poly1305`.\n  - Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n// Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our ivKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV Key\n    byte[] ivKey = new byte[12];\n    random.nextBytes(ivKey);\n\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);\n\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n\n     // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);\n\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+              },
+              "help": {
+                "markdown": "Cryptographic algorithms provide many different modes of operation, only some of which provide\nmessage integrity. Without message integrity it could be possible for an adversary to attempt\nto tamper with the ciphertext which could lead to compromising the encryption key. Newer\nalgorithms\napply message integrity to validate ciphertext has not been tampered with.\n\nInstead of using an algorithm that requires configuring a cipher mode, an algorithm\nthat has built-in message integrity should be used. Consider using `ChaCha20Poly1305` or\n`AES-256-GCM` instead.\n\nFor older applications that don't have support for `ChaCha20Poly1305`, `AES-256-GCM` is\nrecommended, however it has many drawbacks:\n  - Slower than `ChaCha20Poly1305`.\n  - Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n// Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our ivKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV Key\n    byte[] ivKey = new byte[12];\n    random.nextBytes(ivKey);\n\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);\n\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n\n     // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);\n\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.CIPHER_INTEGRITY-1)\n",
+                "text": "Cryptographic algorithms provide many different modes of operation, only some of which provide\nmessage integrity. Without message integrity it could be possible for an adversary to attempt\nto tamper with the ciphertext which could lead to compromising the encryption key. Newer\nalgorithms\napply message integrity to validate ciphertext has not been tampered with.\n\nInstead of using an algorithm that requires configuring a cipher mode, an algorithm\nthat has built-in message integrity should be used. Consider using `ChaCha20Poly1305` or\n`AES-256-GCM` instead.\n\nFor older applications that don't have support for `ChaCha20Poly1305`, `AES-256-GCM` is\nrecommended, however it has many drawbacks:\n  - Slower than `ChaCha20Poly1305`.\n  - Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n// Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our ivKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV Key\n    byte[] ivKey = new byte[12];\n    random.nextBytes(ivKey);\n\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);\n\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n\n     // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);\n\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.CIPHER_INTEGRITY-1",
+              "id": "gitlab.find_sec_bugs.CIPHER_INTEGRITY-1",
+              "name": "gitlab.find_sec_bugs.CIPHER_INTEGRITY-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-327",
+                  "OWASP-A02:2021-Cryptographic Failures",
+                  "OWASP-A3:2017-Sensitive Data Exposure",
+                  "security"
+                ],
+                "security-severity": "Medium"
+              },
+              "shortDescription": {
+                "text": "Use of a broken or risky cryptographic algorithm"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "Cryptographic algorithms provide many different modes of operation, only some of which provide\nmessage integrity. Without message integrity it could be possible for an adversary to attempt\nto tamper with the ciphertext which could lead to compromising the encryption key. Newer\nalgorithms\napply message integrity to validate ciphertext has not been tampered with.\n\nInstead of using an algorithm that requires configuring a cipher mode, an algorithm\nthat has built-in message integrity should be used. Consider using `ChaCha20Poly1305` or\n`AES-256-GCM` instead.\n\nFor older applications that don't have support for `ChaCha20Poly1305`, `AES-256-GCM` is\nrecommended, however it has many drawbacks:\n  - Slower than `ChaCha20Poly1305`.\n  - Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n    // Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our ivKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV Key\n    byte[] ivKey = new byte[12];\n    random.nextBytes(ivKey);\n\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);\n\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n\n     // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);\n\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+              },
+              "help": {
+                "markdown": "Cryptographic algorithms provide many different modes of operation, only some of which provide\nmessage integrity. Without message integrity it could be possible for an adversary to attempt\nto tamper with the ciphertext which could lead to compromising the encryption key. Newer\nalgorithms\napply message integrity to validate ciphertext has not been tampered with.\n\nInstead of using an algorithm that requires configuring a cipher mode, an algorithm\nthat has built-in message integrity should be used. Consider using `ChaCha20Poly1305` or\n`AES-256-GCM` instead.\n\nFor older applications that don't have support for `ChaCha20Poly1305`, `AES-256-GCM` is\nrecommended, however it has many drawbacks:\n  - Slower than `ChaCha20Poly1305`.\n  - Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n    // Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our ivKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV Key\n    byte[] ivKey = new byte[12];\n    random.nextBytes(ivKey);\n\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);\n\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n\n     // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);\n\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.ECB_MODE-1)\n",
+                "text": "Cryptographic algorithms provide many different modes of operation, only some of which provide\nmessage integrity. Without message integrity it could be possible for an adversary to attempt\nto tamper with the ciphertext which could lead to compromising the encryption key. Newer\nalgorithms\napply message integrity to validate ciphertext has not been tampered with.\n\nInstead of using an algorithm that requires configuring a cipher mode, an algorithm\nthat has built-in message integrity should be used. Consider using `ChaCha20Poly1305` or\n`AES-256-GCM` instead.\n\nFor older applications that don't have support for `ChaCha20Poly1305`, `AES-256-GCM` is\nrecommended, however it has many drawbacks:\n  - Slower than `ChaCha20Poly1305`.\n  - Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n    // Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our ivKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV Key\n    byte[] ivKey = new byte[12];\n    random.nextBytes(ivKey);\n\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);\n\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n\n     // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);\n\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.ECB_MODE-1",
+              "id": "gitlab.find_sec_bugs.ECB_MODE-1",
+              "name": "gitlab.find_sec_bugs.ECB_MODE-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-327",
+                  "OWASP-A02:2021-Cryptographic Failures",
+                  "OWASP-A3:2017-Sensitive Data Exposure",
+                  "security"
+                ],
+                "security-severity": "Medium"
+              },
+              "shortDescription": {
+                "text": "Use of a broken or risky cryptographic algorithm"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "DES, TripleDES and RC2 are all considered broken or insecure cryptographic algorithms.\nNewer algorithms  apply message integrity to validate ciphertext has not been tampered\nwith. Consider using `ChaCha20Poly1305` instead as it is easier and faster than the\nalternatives such as `AES-256-GCM`.\n\nFor older applications that don't have support for `ChaCha20Poly1305`,\n`AES-256-GCM` is recommended, however it has many drawbacks:\n- Slower than `ChaCha20Poly1305`.\n- Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n    // Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] nonceKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our nonceKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(nonceKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV nonceKey\n    byte[] nonceKey = new byte[12];\n    random.nextBytes(nonceKey);\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, nonceKey, secretKey);\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n    // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, nonceKey, secretKey);\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+              },
+              "help": {
+                "markdown": "DES, TripleDES and RC2 are all considered broken or insecure cryptographic algorithms.\nNewer algorithms  apply message integrity to validate ciphertext has not been tampered\nwith. Consider using `ChaCha20Poly1305` instead as it is easier and faster than the\nalternatives such as `AES-256-GCM`.\n\nFor older applications that don't have support for `ChaCha20Poly1305`,\n`AES-256-GCM` is recommended, however it has many drawbacks:\n- Slower than `ChaCha20Poly1305`.\n- Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n    // Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] nonceKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our nonceKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(nonceKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV nonceKey\n    byte[] nonceKey = new byte[12];\n    random.nextBytes(nonceKey);\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, nonceKey, secretKey);\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n    // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, nonceKey, secretKey);\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.TDES_USAGE-1)\n",
+                "text": "DES, TripleDES and RC2 are all considered broken or insecure cryptographic algorithms.\nNewer algorithms  apply message integrity to validate ciphertext has not been tampered\nwith. Consider using `ChaCha20Poly1305` instead as it is easier and faster than the\nalternatives such as `AES-256-GCM`.\n\nFor older applications that don't have support for `ChaCha20Poly1305`,\n`AES-256-GCM` is recommended, however it has many drawbacks:\n- Slower than `ChaCha20Poly1305`.\n- Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n    // Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] nonceKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our nonceKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(nonceKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV nonceKey\n    byte[] nonceKey = new byte[12];\n    random.nextBytes(nonceKey);\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, nonceKey, secretKey);\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n    // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, nonceKey, secretKey);\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.TDES_USAGE-1",
+              "id": "gitlab.find_sec_bugs.TDES_USAGE-1",
+              "name": "gitlab.find_sec_bugs.TDES_USAGE-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-327",
+                  "OWASP-A02:2021-Cryptographic Failures",
+                  "OWASP-A3:2017-Sensitive Data Exposure",
+                  "security"
+                ],
+                "security-severity": "Medium"
+              },
+              "shortDescription": {
+                "text": "Use of a broken or risky cryptographic algorithm"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+              },
+              "help": {
+                "markdown": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace)\n - [https://cwe.mitre.org/data/definitions/489.html](https://cwe.mitre.org/data/definitions/489.html)\n - [https://www.acunetix.com/vulnerabilities/web/stack-trace-disclosure-java/](https://www.acunetix.com/vulnerabilities/web/stack-trace-disclosure-java/)\n - [https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/02-Testing_for_Stack_Traces](https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/02-Testing_for_Stack_Traces)\n - [https://www.securecodewarrior.com/blog/coders-conquer-security-share-learn-series-information-exposure](https://www.securecodewarrior.com/blog/coders-conquer-security-share-learn-series-information-exposure)\n",
+                "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace",
+              "id": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace",
+              "name": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-489: Active Debug Code",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "OWASP-A06:2017 - Security Misconfiguration",
+                  "OWASP-A10:2004 - Insecure Configuration Management",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly)\n - [https://owasp.org/Top10/A05_2021-Security_Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration)\n",
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "id": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                  "LOW CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "DES is considered deprecated. AES is the recommended cipher. Upgrade to use AES. See https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard for more information."
+              },
+              "help": {
+                "markdown": "DES is considered deprecated. AES is the recommended cipher. Upgrade to use AES. See https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard for more information.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated)\n - [https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard](https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard)\n - [https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#algorithms](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#algorithms)\n",
+                "text": "DES is considered deprecated. AES is the recommended cipher. Upgrade to use AES. See https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard for more information."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated",
+              "id": "java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated",
+              "name": "java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-326: Inadequate Encryption Strength",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A02:2021 - Cryptographic Failures",
+                  "OWASP-A03:2017 - Sensitive Data Exposure",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Triple DES (3DES or DESede) is considered deprecated. AES is the recommended cipher. Upgrade to use AES."
+              },
+              "help": {
+                "markdown": "Triple DES (3DES or DESede) is considered deprecated. AES is the recommended cipher. Upgrade to use AES.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.crypto.desede-is-deprecated.desede-is-deprecated)\n - [https://csrc.nist.gov/News/2017/Update-to-Current-Use-and-Deprecation-of-TDEA](https://csrc.nist.gov/News/2017/Update-to-Current-Use-and-Deprecation-of-TDEA)\n",
+                "text": "Triple DES (3DES or DESede) is considered deprecated. AES is the recommended cipher. Upgrade to use AES."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.crypto.desede-is-deprecated.desede-is-deprecated",
+              "id": "java.lang.security.audit.crypto.desede-is-deprecated.desede-is-deprecated",
+              "name": "java.lang.security.audit.crypto.desede-is-deprecated.desede-is-deprecated",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-326: Inadequate Encryption Strength",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A02:2021 - Cryptographic Failures",
+                  "OWASP-A03:2017 - Sensitive Data Exposure",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.crypto.desede-is-deprecated.desede-is-deprecated"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly)\n - [https://owasp.org/www-community/HttpOnly](https://owasp.org/www-community/HttpOnly)\n",
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "id": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "help": {
+                "markdown": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite)\n - [https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application](https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application)\n",
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "id": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "name": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-352: Cross-Site Request Forgery (CSRF)",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

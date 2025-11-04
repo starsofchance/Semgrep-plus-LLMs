@@ -1,0 +1,249 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "f7938617e37be69ecff31c29d48d6c5d633706dcecdd97adf6d7e7b82a79219be6c224680431aa51ff74916fec4e0b55ac514e4d99a02f681d2609cbb83645ab_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02613.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 55,
+                  "endLine": 25,
+                  "snippet": {
+                    "text": "        String queryString = request.getQueryString();"
+                  },
+                  "startColumn": 9,
+                  "startLine": 25
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "53a69e95a124b70b615312826fa1d1f18726370551bff2229663e5c4995bd46ea9cb3a8f3da4a1c90bb775ad53f46c25011cc92f8a612ddfd4a3c1d28165327f_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02613.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 96,
+                  "endLine": 60,
+                  "snippet": {
+                    "text": "            Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+                  },
+                  "startColumn": 13,
+                  "startLine": 60
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected input from a HTTPServletRequest going into a 'ProcessBuilder' or 'exec' command. This could lead to command injection if variables passed into the exec commands are not properly sanitized. Instead, avoid using these OS commands with user-supplied input, or, if you must use these commands, use a whitelist of specific values."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.tainted-cmd-from-http-request.tainted-cmd-from-http-request"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "e3a39c323ecc2c31a3bb07606daddb072e19b4df5067b977c21d07174a0d2cbe27a1ad10806cc84e7f7e13ba9e2791e682d7a67bc5035e8bea1c811a1593ca44_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02613.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 96,
+                  "endLine": 60,
+                  "snippet": {
+                    "text": "            Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+                  },
+                  "startColumn": 13,
+                  "startLine": 60
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Untrusted input might be injected into a command executed by the application, which can lead to a command injection vulnerability. An attacker can execute arbitrary commands, potentially gaining complete control of the system. To prevent command injection, avoid executing OS commands with user input. If this is unavoidable, validate and sanitize the user input, and use safe methods for executing the commands. For more information, see [Java command injection prevention](https:// semgrep.dev/docs/cheat-sheets/java-command-injection/)"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.tainted-cmd-from-http-request.tainted-cmd-from-http-request"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "351c4cab3209610d8da2eac777b1f32c84c5b9933dac27cb4fe71e15f180f22bb0f3d824f97a15b26dab8ec63ba5446427d8fe8c683cc275650d938ee1b365d4_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest02613.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 95,
+                  "endLine": 60,
+                  "snippet": {
+                    "text": "            Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+                  },
+                  "startColumn": 25,
+                  "startLine": 60
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "OS command injection is a critical vulnerability that can lead to a full system\ncompromise as it may allow an adversary to pass in arbitrary commands or arguments\nto be executed.\n\nUser input should never be used in constructing commands or command arguments\nto functions which execute OS commands. This includes filenames supplied by\nuser uploads or downloads.\n\nEnsure your application does not:\n\n- Use user-supplied information in the process name to execute.\n- Use user-supplied information in an OS command execution function which does\nnot escape shell meta-characters.\n- Use user-supplied information in arguments to OS commands.\n\nThe application should have a hardcoded set of arguments that are to be passed\nto OS commands. If filenames are being passed to these functions, it is\nrecommended that a hash of the filename be used instead, or some other unique\nidentifier. It is strongly recommended that a native library that implements\nthe same functionality be used instead of using OS system commands, due to the\nrisk of unknown attacks against third party commands.\n\nWhen specifying the OS command, ensure the application uses the full path\ninformation, otherwise the OS may attempt to look up which process to execute\nand could be vulnerable to untrusted search path vulnerabilities (CWE-426).\n\nExample of safely executing an OS command:\n```\npublic static void executeCommand(String userFileData) throws java.io.IOException {\n    // Generate a random filename, do not use user input\n    String fileName = UUID.randomUUID().toString();\n    // Create a Buffered/FileWriter\n    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));\n    // Write the user content to our random file\n    writer.write(userFileData);\n    // Close the file to flush contents\n    writer.close();\n    // Create the process builder with a hardcoded path to the binary, and our randomly\ngenerated filename\n    ProcessBuilder processBuilder = new ProcessBuilder(\"/opt/app/path\", fileName);\n    // Start the process\n    Process process = processBuilder.start();\n    // Handle/redirect output of process here\n    // ...\n}\n```\n\nFor more information on OS command injection, see OWASP's guide:\nhttps://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.COMMAND_INJECTION-1"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "OS command injection is a critical vulnerability that can lead to a full system\ncompromise as it may allow an adversary to pass in arbitrary commands or arguments\nto be executed.\n\nUser input should never be used in constructing commands or command arguments\nto functions which execute OS commands. This includes filenames supplied by\nuser uploads or downloads.\n\nEnsure your application does not:\n\n- Use user-supplied information in the process name to execute.\n- Use user-supplied information in an OS command execution function which does\nnot escape shell meta-characters.\n- Use user-supplied information in arguments to OS commands.\n\nThe application should have a hardcoded set of arguments that are to be passed\nto OS commands. If filenames are being passed to these functions, it is\nrecommended that a hash of the filename be used instead, or some other unique\nidentifier. It is strongly recommended that a native library that implements\nthe same functionality be used instead of using OS system commands, due to the\nrisk of unknown attacks against third party commands.\n\nWhen specifying the OS command, ensure the application uses the full path\ninformation, otherwise the OS may attempt to look up which process to execute\nand could be vulnerable to untrusted search path vulnerabilities (CWE-426).\n\nExample of safely executing an OS command:\n```\npublic static void executeCommand(String userFileData) throws java.io.IOException {\n    // Generate a random filename, do not use user input\n    String fileName = UUID.randomUUID().toString();\n    // Create a Buffered/FileWriter\n    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));\n    // Write the user content to our random file\n    writer.write(userFileData);\n    // Close the file to flush contents\n    writer.close();\n    // Create the process builder with a hardcoded path to the binary, and our randomly\ngenerated filename\n    ProcessBuilder processBuilder = new ProcessBuilder(\"/opt/app/path\", fileName);\n    // Start the process\n    Process process = processBuilder.start();\n    // Handle/redirect output of process here\n    // ...\n}\n```\n\nFor more information on OS command injection, see OWASP's guide:\nhttps://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html\n"
+              },
+              "help": {
+                "markdown": "OS command injection is a critical vulnerability that can lead to a full system\ncompromise as it may allow an adversary to pass in arbitrary commands or arguments\nto be executed.\n\nUser input should never be used in constructing commands or command arguments\nto functions which execute OS commands. This includes filenames supplied by\nuser uploads or downloads.\n\nEnsure your application does not:\n\n- Use user-supplied information in the process name to execute.\n- Use user-supplied information in an OS command execution function which does\nnot escape shell meta-characters.\n- Use user-supplied information in arguments to OS commands.\n\nThe application should have a hardcoded set of arguments that are to be passed\nto OS commands. If filenames are being passed to these functions, it is\nrecommended that a hash of the filename be used instead, or some other unique\nidentifier. It is strongly recommended that a native library that implements\nthe same functionality be used instead of using OS system commands, due to the\nrisk of unknown attacks against third party commands.\n\nWhen specifying the OS command, ensure the application uses the full path\ninformation, otherwise the OS may attempt to look up which process to execute\nand could be vulnerable to untrusted search path vulnerabilities (CWE-426).\n\nExample of safely executing an OS command:\n```\npublic static void executeCommand(String userFileData) throws java.io.IOException {\n    // Generate a random filename, do not use user input\n    String fileName = UUID.randomUUID().toString();\n    // Create a Buffered/FileWriter\n    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));\n    // Write the user content to our random file\n    writer.write(userFileData);\n    // Close the file to flush contents\n    writer.close();\n    // Create the process builder with a hardcoded path to the binary, and our randomly\ngenerated filename\n    ProcessBuilder processBuilder = new ProcessBuilder(\"/opt/app/path\", fileName);\n    // Start the process\n    Process process = processBuilder.start();\n    // Handle/redirect output of process here\n    // ...\n}\n```\n\nFor more information on OS command injection, see OWASP's guide:\nhttps://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.COMMAND_INJECTION-1)\n",
+                "text": "OS command injection is a critical vulnerability that can lead to a full system\ncompromise as it may allow an adversary to pass in arbitrary commands or arguments\nto be executed.\n\nUser input should never be used in constructing commands or command arguments\nto functions which execute OS commands. This includes filenames supplied by\nuser uploads or downloads.\n\nEnsure your application does not:\n\n- Use user-supplied information in the process name to execute.\n- Use user-supplied information in an OS command execution function which does\nnot escape shell meta-characters.\n- Use user-supplied information in arguments to OS commands.\n\nThe application should have a hardcoded set of arguments that are to be passed\nto OS commands. If filenames are being passed to these functions, it is\nrecommended that a hash of the filename be used instead, or some other unique\nidentifier. It is strongly recommended that a native library that implements\nthe same functionality be used instead of using OS system commands, due to the\nrisk of unknown attacks against third party commands.\n\nWhen specifying the OS command, ensure the application uses the full path\ninformation, otherwise the OS may attempt to look up which process to execute\nand could be vulnerable to untrusted search path vulnerabilities (CWE-426).\n\nExample of safely executing an OS command:\n```\npublic static void executeCommand(String userFileData) throws java.io.IOException {\n    // Generate a random filename, do not use user input\n    String fileName = UUID.randomUUID().toString();\n    // Create a Buffered/FileWriter\n    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));\n    // Write the user content to our random file\n    writer.write(userFileData);\n    // Close the file to flush contents\n    writer.close();\n    // Create the process builder with a hardcoded path to the binary, and our randomly\ngenerated filename\n    ProcessBuilder processBuilder = new ProcessBuilder(\"/opt/app/path\", fileName);\n    // Start the process\n    Process process = processBuilder.start();\n    // Handle/redirect output of process here\n    // ...\n}\n```\n\nFor more information on OS command injection, see OWASP's guide:\nhttps://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.COMMAND_INJECTION-1",
+              "id": "gitlab.find_sec_bugs.COMMAND_INJECTION-1",
+              "name": "gitlab.find_sec_bugs.COMMAND_INJECTION-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-78",
+                  "OWASP-A03:2021-Injection",
+                  "OWASP-A1:2017-Injection",
+                  "security"
+                ],
+                "security-severity": "High"
+              },
+              "shortDescription": {
+                "text": "Improper neutralization of special elements used in an OS command ('OS Command Injection')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "id": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "name": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "Detected input from a HTTPServletRequest going into a 'ProcessBuilder' or 'exec' command. This could lead to command injection if variables passed into the exec commands are not properly sanitized. Instead, avoid using these OS commands with user-supplied input, or, if you must use these commands, use a whitelist of specific values."
+              },
+              "help": {
+                "markdown": "Detected input from a HTTPServletRequest going into a 'ProcessBuilder' or 'exec' command. This could lead to command injection if variables passed into the exec commands are not properly sanitized. Instead, avoid using these OS commands with user-supplied input, or, if you must use these commands, use a whitelist of specific values.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.tainted-cmd-from-http-request.tainted-cmd-from-http-request)\n - [https://owasp.org/Top10/A03_2021-Injection](https://owasp.org/Top10/A03_2021-Injection)\n",
+                "text": "Detected input from a HTTPServletRequest going into a 'ProcessBuilder' or 'exec' command. This could lead to command injection if variables passed into the exec commands are not properly sanitized. Instead, avoid using these OS commands with user-supplied input, or, if you must use these commands, use a whitelist of specific values."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.tainted-cmd-from-http-request.tainted-cmd-from-http-request",
+              "id": "java.lang.security.audit.tainted-cmd-from-http-request.tainted-cmd-from-http-request",
+              "name": "java.lang.security.audit.tainted-cmd-from-http-request.tainted-cmd-from-http-request",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.tainted-cmd-from-http-request.tainted-cmd-from-http-request"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "Untrusted input might be injected into a command executed by the application, which can lead to a command injection vulnerability. An attacker can execute arbitrary commands, potentially gaining complete control of the system. To prevent command injection, avoid executing OS commands with user input. If this is unavoidable, validate and sanitize the user input, and use safe methods for executing the commands. For more information, see [Java command injection prevention](https:// semgrep.dev/docs/cheat-sheets/java-command-injection/)"
+              },
+              "help": {
+                "markdown": "Untrusted input might be injected into a command executed by the application, which can lead to a command injection vulnerability. An attacker can execute arbitrary commands, potentially gaining complete control of the system. To prevent command injection, avoid executing OS commands with user input. If this is unavoidable, validate and sanitize the user input, and use safe methods for executing the commands. For more information, see [Java command injection prevention](https:// semgrep.dev/docs/cheat-sheets/java-command-injection/)\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.tainted-cmd-from-http-request.tainted-cmd-from-http-request)\n - [https://owasp.org/www-community/attacks/Command_Injection](https://owasp.org/www-community/attacks/Command_Injection)\n - [https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html)\n - [https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/12-Testing_for_Command_Injection](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/12-Testing_for_Command_Injection)\n - [https://www.securecodewarrior.com/blog/coders-conquer-security-share-learn-series-os-command-injection](https://www.securecodewarrior.com/blog/coders-conquer-security-share-learn-series-os-command-injection)\n - [https://portal.securecodewarrior.com/#/learning-resources/application_security_weaknesses~2Fweb~2Fdata_handling~2Finjection~2Foscmd](https://portal.securecodewarrior.com/#/learning-resources/application_security_weaknesses~2Fweb~2Fdata_handling~2Finjection~2Foscmd)\n",
+                "text": "Untrusted input might be injected into a command executed by the application, which can lead to a command injection vulnerability. An attacker can execute arbitrary commands, potentially gaining complete control of the system. To prevent command injection, avoid executing OS commands with user input. If this is unavoidable, validate and sanitize the user input, and use safe methods for executing the commands. For more information, see [Java command injection prevention](https:// semgrep.dev/docs/cheat-sheets/java-command-injection/)"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.tainted-cmd-from-http-request.tainted-cmd-from-http-request",
+              "id": "java.servlets.security.tainted-cmd-from-http-request.tainted-cmd-from-http-request",
+              "name": "java.servlets.security.tainted-cmd-from-http-request.tainted-cmd-from-http-request",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.tainted-cmd-from-http-request.tainted-cmd-from-http-request"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

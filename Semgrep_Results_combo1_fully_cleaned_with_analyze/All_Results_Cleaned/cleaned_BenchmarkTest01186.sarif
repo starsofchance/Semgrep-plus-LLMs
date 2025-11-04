@@ -1,0 +1,249 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "a3961b278ad689d5cdcb248065dc38caad67e17633f9bedc295a6dc2569d5f92f75b6d87d44bee82f75ffcfd5fe61fb0d02ec0412e8725641c671ad0ae3a472f_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01186.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 36,
+                  "endLine": 58,
+                  "snippet": {
+                    "text": "        javax.servlet.http.Cookie cookie = new javax.servlet.http.Cookie(\"SomeCookie\", str);\n\n        cookie.setSecure(false);\n        cookie.setHttpOnly(true);\n        cookie.setPath(request.getRequestURI()); // i.e., set path to JUST this servlet\n        // e.g., /benchmark/sql-01/BenchmarkTest01001\n        response.addCookie(cookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 52
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The `Secure` attribute when set to `true` protects the cookie value from being being\ntransmitted over clear text\ncommunication paths such as HTTP. By enabling this protection, the cookie will only be sent\nover HTTPS.\n\nExample of protecting a `Cookie`:\n```\n// Create an Secure cookie.\nCookie someCookie = new Cookie(\"SomeCookieName\", \"SomeValue\");\n// Set Secure flag to true\nsomeCookie.setSecure(true);\n```\n\nFor more information see:\nhttps://jakarta.ee/specifications/servlet/4.0/apidocs/javax/servlet/http/cookie#setSecure-boolean-\n\nSession cookies should be configured with the following security directives:\n\n- [HTTPOnly](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#restrict_access_to_cookies)\n- [SameSite](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite)\n- [Secure](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#restrict_access_to_cookies)\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.INSECURE_COOKIE-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "c54dbdd171b798915b1743d2098787ae7178e2bd313418e707d7c5444852c4cace7e79c77e92a44bf578cafb8de9235b61e9b1b3bd0026ef5365258885bcbb68_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01186.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 33,
+                  "endLine": 54,
+                  "snippet": {
+                    "text": "        cookie.setSecure(false);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 54
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'secure' flag. The 'secure' flag for cookies prevents the client from transmitting the cookie over insecure channels such as HTTP. Set the 'secure' flag by calling 'cookie.setSecure(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.cookie-missing-secure-flag.cookie-missing-secure-flag"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "94289cd5385b84e63640b0f4636c3692a2206793d0b267d4802fbc3a67e571a883ba6ba61679f5cb2a367592dc003dd81e839da1939192476668e1ca56a6e418_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01186.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 33,
+                  "endLine": 54,
+                  "snippet": {
+                    "text": "        cookie.setSecure(false);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 54
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'secure' flag. The 'secure' flag for cookies prevents the client from transmitting the cookie over insecure channels such as HTTP. Set the 'secure' flag by calling 'cookie.setSecure(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-secure-flag-false.cookie-secure-flag-false"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "97d3c0e056f77a90f2c272c4be0fe4a47ed9454cd0c798a699d7e8cbe90c4d490af22e811e33f352854d8825e09e74df60e014bd12d723e55df81040aa06d359_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01186.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 36,
+                  "endLine": 58,
+                  "snippet": {
+                    "text": "        response.addCookie(cookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 58
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The `Secure` attribute when set to `true` protects the cookie value from being being\ntransmitted over clear text\ncommunication paths such as HTTP. By enabling this protection, the cookie will only be sent\nover HTTPS.\n\nExample of protecting a `Cookie`:\n```\n// Create an Secure cookie.\nCookie someCookie = new Cookie(\"SomeCookieName\", \"SomeValue\");\n// Set Secure flag to true\nsomeCookie.setSecure(true);\n```\n\nFor more information see:\nhttps://jakarta.ee/specifications/servlet/4.0/apidocs/javax/servlet/http/cookie#setSecure-boolean-\n\nSession cookies should be configured with the following security directives:\n\n- [HTTPOnly](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#restrict_access_to_cookies)\n- [SameSite](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite)\n- [Secure](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#restrict_access_to_cookies)\n"
+              },
+              "help": {
+                "markdown": "The `Secure` attribute when set to `true` protects the cookie value from being being\ntransmitted over clear text\ncommunication paths such as HTTP. By enabling this protection, the cookie will only be sent\nover HTTPS.\n\nExample of protecting a `Cookie`:\n```\n// Create an Secure cookie.\nCookie someCookie = new Cookie(\"SomeCookieName\", \"SomeValue\");\n// Set Secure flag to true\nsomeCookie.setSecure(true);\n```\n\nFor more information see:\nhttps://jakarta.ee/specifications/servlet/4.0/apidocs/javax/servlet/http/cookie#setSecure-boolean-\n\nSession cookies should be configured with the following security directives:\n\n- [HTTPOnly](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#restrict_access_to_cookies)\n- [SameSite](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite)\n- [Secure](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#restrict_access_to_cookies)\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.INSECURE_COOKIE-1)\n",
+                "text": "The `Secure` attribute when set to `true` protects the cookie value from being being\ntransmitted over clear text\ncommunication paths such as HTTP. By enabling this protection, the cookie will only be sent\nover HTTPS.\n\nExample of protecting a `Cookie`:\n```\n// Create an Secure cookie.\nCookie someCookie = new Cookie(\"SomeCookieName\", \"SomeValue\");\n// Set Secure flag to true\nsomeCookie.setSecure(true);\n```\n\nFor more information see:\nhttps://jakarta.ee/specifications/servlet/4.0/apidocs/javax/servlet/http/cookie#setSecure-boolean-\n\nSession cookies should be configured with the following security directives:\n\n- [HTTPOnly](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#restrict_access_to_cookies)\n- [SameSite](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite)\n- [Secure](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#restrict_access_to_cookies)\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.INSECURE_COOKIE-1",
+              "id": "gitlab.find_sec_bugs.INSECURE_COOKIE-1",
+              "name": "gitlab.find_sec_bugs.INSECURE_COOKIE-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-614",
+                  "OWASP-A05:2021-Security Misconfiguration",
+                  "OWASP-A6:2017-Security Misconfiguration",
+                  "security"
+                ],
+                "security-severity": "Low"
+              },
+              "shortDescription": {
+                "text": "Sensitive cookie in HTTPS session without 'Secure' attribute"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'secure' flag. The 'secure' flag for cookies prevents the client from transmitting the cookie over insecure channels such as HTTP. Set the 'secure' flag by calling '$COOKIE.setSecure(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'secure' flag. The 'secure' flag for cookies prevents the client from transmitting the cookie over insecure channels such as HTTP. Set the 'secure' flag by calling '$COOKIE.setSecure(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.cookie-missing-secure-flag.cookie-missing-secure-flag)\n - [https://owasp.org/Top10/A05_2021-Security_Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration)\n",
+                "text": "A cookie was detected without setting the 'secure' flag. The 'secure' flag for cookies prevents the client from transmitting the cookie over insecure channels such as HTTP. Set the 'secure' flag by calling '$COOKIE.setSecure(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.cookie-missing-secure-flag.cookie-missing-secure-flag",
+              "id": "java.lang.security.audit.cookie-missing-secure-flag.cookie-missing-secure-flag",
+              "name": "java.lang.security.audit.cookie-missing-secure-flag.cookie-missing-secure-flag",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-614: Sensitive Cookie in HTTPS Session Without 'Secure' Attribute",
+                  "LOW CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.cookie-missing-secure-flag.cookie-missing-secure-flag"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "help": {
+                "markdown": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite)\n - [https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application](https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application)\n",
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "id": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "name": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-352: Cross-Site Request Forgery (CSRF)",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'secure' flag. The 'secure' flag for cookies prevents the client from transmitting the cookie over insecure channels such as HTTP. Set the 'secure' flag by calling '$COOKIE.setSecure(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'secure' flag. The 'secure' flag for cookies prevents the client from transmitting the cookie over insecure channels such as HTTP. Set the 'secure' flag by calling '$COOKIE.setSecure(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-secure-flag-false.cookie-secure-flag-false)\n - [https://owasp.org/www-community/controls/SecureCookieAttribute](https://owasp.org/www-community/controls/SecureCookieAttribute)\n",
+                "text": "A cookie was detected without setting the 'secure' flag. The 'secure' flag for cookies prevents the client from transmitting the cookie over insecure channels such as HTTP. Set the 'secure' flag by calling '$COOKIE.setSecure(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-secure-flag-false.cookie-secure-flag-false",
+              "id": "java.servlets.security.audit.cookie-secure-flag-false.cookie-secure-flag-false",
+              "name": "java.servlets.security.audit.cookie-secure-flag-false.cookie-secure-flag-false",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-614: Sensitive Cookie in HTTPS Session Without 'Secure' Attribute",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-secure-flag-false.cookie-secure-flag-false"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

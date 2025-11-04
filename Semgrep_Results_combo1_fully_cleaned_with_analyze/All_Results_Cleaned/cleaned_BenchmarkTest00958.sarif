@@ -1,0 +1,249 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "0d64da8a9ba1c452ad534f067e4e41eaa144e023a02125a1a55a89528842d5cf72281998399bafdf108d6d16d8d336ec5152d72c1f7936baa18ac3de5a29460c_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00958.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "0d23c5ccc4d62f6eee4aa720fbb48c731eb89048fb19db9653f90ad2459bf7e7d1bac02d3f51f6f6fe7755049fe0fd3218053a250ba600ae69a9977f18eed1d6_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00958.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "49459d3e0bcf6ddac3fd27c2219998af4b8f19ae163d3bf5d1276a73a8d01eb1054c43e615b0bee38d34dcc313c2627465c06d8bcf25ef63f1dd9d94d6d6db5a_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00958.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "b0d8feafb713ca782ea7411951e22e9abe3cf9c31cf3009cf46c07cbc02b23a8657069e50f46d4e88f7d9c2e6ea0cb6a8026711942d8b9d18977966bd3823205_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00958.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 72,
+                  "endLine": 53,
+                  "snippet": {
+                    "text": "            java.nio.file.Path path = java.nio.file.Paths.get(fileName);"
+                  },
+                  "startColumn": 39,
+                  "startLine": 53
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application dynamically constructs file or path information. If the path\ninformation comes from user input, it could be abused to read sensitive files,\naccess other users' data, or aid in exploitation to gain further system access.\n\nUser input should never be used in constructing paths or files for interacting\nwith the filesystem. This includes filenames supplied by user uploads or downloads.\nIf possible, consider hashing user input or replacing it with unique values and\nuse `Path.resolve` to resolve and validate the path information\nprior to processing any file functionality.\n\nExample using `Path.resolve` and not allowing direct user input:\n```\n// Class to store our user data along with a randomly generated file name\npublic static class UserData {\n    private String userFileNameUnsafe;\n    private String fileName;\n    public UserData(String userFileName) {\n        this.userFileNameUnsafe = userFileName;\n        // Generate a random ID for the filename\n        this.fileName = UUID.randomUUID().toString();\n    }\n    public String getUserFileNameUnsafe() { return userFileNameUnsafe; };\n    public String getFileName() { return fileName; };\n}\n\npublic static void main(String[] args) throws Exception {\n    // User input, saved only as a reference\n    UserData userData = new UserData(\"..\\\\test.txt\");\n    // Restrict all file processing to this directory only\n    String base = \"/var/app/restricted\";\n    Path basePath = Paths.get(base);\n    // Resolve the full path, but only use our random generated filename\n    Path fullPath = basePath.resolve(userData.getFileName());\n    // verify the path is contained within our basePath\n    if (!fullPath.startsWith(base)) {\n        throw new Exception(\"Invalid path specified!\");\n    }\n    // process / work with file\n}\n```\n\nFor more information on path traversal issues see OWASP:\nhttps://owasp.org/www-community/attacks/Path_Traversal\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application dynamically constructs file or path information. If the path\ninformation comes from user input, it could be abused to read sensitive files,\naccess other users' data, or aid in exploitation to gain further system access.\n\nUser input should never be used in constructing paths or files for interacting\nwith the filesystem. This includes filenames supplied by user uploads or downloads.\nIf possible, consider hashing user input or replacing it with unique values and\nuse `Path.resolve` to resolve and validate the path information\nprior to processing any file functionality.\n\nExample using `Path.resolve` and not allowing direct user input:\n```\n// Class to store our user data along with a randomly generated file name\npublic static class UserData {\n    private String userFileNameUnsafe;\n    private String fileName;\n    public UserData(String userFileName) {\n        this.userFileNameUnsafe = userFileName;\n        // Generate a random ID for the filename\n        this.fileName = UUID.randomUUID().toString();\n    }\n    public String getUserFileNameUnsafe() { return userFileNameUnsafe; };\n    public String getFileName() { return fileName; };\n}\n\npublic static void main(String[] args) throws Exception {\n    // User input, saved only as a reference\n    UserData userData = new UserData(\"..\\\\test.txt\");\n    // Restrict all file processing to this directory only\n    String base = \"/var/app/restricted\";\n    Path basePath = Paths.get(base);\n    // Resolve the full path, but only use our random generated filename\n    Path fullPath = basePath.resolve(userData.getFileName());\n    // verify the path is contained within our basePath\n    if (!fullPath.startsWith(base)) {\n        throw new Exception(\"Invalid path specified!\");\n    }\n    // process / work with file\n}\n```\n\nFor more information on path traversal issues see OWASP:\nhttps://owasp.org/www-community/attacks/Path_Traversal\n"
+              },
+              "help": {
+                "markdown": "The application dynamically constructs file or path information. If the path\ninformation comes from user input, it could be abused to read sensitive files,\naccess other users' data, or aid in exploitation to gain further system access.\n\nUser input should never be used in constructing paths or files for interacting\nwith the filesystem. This includes filenames supplied by user uploads or downloads.\nIf possible, consider hashing user input or replacing it with unique values and\nuse `Path.resolve` to resolve and validate the path information\nprior to processing any file functionality.\n\nExample using `Path.resolve` and not allowing direct user input:\n```\n// Class to store our user data along with a randomly generated file name\npublic static class UserData {\n    private String userFileNameUnsafe;\n    private String fileName;\n    public UserData(String userFileName) {\n        this.userFileNameUnsafe = userFileName;\n        // Generate a random ID for the filename\n        this.fileName = UUID.randomUUID().toString();\n    }\n    public String getUserFileNameUnsafe() { return userFileNameUnsafe; };\n    public String getFileName() { return fileName; };\n}\n\npublic static void main(String[] args) throws Exception {\n    // User input, saved only as a reference\n    UserData userData = new UserData(\"..\\\\test.txt\");\n    // Restrict all file processing to this directory only\n    String base = \"/var/app/restricted\";\n    Path basePath = Paths.get(base);\n    // Resolve the full path, but only use our random generated filename\n    Path fullPath = basePath.resolve(userData.getFileName());\n    // verify the path is contained within our basePath\n    if (!fullPath.startsWith(base)) {\n        throw new Exception(\"Invalid path specified!\");\n    }\n    // process / work with file\n}\n```\n\nFor more information on path traversal issues see OWASP:\nhttps://owasp.org/www-community/attacks/Path_Traversal\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1)\n",
+                "text": "The application dynamically constructs file or path information. If the path\ninformation comes from user input, it could be abused to read sensitive files,\naccess other users' data, or aid in exploitation to gain further system access.\n\nUser input should never be used in constructing paths or files for interacting\nwith the filesystem. This includes filenames supplied by user uploads or downloads.\nIf possible, consider hashing user input or replacing it with unique values and\nuse `Path.resolve` to resolve and validate the path information\nprior to processing any file functionality.\n\nExample using `Path.resolve` and not allowing direct user input:\n```\n// Class to store our user data along with a randomly generated file name\npublic static class UserData {\n    private String userFileNameUnsafe;\n    private String fileName;\n    public UserData(String userFileName) {\n        this.userFileNameUnsafe = userFileName;\n        // Generate a random ID for the filename\n        this.fileName = UUID.randomUUID().toString();\n    }\n    public String getUserFileNameUnsafe() { return userFileNameUnsafe; };\n    public String getFileName() { return fileName; };\n}\n\npublic static void main(String[] args) throws Exception {\n    // User input, saved only as a reference\n    UserData userData = new UserData(\"..\\\\test.txt\");\n    // Restrict all file processing to this directory only\n    String base = \"/var/app/restricted\";\n    Path basePath = Paths.get(base);\n    // Resolve the full path, but only use our random generated filename\n    Path fullPath = basePath.resolve(userData.getFileName());\n    // verify the path is contained within our basePath\n    if (!fullPath.startsWith(base)) {\n        throw new Exception(\"Invalid path specified!\");\n    }\n    // process / work with file\n}\n```\n\nFor more information on path traversal issues see OWASP:\nhttps://owasp.org/www-community/attacks/Path_Traversal\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1",
+              "id": "gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1",
+              "name": "gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-22",
+                  "OWASP-A01:2021-Broken Access Control",
+                  "OWASP-A5:2017-Broken Access Control",
+                  "security"
+                ],
+                "security-severity": "Medium"
+              },
+              "shortDescription": {
+                "text": "Improper limitation of a pathname to a restricted directory ('Path Traversal')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly)\n - [https://owasp.org/Top10/A05_2021-Security_Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration)\n",
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "id": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                  "LOW CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly)\n - [https://owasp.org/www-community/HttpOnly](https://owasp.org/www-community/HttpOnly)\n",
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "id": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "help": {
+                "markdown": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite)\n - [https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application](https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application)\n",
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "id": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "name": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-352: Cross-Site Request Forgery (CSRF)",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

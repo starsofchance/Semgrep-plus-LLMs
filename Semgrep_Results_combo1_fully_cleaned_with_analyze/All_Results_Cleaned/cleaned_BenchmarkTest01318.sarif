@@ -1,0 +1,535 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "a481e8fad683abd0321c504fbc69c7451cb3297a5620c502813c880a321ca8ff7ee13a4871358942611f7ccb04a72b2a2c67f1322756c094cb1d45a3018cd71a_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01318.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 73,
+                  "endLine": 25,
+                  "snippet": {
+                    "text": "        java.util.Map<String, String[]> map = request.getParameterMap();"
+                  },
+                  "startColumn": 9,
+                  "startLine": 25
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "f396b71665bc30b8ac3a1095d646db07be2698cf2e49fa4facffba334b2239b6109f41c47d48de033a1f1f6bea8c5e9bcb77c8947a04153e2119498e0fa1283a_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01318.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 98,
+                  "endLine": 47,
+                  "snippet": {
+                    "text": "                    javax.crypto.Cipher.getInstance(\n                            \"DES/CBC/PKCS5PADDING\", java.security.Security.getProvider(\"SunJCE\"));"
+                  },
+                  "startColumn": 21,
+                  "startLine": 46
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "DES, TripleDES and RC2 are all considered broken or insecure cryptographic algorithms.\nNewer algorithms  apply message integrity to validate ciphertext has not been tampered\nwith. Consider using `ChaCha20Poly1305` instead as it is easier and faster than the\nalternatives such as `AES-256-GCM`.\n\nFor older applications that don't have support for `ChaCha20Poly1305`,\n`AES-256-GCM` is recommended, however it has many drawbacks:\n- Slower than `ChaCha20Poly1305`.\n- Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n    // Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our ivKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV Key\n    byte[] ivKey = new byte[12];\n    random.nextBytes(ivKey);\n\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);\n\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n\n     // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);\n\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.DES_USAGE-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "e4b643007e3d1b5d248740930aa42792340e82c1041e347c7b6cfae164ff6cd6bf309b32219528223912b2cc395028dda36abfcbe33ccb1c66849e5f1062e7fd_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01318.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 86,
+                  "endLine": 50,
+                  "snippet": {
+                    "text": "            javax.crypto.SecretKey key = javax.crypto.KeyGenerator.getInstance(\"DES\").generateKey();"
+                  },
+                  "startColumn": 42,
+                  "startLine": 50
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Triple DES (3DES or DESede) is considered deprecated. AES is the recommended cipher. Upgrade to use AES."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.crypto.desede-is-deprecated.desede-is-deprecated"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "8592e10afeaeb1ad99ca94b92d03490f64a90c8490eae6e1ac61bfb7f9257052a9c7acd84fb454988f9d17ad1106ef03f8ece958926ae08dd3cd6d16c345dcc0_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01318.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 85,
+                  "endLine": 50,
+                  "snippet": {
+                    "text": "            javax.crypto.SecretKey key = javax.crypto.KeyGenerator.getInstance(\"DES\").generateKey();"
+                  },
+                  "startColumn": 80,
+                  "startLine": 50
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "DES is considered deprecated. AES is the recommended cipher. Upgrade to use AES. See https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard for more information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "8ac660efc8684c0f6c620091ec96f525bf492d009de8a92f6ca763283bc631e8b2bbde1eac2fe21119888a9fd8b977145f661dd568a8ef9bdd60907c41916291_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01318.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 35,
+                  "endLine": 81,
+                  "snippet": {
+                    "text": "                    \"secret_value=\"\n                            + org.owasp.esapi.ESAPI.encoder().encodeForBase64(result, true)\n                            + \"\\n\");"
+                  },
+                  "startColumn": 21,
+                  "startLine": 79
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "0ab3c9e418a9d6489cad8968a3c6771cfc28da1a7a9137da039f8c2e0ff835d48a89e44fc6a0f7a1f08cc01a03efc7280beb0071337d1054c4286fa61af3b5d3_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01318.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 68,
+                  "endLine": 91,
+                  "snippet": {
+                    "text": "                            \"Sensitive value: '\"\n                                    + org.owasp\n                                            .esapi\n                                            .ESAPI\n                                            .encoder()\n                                            .encodeForHTML(new String(input))\n                                    + \"' encrypted and stored<br/>\");"
+                  },
+                  "startColumn": 29,
+                  "startLine": 85
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "55c7f247231d0e88ce8c73cc4836320884d00a31e1b4f7a7877f6dfeb65d07f5e0a158438a22771bc0893ac094c76a910c18845645d43152bc7ad1dfc2fb4672_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01318.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 97,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 97
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "55c7f247231d0e88ce8c73cc4836320884d00a31e1b4f7a7877f6dfeb65d07f5e0a158438a22771bc0893ac094c76a910c18845645d43152bc7ad1dfc2fb4672_1"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01318.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 103,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 103
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "55c7f247231d0e88ce8c73cc4836320884d00a31e1b4f7a7877f6dfeb65d07f5e0a158438a22771bc0893ac094c76a910c18845645d43152bc7ad1dfc2fb4672_2"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01318.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 109,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 109
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "55c7f247231d0e88ce8c73cc4836320884d00a31e1b4f7a7877f6dfeb65d07f5e0a158438a22771bc0893ac094c76a910c18845645d43152bc7ad1dfc2fb4672_3"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01318.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 115,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 115
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "55c7f247231d0e88ce8c73cc4836320884d00a31e1b4f7a7877f6dfeb65d07f5e0a158438a22771bc0893ac094c76a910c18845645d43152bc7ad1dfc2fb4672_4"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01318.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 121,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 121
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "55c7f247231d0e88ce8c73cc4836320884d00a31e1b4f7a7877f6dfeb65d07f5e0a158438a22771bc0893ac094c76a910c18845645d43152bc7ad1dfc2fb4672_5"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01318.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 127,
+                  "snippet": {
+                    "text": "            e.printStackTrace(response.getWriter());"
+                  },
+                  "startColumn": 13,
+                  "startLine": 127
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "DES, TripleDES and RC2 are all considered broken or insecure cryptographic algorithms.\nNewer algorithms  apply message integrity to validate ciphertext has not been tampered\nwith. Consider using `ChaCha20Poly1305` instead as it is easier and faster than the\nalternatives such as `AES-256-GCM`.\n\nFor older applications that don't have support for `ChaCha20Poly1305`,\n`AES-256-GCM` is recommended, however it has many drawbacks:\n- Slower than `ChaCha20Poly1305`.\n- Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n    // Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our ivKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV Key\n    byte[] ivKey = new byte[12];\n    random.nextBytes(ivKey);\n\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);\n\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n\n     // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);\n\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+              },
+              "help": {
+                "markdown": "DES, TripleDES and RC2 are all considered broken or insecure cryptographic algorithms.\nNewer algorithms  apply message integrity to validate ciphertext has not been tampered\nwith. Consider using `ChaCha20Poly1305` instead as it is easier and faster than the\nalternatives such as `AES-256-GCM`.\n\nFor older applications that don't have support for `ChaCha20Poly1305`,\n`AES-256-GCM` is recommended, however it has many drawbacks:\n- Slower than `ChaCha20Poly1305`.\n- Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n    // Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our ivKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV Key\n    byte[] ivKey = new byte[12];\n    random.nextBytes(ivKey);\n\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);\n\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n\n     // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);\n\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.DES_USAGE-1)\n",
+                "text": "DES, TripleDES and RC2 are all considered broken or insecure cryptographic algorithms.\nNewer algorithms  apply message integrity to validate ciphertext has not been tampered\nwith. Consider using `ChaCha20Poly1305` instead as it is easier and faster than the\nalternatives such as `AES-256-GCM`.\n\nFor older applications that don't have support for `ChaCha20Poly1305`,\n`AES-256-GCM` is recommended, however it has many drawbacks:\n- Slower than `ChaCha20Poly1305`.\n- Catastrophic failure if nonce values are reused.\n\nExample using `ChaCha20Poly1305`:\n```\npublic encrypt() throws Exception {\n    chaChaEncryption(\"Secret text to encrypt\".getBytes(StandardCharsets.UTF_8));\n}\n\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n    // Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n\npublic Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws\nNoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,\nInvalidAlgorithmParameterException  {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create a ChaCha20-Poly1305 cipher instance\n    Cipher chaChaCipher = Cipher.getInstance(\"ChaCha20-Poly1305/None/NoPadding\");\n    // Create our parameterSpec using our ivKey\n    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);\n    // Create a SecretKeySpec using our secretKey\n    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, \"ChaCha20\");\n    // Initialize and return the cipher for the provided mode\n    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);\n    return chaChaCipher;\n}\n\npublic void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,\nNoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {\n    // Get a DRBG random number generator instance\n    SecureRandom random = getSecureRandomDRBG();\n    // Create secretKey\n    byte[] secretKey = new byte[32];\n    random.nextBytes(secretKey);\n    // Create an IV Key\n    byte[] ivKey = new byte[12];\n    random.nextBytes(ivKey);\n\n    // Create a chaCha encryption cipher instance\n    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);\n\n    // Encrypt the text using ChaCha20Poly1305\n    byte[] cipherText = null;\n    try {\n        cipherText = chaChaEncryptor.doFinal(plainText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to encrypt text\");\n        return;\n    }\n    System.out.println(\"encrypted: \" + Base64.getEncoder().encodeToString(cipherText));\n\n     // Create a chaCha decryption cipher instance\n    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);\n\n    // Decrypt the text\n    byte[] decryptedText = null;\n    try {\n        decryptedText = chaChaDecryptor.doFinal(cipherText);\n    } catch (IllegalBlockSizeException | BadPaddingException e) {\n        System.out.println(\"failed to decrypt text\");\n        return;\n    }\n    System.out.println(\"decrypted: \" + new String(decryptedText, StandardCharsets.UTF_8));\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.DES_USAGE-1",
+              "id": "gitlab.find_sec_bugs.DES_USAGE-1",
+              "name": "gitlab.find_sec_bugs.DES_USAGE-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-326",
+                  "OWASP-A02:2021-Cryptographic Failures",
+                  "OWASP-A3:2017-Sensitive Data Exposure",
+                  "security"
+                ],
+                "security-severity": "Medium"
+              },
+              "shortDescription": {
+                "text": "Inadequate encryption strength"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The\nvalue obtained should be considered unsafe.\"\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "id": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "name": "gitlab.find_sec_bugs.SERVLET_PARAMETER-1.SERVLET_CONTENT_TYPE-1.SERVLET_SERVER_NAME-1.SERVLET_SESSION_ID-1.SERVLET_QUERY_STRING-1.SERVLET_HEADER-1.SERVLET_HEADER_REFERER-1.SERVLET_HEADER_USER_AGENT-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "id": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "name": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+              },
+              "help": {
+                "markdown": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace)\n - [https://cwe.mitre.org/data/definitions/489.html](https://cwe.mitre.org/data/definitions/489.html)\n - [https://www.acunetix.com/vulnerabilities/web/stack-trace-disclosure-java/](https://www.acunetix.com/vulnerabilities/web/stack-trace-disclosure-java/)\n - [https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/02-Testing_for_Stack_Traces](https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/02-Testing_for_Stack_Traces)\n - [https://www.securecodewarrior.com/blog/coders-conquer-security-share-learn-series-information-exposure](https://www.securecodewarrior.com/blog/coders-conquer-security-share-learn-series-information-exposure)\n",
+                "text": "Possible active debug code detected. Deploying an application with debug code can create unintended entry points or expose sensitive information."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace",
+              "id": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace",
+              "name": "java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-489: Active Debug Code",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "OWASP-A06:2017 - Security Misconfiguration",
+                  "OWASP-A10:2004 - Insecure Configuration Management",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.active-debug-code-printstacktrace.active-debug-code-printstacktrace"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "DES is considered deprecated. AES is the recommended cipher. Upgrade to use AES. See https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard for more information."
+              },
+              "help": {
+                "markdown": "DES is considered deprecated. AES is the recommended cipher. Upgrade to use AES. See https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard for more information.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated)\n - [https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard](https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard)\n - [https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#algorithms](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#algorithms)\n",
+                "text": "DES is considered deprecated. AES is the recommended cipher. Upgrade to use AES. See https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard for more information."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated",
+              "id": "java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated",
+              "name": "java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-326: Inadequate Encryption Strength",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A02:2021 - Cryptographic Failures",
+                  "OWASP-A03:2017 - Sensitive Data Exposure",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "Triple DES (3DES or DESede) is considered deprecated. AES is the recommended cipher. Upgrade to use AES."
+              },
+              "help": {
+                "markdown": "Triple DES (3DES or DESede) is considered deprecated. AES is the recommended cipher. Upgrade to use AES.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.crypto.desede-is-deprecated.desede-is-deprecated)\n - [https://csrc.nist.gov/News/2017/Update-to-Current-Use-and-Deprecation-of-TDEA](https://csrc.nist.gov/News/2017/Update-to-Current-Use-and-Deprecation-of-TDEA)\n",
+                "text": "Triple DES (3DES or DESede) is considered deprecated. AES is the recommended cipher. Upgrade to use AES."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.crypto.desede-is-deprecated.desede-is-deprecated",
+              "id": "java.lang.security.audit.crypto.desede-is-deprecated.desede-is-deprecated",
+              "name": "java.lang.security.audit.crypto.desede-is-deprecated.desede-is-deprecated",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-326: Inadequate Encryption Strength",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A02:2021 - Cryptographic Failures",
+                  "OWASP-A03:2017 - Sensitive Data Exposure",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.crypto.desede-is-deprecated.desede-is-deprecated"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

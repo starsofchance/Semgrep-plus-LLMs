@@ -1,0 +1,135 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "90bb0988bb6ffb9dc3213a3dc618fccb5d96ca654d0527411311b086219a9d31e4face2f411f9d9e8b8bd0e372e8f31888fb885276e8d27a96d80e5739a123a2_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00365.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 67,
+                  "endLine": 25,
+                  "snippet": {
+                    "text": "        String param = request.getParameter(\"BenchmarkTest00365\");"
+                  },
+                  "startColumn": 9,
+                  "startLine": 25
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "36a68dbd78c4d6791e947dc041661a06552a0963e8215ca40867e7d4e2519df666158c37199bf19f248d25d0dc1bd16f97d09dfcba15f7e8cee5f682d9b85574_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00365.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 72,
+                  "endLine": 40,
+                  "snippet": {
+                    "text": "            java.nio.file.Path path = java.nio.file.Paths.get(fileName);"
+                  },
+                  "startColumn": 39,
+                  "startLine": 40
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application dynamically constructs file or path information. If the path\ninformation comes from user input, it could be abused to read sensitive files,\naccess other users' data, or aid in exploitation to gain further system access.\n\nUser input should never be used in constructing paths or files for interacting\nwith the filesystem. This includes filenames supplied by user uploads or downloads.\nIf possible, consider hashing user input or replacing it with unique values and\nuse `Path.resolve` to resolve and validate the path information\nprior to processing any file functionality.\n\nExample using `Path.resolve` and not allowing direct user input:\n```\n// Class to store our user data along with a randomly generated file name\npublic static class UserData {\n    private String userFileNameUnsafe;\n    private String fileName;\n    public UserData(String userFileName) {\n        this.userFileNameUnsafe = userFileName;\n        // Generate a random ID for the filename\n        this.fileName = UUID.randomUUID().toString();\n    }\n    public String getUserFileNameUnsafe() { return userFileNameUnsafe; };\n    public String getFileName() { return fileName; };\n}\n\npublic static void main(String[] args) throws Exception {\n    // User input, saved only as a reference\n    UserData userData = new UserData(\"..\\\\test.txt\");\n    // Restrict all file processing to this directory only\n    String base = \"/var/app/restricted\";\n    Path basePath = Paths.get(base);\n    // Resolve the full path, but only use our random generated filename\n    Path fullPath = basePath.resolve(userData.getFileName());\n    // verify the path is contained within our basePath\n    if (!fullPath.startsWith(base)) {\n        throw new Exception(\"Invalid path specified!\");\n    }\n    // process / work with file\n}\n```\n\nFor more information on path traversal issues see OWASP:\nhttps://owasp.org/www-community/attacks/Path_Traversal\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application dynamically constructs file or path information. If the path\ninformation comes from user input, it could be abused to read sensitive files,\naccess other users' data, or aid in exploitation to gain further system access.\n\nUser input should never be used in constructing paths or files for interacting\nwith the filesystem. This includes filenames supplied by user uploads or downloads.\nIf possible, consider hashing user input or replacing it with unique values and\nuse `Path.resolve` to resolve and validate the path information\nprior to processing any file functionality.\n\nExample using `Path.resolve` and not allowing direct user input:\n```\n// Class to store our user data along with a randomly generated file name\npublic static class UserData {\n    private String userFileNameUnsafe;\n    private String fileName;\n    public UserData(String userFileName) {\n        this.userFileNameUnsafe = userFileName;\n        // Generate a random ID for the filename\n        this.fileName = UUID.randomUUID().toString();\n    }\n    public String getUserFileNameUnsafe() { return userFileNameUnsafe; };\n    public String getFileName() { return fileName; };\n}\n\npublic static void main(String[] args) throws Exception {\n    // User input, saved only as a reference\n    UserData userData = new UserData(\"..\\\\test.txt\");\n    // Restrict all file processing to this directory only\n    String base = \"/var/app/restricted\";\n    Path basePath = Paths.get(base);\n    // Resolve the full path, but only use our random generated filename\n    Path fullPath = basePath.resolve(userData.getFileName());\n    // verify the path is contained within our basePath\n    if (!fullPath.startsWith(base)) {\n        throw new Exception(\"Invalid path specified!\");\n    }\n    // process / work with file\n}\n```\n\nFor more information on path traversal issues see OWASP:\nhttps://owasp.org/www-community/attacks/Path_Traversal\n"
+              },
+              "help": {
+                "markdown": "The application dynamically constructs file or path information. If the path\ninformation comes from user input, it could be abused to read sensitive files,\naccess other users' data, or aid in exploitation to gain further system access.\n\nUser input should never be used in constructing paths or files for interacting\nwith the filesystem. This includes filenames supplied by user uploads or downloads.\nIf possible, consider hashing user input or replacing it with unique values and\nuse `Path.resolve` to resolve and validate the path information\nprior to processing any file functionality.\n\nExample using `Path.resolve` and not allowing direct user input:\n```\n// Class to store our user data along with a randomly generated file name\npublic static class UserData {\n    private String userFileNameUnsafe;\n    private String fileName;\n    public UserData(String userFileName) {\n        this.userFileNameUnsafe = userFileName;\n        // Generate a random ID for the filename\n        this.fileName = UUID.randomUUID().toString();\n    }\n    public String getUserFileNameUnsafe() { return userFileNameUnsafe; };\n    public String getFileName() { return fileName; };\n}\n\npublic static void main(String[] args) throws Exception {\n    // User input, saved only as a reference\n    UserData userData = new UserData(\"..\\\\test.txt\");\n    // Restrict all file processing to this directory only\n    String base = \"/var/app/restricted\";\n    Path basePath = Paths.get(base);\n    // Resolve the full path, but only use our random generated filename\n    Path fullPath = basePath.resolve(userData.getFileName());\n    // verify the path is contained within our basePath\n    if (!fullPath.startsWith(base)) {\n        throw new Exception(\"Invalid path specified!\");\n    }\n    // process / work with file\n}\n```\n\nFor more information on path traversal issues see OWASP:\nhttps://owasp.org/www-community/attacks/Path_Traversal\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1)\n",
+                "text": "The application dynamically constructs file or path information. If the path\ninformation comes from user input, it could be abused to read sensitive files,\naccess other users' data, or aid in exploitation to gain further system access.\n\nUser input should never be used in constructing paths or files for interacting\nwith the filesystem. This includes filenames supplied by user uploads or downloads.\nIf possible, consider hashing user input or replacing it with unique values and\nuse `Path.resolve` to resolve and validate the path information\nprior to processing any file functionality.\n\nExample using `Path.resolve` and not allowing direct user input:\n```\n// Class to store our user data along with a randomly generated file name\npublic static class UserData {\n    private String userFileNameUnsafe;\n    private String fileName;\n    public UserData(String userFileName) {\n        this.userFileNameUnsafe = userFileName;\n        // Generate a random ID for the filename\n        this.fileName = UUID.randomUUID().toString();\n    }\n    public String getUserFileNameUnsafe() { return userFileNameUnsafe; };\n    public String getFileName() { return fileName; };\n}\n\npublic static void main(String[] args) throws Exception {\n    // User input, saved only as a reference\n    UserData userData = new UserData(\"..\\\\test.txt\");\n    // Restrict all file processing to this directory only\n    String base = \"/var/app/restricted\";\n    Path basePath = Paths.get(base);\n    // Resolve the full path, but only use our random generated filename\n    Path fullPath = basePath.resolve(userData.getFileName());\n    // verify the path is contained within our basePath\n    if (!fullPath.startsWith(base)) {\n        throw new Exception(\"Invalid path specified!\");\n    }\n    // process / work with file\n}\n```\n\nFor more information on path traversal issues see OWASP:\nhttps://owasp.org/www-community/attacks/Path_Traversal\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1",
+              "id": "gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1",
+              "name": "gitlab.find_sec_bugs.PT_ABSOLUTE_PATH_TRAVERSAL-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-22",
+                  "OWASP-A01:2021-Broken Access Control",
+                  "OWASP-A5:2017-Broken Access Control",
+                  "security"
+                ],
+                "security-severity": "Medium"
+              },
+              "shortDescription": {
+                "text": "Improper limitation of a pathname to a restricted directory ('Path Traversal')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "help": {
+                "markdown": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1)\n",
+                "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "id": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "name": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

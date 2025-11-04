@@ -1,0 +1,477 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "00f00230ef332d825a257fb0419f1f33d03eba074fe89678581bbf342665cb9e7ccda8c4f73266c90626fcb8fdca0497273e45c5a93580b4497157574ef6f350_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00968.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "f4fbf48d7644196a7aedfca20fafceb08bf91ec195371dff3411e81f3868a681665256fad7ff23b6a83c0d7e17dc246407f31bc2dce5bc6cc45d0c98ea68dbbd_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00968.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "2ac5bce9a9c9f64d9c3c8c8e97713b90e2339f649dafa6a059eda6c1dbfaa13997489eb2d405a75029257182d900cb3a698c4c3a01d5b35411cb51d53ae0074f_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00968.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 40,
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "        response.addCookie(userCookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "f2d5d0091371b380999afc7d80e1434c149a15ba1f639b7c8d47f5743737b24c68e8996e801595a010f2b088d06c3696f8ffb733faee550eaa09c4bbd3697325_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00968.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 36,
+                  "endLine": 59,
+                  "snippet": {
+                    "text": "        argList.add(\"echo \" + bar);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 59
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Detected input from a HTTPServletRequest going into a 'ProcessBuilder' or 'exec' command. This could lead to command injection if variables passed into the exec commands are not properly sanitized. Instead, avoid using these OS commands with user-supplied input, or, if you must use these commands, use a whitelist of specific values."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.tainted-cmd-from-http-request.tainted-cmd-from-http-request"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "5184fc4e16a96b85e164165630f9bfb9f468f516822bc408e872e59861961e5c1446c054f872890cb6c1a64c839565d40e276e7b39d04ed9cd9e60b52c4d6b4f_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00968.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 36,
+                  "endLine": 59,
+                  "snippet": {
+                    "text": "        argList.add(\"echo \" + bar);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 59
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Untrusted input might be injected into a command executed by the application, which can lead to a command injection vulnerability. An attacker can execute arbitrary commands, potentially gaining complete control of the system. To prevent command injection, avoid executing OS commands with user input. If this is unavoidable, validate and sanitize the user input, and use safe methods for executing the commands. For more information, see [Java command injection prevention](https:// semgrep.dev/docs/cheat-sheets/java-command-injection/)"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.tainted-cmd-from-http-request.tainted-cmd-from-http-request"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "59b847542b3b01f21826aa94510a781d4e43bc7dcabe20ba3523838e7b0ebe70d34ab0eeaae7df75af60e91a94638c3d7b5bab93c69af1d873278c78d1e620dc_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00968.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 56,
+                  "endLine": 61,
+                  "snippet": {
+                    "text": "        ProcessBuilder pb = new ProcessBuilder(argList);"
+                  },
+                  "startColumn": 29,
+                  "startLine": 61
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "OS command injection is a critical vulnerability that can lead to a full system\ncompromise as it may allow an adversary to pass in arbitrary commands or arguments\nto be executed.\n\nUser input should never be used in constructing commands or command arguments\nto functions which execute OS commands. This includes filenames supplied by\nuser uploads or downloads.\n\nEnsure your application does not:\n\n- Use user-supplied information in the process name to execute.\n- Use user-supplied information in an OS command execution function which does\nnot escape shell meta-characters.\n- Use user-supplied information in arguments to OS commands.\n\nThe application should have a hardcoded set of arguments that are to be passed\nto OS commands. If filenames are being passed to these functions, it is\nrecommended that a hash of the filename be used instead, or some other unique\nidentifier. It is strongly recommended that a native library that implements\nthe same functionality be used instead of using OS system commands, due to the\nrisk of unknown attacks against third party commands.\n\nWhen specifying the OS command, ensure the application uses the full path\ninformation, otherwise the OS may attempt to look up which process to execute\nand could be vulnerable to untrusted search path vulnerabilities (CWE-426).\n\nExample of safely executing an OS command:\n```\npublic static void executeCommand(String userFileData) throws java.io.IOException {\n    // Generate a random filename, do not use user input\n    String fileName = UUID.randomUUID().toString();\n    // Create a Buffered/FileWriter\n    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));\n    // Write the user content to our random file\n    writer.write(userFileData);\n    // Close the file to flush contents\n    writer.close();\n    // Create the process builder with a hardcoded path to the binary, and our randomly\ngenerated filename\n    ProcessBuilder processBuilder = new ProcessBuilder(\"/opt/app/path\", fileName);\n    // Start the process\n    Process process = processBuilder.start();\n    // Handle/redirect output of process here\n    // ...\n}\n```\n\nFor more information on OS command injection, see OWASP's guide:\nhttps://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.COMMAND_INJECTION-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "2f555477d16082a34d3d9f582228907e047bbd151b805d296fe1e73c9cd19c8fb1a27a210b6dc8c85c488512ecf7c27100e9594147670e81586d899fbf7e6b72_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00968.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 56,
+                  "endLine": 61,
+                  "snippet": {
+                    "text": "        ProcessBuilder pb = new ProcessBuilder(argList);"
+                  },
+                  "startColumn": 29,
+                  "startLine": 61
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "A formatted or concatenated string was detected as input to a ProcessBuilder call. This is dangerous if a variable is controlled by user input and could result in a command injection. Ensure your variables are not controlled by users or sufficiently sanitized."
+          },
+          "properties": {},
+          "ruleId": "java.lang.security.audit.command-injection-process-builder.command-injection-process-builder"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "70e4f66c55d9f219c758bb2b3613c8c664c200549b67a51fa9c0ee9c0433bababaf345aa3080e5061ba7d1c78cc0c2a0f1445e24030332bc9b6c58faee4ce421_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest00968.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 55,
+                  "endLine": 61,
+                  "snippet": {
+                    "text": "        ProcessBuilder pb = new ProcessBuilder(argList);"
+                  },
+                  "startColumn": 48,
+                  "startLine": 61
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Untrusted input might be injected into a command executed by the application, which can lead to a command injection vulnerability. An attacker can execute arbitrary commands, potentially gaining complete control of the system. To prevent this vulnerability, avoid executing OS commands with user input. If this is unavoidable, validate and sanitize the input, and use safe methods for executing the commands. For more information, see: [Java command injection prevention] (https://semgrep.dev/docs/cheat-sheets/java-command-injection/)"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.tainted-cmd-from-http-request-deepsemgrep.tainted-cmd-from-http-request-deepsemgrep"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "OS command injection is a critical vulnerability that can lead to a full system\ncompromise as it may allow an adversary to pass in arbitrary commands or arguments\nto be executed.\n\nUser input should never be used in constructing commands or command arguments\nto functions which execute OS commands. This includes filenames supplied by\nuser uploads or downloads.\n\nEnsure your application does not:\n\n- Use user-supplied information in the process name to execute.\n- Use user-supplied information in an OS command execution function which does\nnot escape shell meta-characters.\n- Use user-supplied information in arguments to OS commands.\n\nThe application should have a hardcoded set of arguments that are to be passed\nto OS commands. If filenames are being passed to these functions, it is\nrecommended that a hash of the filename be used instead, or some other unique\nidentifier. It is strongly recommended that a native library that implements\nthe same functionality be used instead of using OS system commands, due to the\nrisk of unknown attacks against third party commands.\n\nWhen specifying the OS command, ensure the application uses the full path\ninformation, otherwise the OS may attempt to look up which process to execute\nand could be vulnerable to untrusted search path vulnerabilities (CWE-426).\n\nExample of safely executing an OS command:\n```\npublic static void executeCommand(String userFileData) throws java.io.IOException {\n    // Generate a random filename, do not use user input\n    String fileName = UUID.randomUUID().toString();\n    // Create a Buffered/FileWriter\n    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));\n    // Write the user content to our random file\n    writer.write(userFileData);\n    // Close the file to flush contents\n    writer.close();\n    // Create the process builder with a hardcoded path to the binary, and our randomly\ngenerated filename\n    ProcessBuilder processBuilder = new ProcessBuilder(\"/opt/app/path\", fileName);\n    // Start the process\n    Process process = processBuilder.start();\n    // Handle/redirect output of process here\n    // ...\n}\n```\n\nFor more information on OS command injection, see OWASP's guide:\nhttps://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html\n"
+              },
+              "help": {
+                "markdown": "OS command injection is a critical vulnerability that can lead to a full system\ncompromise as it may allow an adversary to pass in arbitrary commands or arguments\nto be executed.\n\nUser input should never be used in constructing commands or command arguments\nto functions which execute OS commands. This includes filenames supplied by\nuser uploads or downloads.\n\nEnsure your application does not:\n\n- Use user-supplied information in the process name to execute.\n- Use user-supplied information in an OS command execution function which does\nnot escape shell meta-characters.\n- Use user-supplied information in arguments to OS commands.\n\nThe application should have a hardcoded set of arguments that are to be passed\nto OS commands. If filenames are being passed to these functions, it is\nrecommended that a hash of the filename be used instead, or some other unique\nidentifier. It is strongly recommended that a native library that implements\nthe same functionality be used instead of using OS system commands, due to the\nrisk of unknown attacks against third party commands.\n\nWhen specifying the OS command, ensure the application uses the full path\ninformation, otherwise the OS may attempt to look up which process to execute\nand could be vulnerable to untrusted search path vulnerabilities (CWE-426).\n\nExample of safely executing an OS command:\n```\npublic static void executeCommand(String userFileData) throws java.io.IOException {\n    // Generate a random filename, do not use user input\n    String fileName = UUID.randomUUID().toString();\n    // Create a Buffered/FileWriter\n    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));\n    // Write the user content to our random file\n    writer.write(userFileData);\n    // Close the file to flush contents\n    writer.close();\n    // Create the process builder with a hardcoded path to the binary, and our randomly\ngenerated filename\n    ProcessBuilder processBuilder = new ProcessBuilder(\"/opt/app/path\", fileName);\n    // Start the process\n    Process process = processBuilder.start();\n    // Handle/redirect output of process here\n    // ...\n}\n```\n\nFor more information on OS command injection, see OWASP's guide:\nhttps://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.COMMAND_INJECTION-1)\n",
+                "text": "OS command injection is a critical vulnerability that can lead to a full system\ncompromise as it may allow an adversary to pass in arbitrary commands or arguments\nto be executed.\n\nUser input should never be used in constructing commands or command arguments\nto functions which execute OS commands. This includes filenames supplied by\nuser uploads or downloads.\n\nEnsure your application does not:\n\n- Use user-supplied information in the process name to execute.\n- Use user-supplied information in an OS command execution function which does\nnot escape shell meta-characters.\n- Use user-supplied information in arguments to OS commands.\n\nThe application should have a hardcoded set of arguments that are to be passed\nto OS commands. If filenames are being passed to these functions, it is\nrecommended that a hash of the filename be used instead, or some other unique\nidentifier. It is strongly recommended that a native library that implements\nthe same functionality be used instead of using OS system commands, due to the\nrisk of unknown attacks against third party commands.\n\nWhen specifying the OS command, ensure the application uses the full path\ninformation, otherwise the OS may attempt to look up which process to execute\nand could be vulnerable to untrusted search path vulnerabilities (CWE-426).\n\nExample of safely executing an OS command:\n```\npublic static void executeCommand(String userFileData) throws java.io.IOException {\n    // Generate a random filename, do not use user input\n    String fileName = UUID.randomUUID().toString();\n    // Create a Buffered/FileWriter\n    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));\n    // Write the user content to our random file\n    writer.write(userFileData);\n    // Close the file to flush contents\n    writer.close();\n    // Create the process builder with a hardcoded path to the binary, and our randomly\ngenerated filename\n    ProcessBuilder processBuilder = new ProcessBuilder(\"/opt/app/path\", fileName);\n    // Start the process\n    Process process = processBuilder.start();\n    // Handle/redirect output of process here\n    // ...\n}\n```\n\nFor more information on OS command injection, see OWASP's guide:\nhttps://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.COMMAND_INJECTION-1",
+              "id": "gitlab.find_sec_bugs.COMMAND_INJECTION-1",
+              "name": "gitlab.find_sec_bugs.COMMAND_INJECTION-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-78",
+                  "OWASP-A03:2021-Injection",
+                  "OWASP-A1:2017-Injection",
+                  "security"
+                ],
+                "security-severity": "High"
+              },
+              "shortDescription": {
+                "text": "Improper neutralization of special elements used in an OS command ('OS Command Injection')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "A formatted or concatenated string was detected as input to a ProcessBuilder call. This is dangerous if a variable is controlled by user input and could result in a command injection. Ensure your variables are not controlled by users or sufficiently sanitized."
+              },
+              "help": {
+                "markdown": "A formatted or concatenated string was detected as input to a ProcessBuilder call. This is dangerous if a variable is controlled by user input and could result in a command injection. Ensure your variables are not controlled by users or sufficiently sanitized.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.command-injection-process-builder.command-injection-process-builder)\n - [https://owasp.org/Top10/A03_2021-Injection](https://owasp.org/Top10/A03_2021-Injection)\n",
+                "text": "A formatted or concatenated string was detected as input to a ProcessBuilder call. This is dangerous if a variable is controlled by user input and could result in a command injection. Ensure your variables are not controlled by users or sufficiently sanitized."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.command-injection-process-builder.command-injection-process-builder",
+              "id": "java.lang.security.audit.command-injection-process-builder.command-injection-process-builder",
+              "name": "java.lang.security.audit.command-injection-process-builder.command-injection-process-builder",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+                  "LOW CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.command-injection-process-builder.command-injection-process-builder"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly)\n - [https://owasp.org/Top10/A05_2021-Security_Misconfiguration](https://owasp.org/Top10/A05_2021-Security_Misconfiguration)\n",
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "id": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                  "LOW CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "Detected input from a HTTPServletRequest going into a 'ProcessBuilder' or 'exec' command. This could lead to command injection if variables passed into the exec commands are not properly sanitized. Instead, avoid using these OS commands with user-supplied input, or, if you must use these commands, use a whitelist of specific values."
+              },
+              "help": {
+                "markdown": "Detected input from a HTTPServletRequest going into a 'ProcessBuilder' or 'exec' command. This could lead to command injection if variables passed into the exec commands are not properly sanitized. Instead, avoid using these OS commands with user-supplied input, or, if you must use these commands, use a whitelist of specific values.\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.lang.security.audit.tainted-cmd-from-http-request.tainted-cmd-from-http-request)\n - [https://owasp.org/Top10/A03_2021-Injection](https://owasp.org/Top10/A03_2021-Injection)\n",
+                "text": "Detected input from a HTTPServletRequest going into a 'ProcessBuilder' or 'exec' command. This could lead to command injection if variables passed into the exec commands are not properly sanitized. Instead, avoid using these OS commands with user-supplied input, or, if you must use these commands, use a whitelist of specific values."
+              },
+              "helpUri": "https://semgrep.dev/r/java.lang.security.audit.tainted-cmd-from-http-request.tainted-cmd-from-http-request",
+              "id": "java.lang.security.audit.tainted-cmd-from-http-request.tainted-cmd-from-http-request",
+              "name": "java.lang.security.audit.tainted-cmd-from-http-request.tainted-cmd-from-http-request",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.tainted-cmd-from-http-request.tainted-cmd-from-http-request"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "help": {
+                "markdown": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly)\n - [https://owasp.org/www-community/HttpOnly](https://owasp.org/www-community/HttpOnly)\n",
+                "text": "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "id": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "name": "java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A05:2021 - Security Misconfiguration",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "help": {
+                "markdown": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite)\n - [https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application](https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application)\n",
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "id": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "name": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-352: Cross-Site Request Forgery (CSRF)",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "Untrusted input might be injected into a command executed by the application, which can lead to a command injection vulnerability. An attacker can execute arbitrary commands, potentially gaining complete control of the system. To prevent this vulnerability, avoid executing OS commands with user input. If this is unavoidable, validate and sanitize the input, and use safe methods for executing the commands. For more information, see: [Java command injection prevention] (https://semgrep.dev/docs/cheat-sheets/java-command-injection/)"
+              },
+              "help": {
+                "markdown": "Untrusted input might be injected into a command executed by the application, which can lead to a command injection vulnerability. An attacker can execute arbitrary commands, potentially gaining complete control of the system. To prevent this vulnerability, avoid executing OS commands with user input. If this is unavoidable, validate and sanitize the input, and use safe methods for executing the commands. For more information, see: [Java command injection prevention] (https://semgrep.dev/docs/cheat-sheets/java-command-injection/)\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.tainted-cmd-from-http-request-deepsemgrep.tainted-cmd-from-http-request-deepsemgrep)\n - [https://owasp.org/Top10/A03_2021-Injection](https://owasp.org/Top10/A03_2021-Injection)\n",
+                "text": "Untrusted input might be injected into a command executed by the application, which can lead to a command injection vulnerability. An attacker can execute arbitrary commands, potentially gaining complete control of the system. To prevent this vulnerability, avoid executing OS commands with user input. If this is unavoidable, validate and sanitize the input, and use safe methods for executing the commands. For more information, see: [Java command injection prevention] (https://semgrep.dev/docs/cheat-sheets/java-command-injection/)"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.tainted-cmd-from-http-request-deepsemgrep.tainted-cmd-from-http-request-deepsemgrep",
+              "id": "java.servlets.security.tainted-cmd-from-http-request-deepsemgrep.tainted-cmd-from-http-request-deepsemgrep",
+              "name": "java.servlets.security.tainted-cmd-from-http-request-deepsemgrep.tainted-cmd-from-http-request-deepsemgrep",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.tainted-cmd-from-http-request-deepsemgrep.tainted-cmd-from-http-request-deepsemgrep"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "Untrusted input might be injected into a command executed by the application, which can lead to a command injection vulnerability. An attacker can execute arbitrary commands, potentially gaining complete control of the system. To prevent command injection, avoid executing OS commands with user input. If this is unavoidable, validate and sanitize the user input, and use safe methods for executing the commands. For more information, see [Java command injection prevention](https:// semgrep.dev/docs/cheat-sheets/java-command-injection/)"
+              },
+              "help": {
+                "markdown": "Untrusted input might be injected into a command executed by the application, which can lead to a command injection vulnerability. An attacker can execute arbitrary commands, potentially gaining complete control of the system. To prevent command injection, avoid executing OS commands with user input. If this is unavoidable, validate and sanitize the user input, and use safe methods for executing the commands. For more information, see [Java command injection prevention](https:// semgrep.dev/docs/cheat-sheets/java-command-injection/)\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.tainted-cmd-from-http-request.tainted-cmd-from-http-request)\n - [https://owasp.org/www-community/attacks/Command_Injection](https://owasp.org/www-community/attacks/Command_Injection)\n - [https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html)\n - [https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/12-Testing_for_Command_Injection](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/12-Testing_for_Command_Injection)\n - [https://www.securecodewarrior.com/blog/coders-conquer-security-share-learn-series-os-command-injection](https://www.securecodewarrior.com/blog/coders-conquer-security-share-learn-series-os-command-injection)\n - [https://portal.securecodewarrior.com/#/learning-resources/application_security_weaknesses~2Fweb~2Fdata_handling~2Finjection~2Foscmd](https://portal.securecodewarrior.com/#/learning-resources/application_security_weaknesses~2Fweb~2Fdata_handling~2Finjection~2Foscmd)\n",
+                "text": "Untrusted input might be injected into a command executed by the application, which can lead to a command injection vulnerability. An attacker can execute arbitrary commands, potentially gaining complete control of the system. To prevent command injection, avoid executing OS commands with user input. If this is unavoidable, validate and sanitize the user input, and use safe methods for executing the commands. For more information, see [Java command injection prevention](https:// semgrep.dev/docs/cheat-sheets/java-command-injection/)"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.tainted-cmd-from-http-request.tainted-cmd-from-http-request",
+              "id": "java.servlets.security.tainted-cmd-from-http-request.tainted-cmd-from-http-request",
+              "name": "java.servlets.security.tainted-cmd-from-http-request.tainted-cmd-from-http-request",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.tainted-cmd-from-http-request.tainted-cmd-from-http-request"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}

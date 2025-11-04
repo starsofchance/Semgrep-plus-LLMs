@@ -1,0 +1,137 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "a5548b89307fd3340f792519da7d7ab3a63201d70c12e2dfbb2b1482c1d810a9c0da9f01b24b65b97ed18af3ef08f3f64b7c496cd55de67448b3e2f2a3ba007f_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01935.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 93,
+                  "endLine": 50,
+                  "snippet": {
+                    "text": "        javax.servlet.http.Cookie cookie = new javax.servlet.http.Cookie(\"SomeCookie\", str);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 50
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "HTTP Response Splitting is a vulnerability where Carriage Return (CR `\\r`) and Line Feed (LF\n`\\n`)\ncharacters are introduced into an HTTP header from user-supplied input. By injecting the\n`\\r\\n`\ncharacter sequence, an adversary could potentially modify how the response is interpreted by\nthe\nclient or any downstream caching services. This could allow an adversary to poison the cache\ndata or execute Cross-Site Scripting (XSS) attacks.\n\nSome Java application servers such as [Apache Tomcat](https://tomcat.apache.org/) as of version\n8.0, newer versions of Jetty and other servers that implement the [RFC 6265 Standard](https://datatracker.ietf.org/doc/html/rfc6265) will\ndisallow `\\r' and '\\n` characters characters from being set in cookies. If your application server does not\nautomatically provide this functionality, user-supplied input that is used in cookie keys or\nvalues must be validated.\n\nExample of validating cookies to only allow valid characters:\n```\n// throws an IllegalArgumentException if the provided value contains invalid characters\npublic void validateRfc6265CookieValue(String value) throws IllegalArgumentException {\n    char[] chars = value.toCharArray();\n\n    // iterate over every character\n    for (int i = 0; i < chars.length; i++) {\n        char c = chars[i];\n\n        // check for any characters below 0x21 as well as: '\"' ',' ';' '\\' and 0x7f.\n        if (c < 0x21 || c == '\"' || c == ',' || c == ';' || c == '\\\\' || c == 0x7f) {\n            throw new IllegalArgumentException(\"Invalid character in cookie detected:\n{0}\".format(Integer.toString(c)));\n        }\n    }\n}\n```\n\nAlternatively, you could use a string escape package such as\n[Apache Commons Text](https://commons.apache.org/proper/commons-text/) to escape the input:\n```\npublic String escapeValue(String value) {\n  return StringEscapeUtils.escapeJava(value);\n}\n```\n\nFor more information on response splitting attacks see OWASP:\nhttps://owasp.org/www-community/attacks/HTTP_Response_Splitting\n"
+          },
+          "properties": {},
+          "ruleId": "gitlab.find_sec_bugs.HTTP_RESPONSE_SPLITTING-1"
+        },
+        {
+          "fingerprints": {
+            "matchBasedId/v1": "c08f67f4732b4aeac248aa2c2164b34c2e3f870271d20a98dd4a6af547be1f7f3b964a76ead051f4dd479003f09e2cc54886b4a36f71ed4257678edcf6aacaef_0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/content/OWASP DATASET CLEANED/cleaned_Test_Cases/BenchmarkTest01935.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "endColumn": 36,
+                  "endLine": 56,
+                  "snippet": {
+                    "text": "        response.addCookie(cookie);"
+                  },
+                  "startColumn": 9,
+                  "startLine": 56
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+          },
+          "properties": {},
+          "ruleId": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Semgrep OSS",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "HTTP Response Splitting is a vulnerability where Carriage Return (CR `\\r`) and Line Feed (LF\n`\\n`)\ncharacters are introduced into an HTTP header from user-supplied input. By injecting the\n`\\r\\n`\ncharacter sequence, an adversary could potentially modify how the response is interpreted by\nthe\nclient or any downstream caching services. This could allow an adversary to poison the cache\ndata or execute Cross-Site Scripting (XSS) attacks.\n\nSome Java application servers such as [Apache Tomcat](https://tomcat.apache.org/) as of version\n8.0, newer versions of Jetty and other servers that implement the [RFC 6265 Standard](https://datatracker.ietf.org/doc/html/rfc6265) will\ndisallow `\\r' and '\\n` characters characters from being set in cookies. If your application server does not\nautomatically provide this functionality, user-supplied input that is used in cookie keys or\nvalues must be validated.\n\nExample of validating cookies to only allow valid characters:\n```\n// throws an IllegalArgumentException if the provided value contains invalid characters\npublic void validateRfc6265CookieValue(String value) throws IllegalArgumentException {\n    char[] chars = value.toCharArray();\n\n    // iterate over every character\n    for (int i = 0; i < chars.length; i++) {\n        char c = chars[i];\n\n        // check for any characters below 0x21 as well as: '\"' ',' ';' '\\' and 0x7f.\n        if (c < 0x21 || c == '\"' || c == ',' || c == ';' || c == '\\\\' || c == 0x7f) {\n            throw new IllegalArgumentException(\"Invalid character in cookie detected:\n{0}\".format(Integer.toString(c)));\n        }\n    }\n}\n```\n\nAlternatively, you could use a string escape package such as\n[Apache Commons Text](https://commons.apache.org/proper/commons-text/) to escape the input:\n```\npublic String escapeValue(String value) {\n  return StringEscapeUtils.escapeJava(value);\n}\n```\n\nFor more information on response splitting attacks see OWASP:\nhttps://owasp.org/www-community/attacks/HTTP_Response_Splitting\n"
+              },
+              "help": {
+                "markdown": "HTTP Response Splitting is a vulnerability where Carriage Return (CR `\\r`) and Line Feed (LF\n`\\n`)\ncharacters are introduced into an HTTP header from user-supplied input. By injecting the\n`\\r\\n`\ncharacter sequence, an adversary could potentially modify how the response is interpreted by\nthe\nclient or any downstream caching services. This could allow an adversary to poison the cache\ndata or execute Cross-Site Scripting (XSS) attacks.\n\nSome Java application servers such as [Apache Tomcat](https://tomcat.apache.org/) as of version\n8.0, newer versions of Jetty and other servers that implement the [RFC 6265 Standard](https://datatracker.ietf.org/doc/html/rfc6265) will\ndisallow `\\r' and '\\n` characters characters from being set in cookies. If your application server does not\nautomatically provide this functionality, user-supplied input that is used in cookie keys or\nvalues must be validated.\n\nExample of validating cookies to only allow valid characters:\n```\n// throws an IllegalArgumentException if the provided value contains invalid characters\npublic void validateRfc6265CookieValue(String value) throws IllegalArgumentException {\n    char[] chars = value.toCharArray();\n\n    // iterate over every character\n    for (int i = 0; i < chars.length; i++) {\n        char c = chars[i];\n\n        // check for any characters below 0x21 as well as: '\"' ',' ';' '\\' and 0x7f.\n        if (c < 0x21 || c == '\"' || c == ',' || c == ';' || c == '\\\\' || c == 0x7f) {\n            throw new IllegalArgumentException(\"Invalid character in cookie detected:\n{0}\".format(Integer.toString(c)));\n        }\n    }\n}\n```\n\nAlternatively, you could use a string escape package such as\n[Apache Commons Text](https://commons.apache.org/proper/commons-text/) to escape the input:\n```\npublic String escapeValue(String value) {\n  return StringEscapeUtils.escapeJava(value);\n}\n```\n\nFor more information on response splitting attacks see OWASP:\nhttps://owasp.org/www-community/attacks/HTTP_Response_Splitting\n\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/gitlab.find_sec_bugs.HTTP_RESPONSE_SPLITTING-1)\n",
+                "text": "HTTP Response Splitting is a vulnerability where Carriage Return (CR `\\r`) and Line Feed (LF\n`\\n`)\ncharacters are introduced into an HTTP header from user-supplied input. By injecting the\n`\\r\\n`\ncharacter sequence, an adversary could potentially modify how the response is interpreted by\nthe\nclient or any downstream caching services. This could allow an adversary to poison the cache\ndata or execute Cross-Site Scripting (XSS) attacks.\n\nSome Java application servers such as [Apache Tomcat](https://tomcat.apache.org/) as of version\n8.0, newer versions of Jetty and other servers that implement the [RFC 6265 Standard](https://datatracker.ietf.org/doc/html/rfc6265) will\ndisallow `\\r' and '\\n` characters characters from being set in cookies. If your application server does not\nautomatically provide this functionality, user-supplied input that is used in cookie keys or\nvalues must be validated.\n\nExample of validating cookies to only allow valid characters:\n```\n// throws an IllegalArgumentException if the provided value contains invalid characters\npublic void validateRfc6265CookieValue(String value) throws IllegalArgumentException {\n    char[] chars = value.toCharArray();\n\n    // iterate over every character\n    for (int i = 0; i < chars.length; i++) {\n        char c = chars[i];\n\n        // check for any characters below 0x21 as well as: '\"' ',' ';' '\\' and 0x7f.\n        if (c < 0x21 || c == '\"' || c == ',' || c == ';' || c == '\\\\' || c == 0x7f) {\n            throw new IllegalArgumentException(\"Invalid character in cookie detected:\n{0}\".format(Integer.toString(c)));\n        }\n    }\n}\n```\n\nAlternatively, you could use a string escape package such as\n[Apache Commons Text](https://commons.apache.org/proper/commons-text/) to escape the input:\n```\npublic String escapeValue(String value) {\n  return StringEscapeUtils.escapeJava(value);\n}\n```\n\nFor more information on response splitting attacks see OWASP:\nhttps://owasp.org/www-community/attacks/HTTP_Response_Splitting\n"
+              },
+              "helpUri": "https://semgrep.dev/r/gitlab.find_sec_bugs.HTTP_RESPONSE_SPLITTING-1",
+              "id": "gitlab.find_sec_bugs.HTTP_RESPONSE_SPLITTING-1",
+              "name": "gitlab.find_sec_bugs.HTTP_RESPONSE_SPLITTING-1",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-113",
+                  "OWASP-A03:2021-Injection",
+                  "OWASP-A1:2017-Injection",
+                  "security"
+                ],
+                "security-severity": "High"
+              },
+              "shortDescription": {
+                "text": "Improper neutralization of CRLF sequences in HTTP headers ('HTTP Response Splitting')"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "fullDescription": {
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "help": {
+                "markdown": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n\n<b>References:</b>\n - [Semgrep Rule](https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite)\n - [https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application](https://stackoverflow.com/questions/42717210/samesite-cookie-in-java-application)\n",
+                "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+              },
+              "helpUri": "https://semgrep.dev/r/java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "id": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "name": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "CWE-352: Cross-Site Request Forgery (CSRF)",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "security"
+                ]
+              },
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+              }
+            }
+          ],
+          "semanticVersion": "1.142.0"
+        }
+      }
+    }
+  ]
+}
