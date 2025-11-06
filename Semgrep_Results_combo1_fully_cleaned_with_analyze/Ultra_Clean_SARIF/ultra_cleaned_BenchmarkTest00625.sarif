@@ -1,0 +1,65 @@
+{
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "rules": [
+            {
+              "id": "java.lang.security.httpservlet-path-traversal.httpservlet-path-traversal",
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.httpservlet-path-traversal.httpservlet-path-traversal"
+              },
+              "properties": {
+                "tags": [
+                  "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "OWASP-A05:2017 - Broken Access Control",
+                  "security"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "java.lang.security.httpservlet-path-traversal.httpservlet-path-traversal",
+          "message": {
+            "text": "Detected a potential path traversal. A malicious actor could control the location of this file, to include going backwards in the directory with '../'. To address this, ensure that user-controlled variables in file paths are sanitized. You may also consider using a utility method such as org.apache.commons.io.FilenameUtils.getName(...) to only retrieve the file name from the path."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "BenchmarkTest00625.java"
+                },
+                "snippet": {
+                  "text": "            fos = new java.io.FileOutputStream(new java.io.File(fileName), false);"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.lang.security.httpservlet-path-traversal.httpservlet-path-traversal",
+          "message": {
+            "text": "Detected a potential path traversal. A malicious actor could control the location of this file, to include going backwards in the directory with '../'. To address this, ensure that user-controlled variables in file paths are sanitized. You may also consider using a utility method such as org.apache.commons.io.FilenameUtils.getName(...) to only retrieve the file name from the path."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "BenchmarkTest00625.java"
+                },
+                "snippet": {
+                  "text": "                    fos = null;"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

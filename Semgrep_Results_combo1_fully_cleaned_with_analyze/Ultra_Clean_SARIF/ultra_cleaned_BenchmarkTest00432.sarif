@@ -1,0 +1,92 @@
+{
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "rules": [
+            {
+              "id": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+              "shortDescription": {
+                "text": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+              },
+              "properties": {
+                "tags": [
+                  "CWE-89",
+                  "security"
+                ]
+              }
+            },
+            {
+              "id": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              },
+              "properties": {
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "BenchmarkTest00432.java"
+                },
+                "snippet": {
+                  "text": "        String param = request.getParameter(\"BenchmarkTest00432\");"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+          "message": {
+            "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "BenchmarkTest00432.java"
+                },
+                "snippet": {
+                  "text": "        String sql = \"SELECT * from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "gitlab.find_sec_bugs.CUSTOM_INJECTION-2",
+          "message": {
+            "text": "The method identified is susceptible to injection. The input should be validated and properly\nescaped.\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "BenchmarkTest00432.java"
+                },
+                "snippet": {
+                  "text": "        String sql = \"SELECT * from USERS where USERNAME='foo' and PASSWORD='\" + bar + \"'\";"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

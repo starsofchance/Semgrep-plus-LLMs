@@ -1,0 +1,44 @@
+{
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "rules": [
+            {
+              "id": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              },
+              "properties": {
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "BenchmarkTest00383.java"
+                },
+                "snippet": {
+                  "text": "        String param = request.getParameter(\"BenchmarkTest00383\");"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "rules": [
+            {
+              "id": "java.lang.security.audit.crypto.weak-random.weak-random",
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.crypto.weak-random.weak-random"
+              },
+              "properties": {
+                "tags": [
+                  "CWE-330: Use of Insufficiently Random Values",
+                  "LOW CONFIDENCE",
+                  "OWASP-A02:2021 - Cryptographic Failures",
+                  "security"
+                ]
+              }
+            },
+            {
+              "id": "gitlab.find_sec_bugs.PREDICTABLE_RANDOM-1",
+              "shortDescription": {
+                "text": "Use of insufficiently random values"
+              },
+              "properties": {
+                "tags": [
+                  "CWE-330",
+                  "security"
+                ]
+              }
+            },
+            {
+              "id": "gitlab.find_sec_bugs.TRUST_BOUNDARY_VIOLATION-1",
+              "shortDescription": {
+                "text": "Trust Boundary Violation"
+              },
+              "properties": {
+                "tags": [
+                  "CWE-501",
+                  "security"
+                ]
+              }
+            },
+            {
+              "id": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite"
+              },
+              "properties": {
+                "tags": [
+                  "CWE-352: Cross-Site Request Forgery (CSRF)",
+                  "HIGH CONFIDENCE",
+                  "OWASP-A01:2021 - Broken Access Control",
+                  "security"
+                ]
+              }
+            },
+            {
+              "id": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+              "shortDescription": {
+                "text": "Improper Input Validation"
+              },
+              "properties": {
+                "tags": [
+                  "CWE-20",
+                  "security"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "gitlab.find_sec_bugs.XSS_SERVLET-2.XSS_SERVLET_PARAMETER-1",
+          "message": {
+            "text": "The Servlet can read GET and POST parameters from various methods. The value obtained should be\nconsidered unsafe. You may need to validate or sanitize those values before passing them to\nsensitive APIs\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "BenchmarkTest02338.java"
+                },
+                "snippet": {
+                  "text": "        java.util.Enumeration<String> names = request.getParameterNames();"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "gitlab.find_sec_bugs.PREDICTABLE_RANDOM-1",
+          "message": {
+            "text": "Depending on the context, generating weak random numbers may expose cryptographic functions\nwhich rely on these numbers, to be exploitable. When generating numbers for sensitive values\nsuch as tokens, nonces, and cryptographic keys, it is recommended that the `DRBG` instance\nof `SecureRandom` be used.\n\nExample using `DRBG` with `SecureRandom`:\n```\npublic SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {\n// Use DRBG according to\nhttp://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf\n    return SecureRandom.getInstance(\"DRBG\",\n            // Security strength in bits (default is 128)\n            DrbgParameters.instantiation(256,\n                // Set prediction resistance and re-seeding\n                DrbgParameters.Capability.PR_AND_RESEED,\n                // Set the personalization string (optional, not necessary)\n                \"some_personalization_string\".getBytes()\n            )\n    );\n}\n```\n\nFor more information on Java Cryptography see:\nhttps://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "BenchmarkTest02338.java"
+                },
+                "snippet": {
+                  "text": "        long l = new java.util.Random().nextLong();"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.lang.security.audit.crypto.weak-random.weak-random",
+          "message": {
+            "text": "Detected use of the functions `Math.random()` or `java.util.Random()`. These are both not cryptographically strong random number generators (RNGs). If you are using these RNGs to create passwords or secret tokens, use `java.security.SecureRandom` instead."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "BenchmarkTest02338.java"
+                },
+                "snippet": {
+                  "text": "        long l = new java.util.Random().nextLong();"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "gitlab.find_sec_bugs.TRUST_BOUNDARY_VIOLATION-1",
+          "message": {
+            "text": "A trust boundary can be thought of as line drawn through a program. On one side\nof the line, data is untrusted. On the other side of the line, data is assumed\nto be trustworthy. The purpose of validation logic is to allow data to safely\ncross the trust boundary - to move from untrusted to trusted. A trust boundary\nviolation occurs when a program blurs the line between what is trusted and what\nis untrusted. By combining trusted and untrusted data in the same data\nstructure, it becomes easier for programmers to mistakenly trust unvalidated\ndata.\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "BenchmarkTest02338.java"
+                },
+                "snippet": {
+                  "text": "            request.getSession().setAttribute(cookieName, rememberMeKey);"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.servlets.security.audit.cookie-missing-samesite.cookie-missing-samesite",
+          "message": {
+            "text": "The application does not appear to verify inbound requests which can lead to a Cross-site request forgery (CSRF) vulnerability. If the application uses cookie-based authentication, an attacker can trick users into sending authenticated HTTP requests without their knowledge from any arbitrary domain they visit. To prevent this vulnerability start by identifying if the framework or library leveraged has built-in features or offers plugins for CSRF protection. CSRF tokens should be unique and securely random. The `Synchronizer Token` or `Double Submit Cookie` patterns with defense-in- depth mechanisms such as the `sameSite` cookie flag can help prevent CSRF. For more information, see: [Cross-site request forgery prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross- Site_Request_Forgery_Prevention_Cheat_Sheet.html)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "BenchmarkTest02338.java"
+                },
+                "snippet": {
+                  "text": "            response.addCookie(rememberMe);"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

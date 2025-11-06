@@ -1,0 +1,80 @@
+{
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "rules": [
+            {
+              "id": "java.lang.security.audit.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request",
+              "shortDescription": {
+                "text": "Semgrep Finding: java.lang.security.audit.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request"
+              },
+              "properties": {
+                "tags": [
+                  "CWE-90: Improper Neutralization of Special Elements used in an LDAP Query ('LDAP Injection')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              }
+            },
+            {
+              "id": "java.servlets.security.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request",
+              "shortDescription": {
+                "text": "Semgrep Finding: java.servlets.security.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request"
+              },
+              "properties": {
+                "tags": [
+                  "CWE-90: Improper Neutralization of Special Elements used in an LDAP Query ('LDAP Injection')",
+                  "MEDIUM CONFIDENCE",
+                  "OWASP-A01:2017 - Injection",
+                  "OWASP-A03:2021 - Injection",
+                  "security"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "java.lang.security.audit.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request",
+          "message": {
+            "text": "Detected input from a HTTPServletRequest going into an LDAP query. This could lead to LDAP injection if the input is not properly sanitized, which could result in attackers modifying objects in the LDAP tree structure. Ensure data passed to an LDAP query is not controllable or properly sanitize the data."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "BenchmarkTest00630.java"
+                },
+                "snippet": {
+                  "text": "                    idc.search(base, filter, sc);"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "java.servlets.security.tainted-ldapi-from-http-request.tainted-ldapi-from-http-request",
+          "message": {
+            "text": "Detected input from a HTTPServletRequest going into an LDAP query. This could lead to LDAP injection if the input is not properly santized, which could result in attackers modifying objects in the LDAP tree structure. Ensure data passed to an LDAP query is not controllable or properly sanitize the data."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "BenchmarkTest00630.java"
+                },
+                "snippet": {
+                  "text": "                    idc.search(base, filter, sc);"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
